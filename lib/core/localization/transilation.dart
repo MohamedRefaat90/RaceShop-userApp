@@ -33,6 +33,7 @@ class MyTransilation extends Translations {
           "enterEmail": "Enter Email",
           "enterPhone": "Enter Your Phone",
           "enterPass": "Enter Password",
+          "passConfirm": "Confirm Password",
           "signup": "Sign up",
           'haveAcc': "Have Account ",
 
@@ -44,6 +45,7 @@ class MyTransilation extends Translations {
           // Varification Screen
           "verify": "Verifiy Code",
           "varificationTitle": "Varification Process",
+          "varificationDesc": "Enter OTP Recived on Your Email",
           "resendOTP": "Resend OTP",
 
           // ResetPass Screen
@@ -78,6 +80,7 @@ class MyTransilation extends Translations {
           "phonelarger13": "Phone can't Larger than 13",
           "passlarger30": "Password can't Larger than 30",
 
+          "passNotMatch": "Passwords Not Match",
           // Alert Exit App
           "alertTitle": "Close App",
           "alertDesc": "Are You Sure Wanna Leave The App",
@@ -111,6 +114,7 @@ class MyTransilation extends Translations {
           "name": "الاسم",
           "enterEmail": "ادخل الايميل",
           "enterPass": "ادخل كلمة السر",
+          "passConfirm": "تأكيد كلمة السر",
           "enterName": "ادخل اسمك",
           "enterPhone": "ادخل رقم الهاتف",
           'forgetPassword': 'نسيت كلمة السر',
@@ -125,6 +129,7 @@ class MyTransilation extends Translations {
           // Varification Screen
           "verify": "تحقق من الرمز",
           "varificationTitle": "عملية التحقق",
+          "varificationDesc": "ادخل رمز التحقق المرسل علي بريدك الالكتروني",
           "resendOTP": "اعادة ارسال رمز التحقق",
 
           // ResetPass Screen
@@ -158,6 +163,7 @@ class MyTransilation extends Translations {
           "phonelarge13": "رقم الهاتف لا يجب ان يكون اكبر من 13 رقم",
           "passlarge30": "كلمة السر لا تجب ان تكون اكبر من 30 حرف",
 
+          "passNotMatch": "كلمة السر لا تتطابق",
           // Alert Exit App
           "alertTitle": "أغلاق التطبيق",
           "alertDesc": "هل انت من متاكد من رغبتك في مغادرة التطبيق؟",

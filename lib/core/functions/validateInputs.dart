@@ -5,12 +5,6 @@ ValidateInputs(String value, String type, int min, int max) {
     return "notEmpty".tr;
     // "الحقل لت يجب ان يكون فارغا"
   }
-  if (type == "username") {
-    if (!GetUtils.isUsername(value)) {
-      return "namenotValid".tr;
-      // "الاسم غير صالح"
-    }
-  }
 
   if (type == 'email') {
     if (!GetUtils.isEmail(value)) {
@@ -42,5 +36,11 @@ ValidateInputs(String value, String type, int min, int max) {
             : type == "phone"
                 ? "phonelarge13".tr
                 : "passlarge30".tr;
+  }
+}
+
+PasswordConfirmation(String password, String confirmPassword) {
+  if (password != confirmPassword) {
+    return "passNotMatch".tr;
   }
 }

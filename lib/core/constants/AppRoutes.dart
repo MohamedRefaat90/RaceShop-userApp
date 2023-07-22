@@ -1,4 +1,7 @@
 class AppRoutes {
+  // onBoarding
+  static const onBoarding = "/onBoarding";
+
   // Auth
   static const login = "/login";
   static const signup = "/signup";
@@ -9,6 +12,6 @@ class AppRoutes {
   static const successSignup = "/successSignup";
   static const checkEmail = "/checkEmail";
 
-  // onBoarding
-  static const onBoarding = "/onBoarding";
+  // Home
+  static const home = "/home";
 }

@@ -9,19 +9,46 @@ class DB_helper {
   Future<Either<StatusRequest, Map>> postData(String url, Map data) async {
     try {
       if (await checkInternetConnection()) {
-        http.Response response = await http.post(Uri.parse(url), body: data);
+        var response = await http.post(Uri.parse(url), body: data);
 
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          Map responseBody = jsonDecode(response.body);
-          return Right(responseBody);
-        } else {
-          return const Left(StatusRequest.serverFailure);
-        }
+        Map responseBody = jsonDecode(response.body);
+
+        return Right(responseBody);
       } else {
         return const Left(StatusRequest.offlineFailure);
       }
     } catch (e) {
       return const Left(StatusRequest.failure);
+    }
+  }
+
+  Future<Either<StatusRequest, Map>> patchData(String url, Map data) async {
+    try {
+      if (await checkInternetConnection()) {
+        var response = await http.patch(Uri.parse(url), body: data);
+
+        Map responseBody = jsonDecode(response.body);
+
+        return Right(responseBody);
+      } else {
+        return const Left(StatusRequest.offlineFailure);
+      }
+    } catch (e) {
+      return const Left(StatusRequest.failure);
+    }
+  }
+
+  Future<Either<StatusRequest, Map>> getAllData(String url) async {
+    if (await checkInternetConnection()) {
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Map responseBody = jsonDecode(response.body);
+        return Right(responseBody);
+      } else {
+        return const Left(StatusRequest.failure);
+      }
+    } else {
+      return const Left(StatusRequest.offlineFailure);
     }
   }
 }

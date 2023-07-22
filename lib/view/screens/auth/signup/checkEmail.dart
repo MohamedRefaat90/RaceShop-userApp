@@ -1,13 +1,11 @@
 import 'package:ecommerce/controller/auth/checkEmail.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
 import 'package:ecommerce/view/widgets/Auth/OTPFields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../core/shared/BTN.dart';
 import '../../../../core/shared/customAppBar.dart';
+import '../../../widgets/Auth/otpTimer.dart';
 
-class CheckEmail extends GetView<checkEmailControllerImp> {
+class CheckEmail extends StatelessWidget {
   const CheckEmail({Key? key}) : super(key: key);
 
   @override
@@ -17,8 +15,8 @@ class CheckEmail extends GetView<checkEmailControllerImp> {
       appBar: customAppBar(context, "checkEmailTitle".tr),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 40),
-        child: SingleChildScrollView(
-          child: Column(
+        child: GetBuilder<checkEmailControllerImp>(builder: (controller) {
+          return Column(
             children: [
               Text(
                 'checkEmailDesc'.tr,
@@ -28,13 +26,18 @@ class CheckEmail extends GetView<checkEmailControllerImp> {
                     .copyWith(fontSize: 14),
               ),
               const SizedBox(height: 40),
-              const OTPFields(goTo: AppRoutes.successSignup),
+              OTPFields(mycontroller: checkEmailControllerImp()),
               const SizedBox(height: 60),
-              BTN(lable: 'resendOTP'.tr, press: () {}, width: 350),
-              const SizedBox(height: 20),
+              optTimer(
+                  controller: controller.otpTimerButtonController,
+                  otpTimer: controller.otpTimer,
+                  press: () {
+                    controller.resendOTP();
+                    controller.otpTimerButtonController.startTimer();
+                  }),
             ],
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

@@ -52,9 +52,9 @@ dependencies:
   geolocator: 
   geocoding: 
   # Firebase And Notification 
-  firebase_messaging: 
+  firebase_messaging: ^14.6.5 
   firebase_core: 
-  flutter_local_notifications: 
+  flutter_local_notifications: ^15.1.0+1 
   cloud_firestore: 
   # Local Data Cache
   sqflite: 
@@ -73,12 +73,18 @@ dependencies:
   fluttericon: 
   dartz: 
   # Google Auth
-  google_sign_in:   
+  google_sign_in:
+
+
   device_preview: 
   responsive_builder: 
   image_pickers:
   flutter_otp_text_field: ^1.1.1
   lottie: ^2.4.0
+  another_flushbar: ^1.12.30
+  fluttertoast: ^8.2.2
+  otp_timer_button: ^1.1.0
+  firebase_in_app_messaging: ^0.7.3+4
 
 dev_dependencies:
   flutter_test:

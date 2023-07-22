@@ -41,7 +41,7 @@ class customField extends StatelessWidget {
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(40))),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
+              borderSide: BorderSide(width: 2),
               borderRadius: BorderRadius.all(Radius.circular(40))),
           suffixIcon: IconButton(icon: Icon(icon), onPressed: iconPress)),
     );

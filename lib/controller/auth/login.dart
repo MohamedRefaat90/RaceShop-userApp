@@ -1,14 +1,18 @@
+import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/functions/checkInternetConncetion.dart';
+import 'package:ecommerce/core/functions/toast.dart';
+import 'package:ecommerce/data/dataSource/remote/Auth/loginData.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../core/functions/handelDataController.dart';
 
 abstract class LoginController extends GetxController {
   login();
   passVisible();
   goToSignup();
   goToForgetPassword();
-  tetsinginterner();
 }
 
 class LoginControllerImp extends LoginController {
@@ -18,21 +22,33 @@ class LoginControllerImp extends LoginController {
   bool visibility = true;
   var testConnection;
 
+  LoginData loginData = LoginData(Get.find());
+  StatusRequest statusRequest = StatusRequest.none;
   @override
-  login() {
+  login() async {
     var fromdata = formkey.currentState;
 
     if (fromdata!.validate()) {
-      print("V a l i d");
-    } else {
-      print("N O T V a l i d");
-    }
-  }
+      {
+        statusRequest = StatusRequest.loading;
+        update();
+        var response = await loginData.loginData(
+            email: email.text.trim(), password: password.text);
 
-  @override
-  passVisible() {
-    visibility = !visibility;
-    update();
+        statusRequest = handelData(response);
+
+        if (statusRequest == StatusRequest.success) {
+          if (response['status'] == "success") {
+            Get.offAllNamed(AppRoutes.home);
+          } else {
+            update();
+            toastAlert(msg: response['message'], color: Colors.red);
+          }
+        } else {
+          update();
+        }
+      }
+    }
   }
 
   @override
@@ -46,10 +62,10 @@ class LoginControllerImp extends LoginController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     email = TextEditingController();
     password = TextEditingController();
-    tetsinginterner();
+
     super.onInit();
   }
 
@@ -61,8 +77,8 @@ class LoginControllerImp extends LoginController {
   }
 
   @override
-  tetsinginterner() async {
-    testConnection = await checkInternetConnection();
-    print(testConnection);
+  passVisible() {
+    visibility = !visibility;
+    update();
   }
 }

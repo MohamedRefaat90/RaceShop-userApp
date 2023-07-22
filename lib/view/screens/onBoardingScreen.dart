@@ -1,17 +1,18 @@
+import 'package:ecommerce/controller/onBoardingController.dart';
 import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
+import 'package:ecommerce/core/shared/BTN.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../widgets/onBoarding/DottsController.dart';
-import '../widgets/onBoarding/onBoardingBTN.dart';
 import '../widgets/onBoarding/onBoardingSlider.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends GetView<onBoardingControllerImp> {
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.put(onBoardingControllerImp());
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -25,16 +26,19 @@ class OnBoardingScreen extends StatelessWidget {
             child: Column(
               children: [
                 const DottsController(),
-                const Spacer(),
-                const onBoardingBTN(),
+                const SizedBox(height: 50),
+                BTN(
+                  lable: "continue".tr,
+                  press: () => controller.next(),
+                  color: AppColors.primaryColor,
+                  width: 250,
+                ),
                 TextButton(
-                    onPressed: () {
-                      Get.offAllNamed(AppRoutes.login);
-                    },
+                    onPressed: () => controller.skip(),
                     child: Text(
                       'skip'.tr,
                       style: const TextStyle(color: AppColors.primaryColor),
-                    ))
+                    )),
               ],
             ),
           )

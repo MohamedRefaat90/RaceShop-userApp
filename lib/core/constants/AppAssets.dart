@@ -9,7 +9,12 @@ class AppAssets {
   static const String onBoardingImageTwo = "$rootImages/two.png";
   static const String onBoardingImageThree = "$rootImages/three.png";
 
+  static const String loading = "$rootAnimations/loading.json";
+  static const String offline = "$rootAnimations/offline.json";
+
   // success Signup
   static const String success = "$rootAnimations/Success.json";
+
+  // success Reset Pasword
   static const String resetPassword = "$rootAnimations/resetPassword.json";
 }
