@@ -2,15 +2,15 @@
 import 'package:ecommerce/ApiLinks.dart';
 import 'package:ecommerce/core/class/DB_helper.dart';
 
-class DataTest {
-  DB_helper db_helper;
-  DataTest(
-    this.db_helper,
-  );
+// class DataTest {
+//   DB_helper db_helper;
+//   DataTest(
+//     this.db_helper,
+//   );
 
-  getData() async {
-    var response = await db_helper.postData(ApiLinks.confirmEmail, {});
+//   getData() async {
+//     var response = await db_helper.postData(ApiLinks.confirmEmail, {});
 
-    return response.fold((l) => l, (r) => r);
-  }
-}
+//     return response.fold((l) => l, (r) => r);
+//   }
+// }

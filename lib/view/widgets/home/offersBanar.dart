@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../controller/home/HomeController.dart';
 import '../../../core/constants/AppColors.dart';
 
-class offersBanar extends StatelessWidget {
+class offersBanar extends GetView<HomeControllerImp> {
   const offersBanar({
     super.key,
   });
@@ -23,21 +25,22 @@ class offersBanar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Summer Suprise',
+              'offerTitle'.tr,
               style: Theme.of(context)
                   .textTheme
                   .displayLarge!
                   .copyWith(fontSize: 25, color: AppColors.white),
             ),
-            Text('20% Cashback',
+            Text('offerDesc'.tr,
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!
-                    .copyWith(fontSize: 18, color: AppColors.white)),
+                    .copyWith(fontSize: 20, color: AppColors.white)),
           ],
         ),
         Positioned(
-          right: -50,
+          right: controller.lang == "en" ? -50 : null,
+          left: controller.lang == "ar" ? -50 : null,
           top: -10,
           child: Container(
             width: 200,

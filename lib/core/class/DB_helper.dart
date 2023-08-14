@@ -6,10 +6,13 @@ import 'package:ecommerce/core/functions/checkInternetConncetion.dart';
 import 'package:http/http.dart' as http;
 
 class DB_helper {
-  Future<Either<StatusRequest, Map>> postData(String url, Map data) async {
+  Future<Either<StatusRequest, Map>> postData(String url, Map data,
+      {String? userToken}) async {
     try {
       if (await checkInternetConnection()) {
-        var response = await http.post(Uri.parse(url), body: data);
+        var response = await http.post(Uri.parse(url),
+            body: data,
+            headers: {"Accept": "*/*", 'Authorization': 'Bearer $userToken'});
 
         Map responseBody = jsonDecode(response.body);
 
@@ -22,10 +25,13 @@ class DB_helper {
     }
   }
 
-  Future<Either<StatusRequest, Map>> patchData(String url, Map data) async {
+  Future<Either<StatusRequest, Map>> patchData(String url, Map data,
+      {String? userToken}) async {
     try {
       if (await checkInternetConnection()) {
-        var response = await http.patch(Uri.parse(url), body: data);
+        var response = await http.patch(Uri.parse(url),
+            body: data,
+            headers: {"Accept": "*/*", 'Authorization': 'Bearer $userToken'});
 
         Map responseBody = jsonDecode(response.body);
 
@@ -38,11 +44,29 @@ class DB_helper {
     }
   }
 
-  Future<Either<StatusRequest, Map>> getAllData(String url) async {
+  Future<Either<StatusRequest, Map>> getAllData(String url,
+      {String? userToken}) async {
     if (await checkInternetConnection()) {
-      var response = await http.get(Uri.parse(url));
+      var response = await http
+          .get(Uri.parse(url), headers: {'Authorization': 'Bearer $userToken'});
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map responseBody = jsonDecode(response.body);
+        return Right(responseBody);
+      } else {
+        return const Left(StatusRequest.failure);
+      }
+    } else {
+      return const Left(StatusRequest.offlineFailure);
+    }
+  }
+
+  Future<Either<StatusRequest, Map>> deleteData(String url) async {
+    if (await checkInternetConnection()) {
+      var response = await http.delete(Uri.parse(url));
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Map responseBody = jsonDecode(response.body);
+
         return Right(responseBody);
       } else {
         return const Left(StatusRequest.failure);

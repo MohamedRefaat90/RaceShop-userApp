@@ -1,8 +1,8 @@
 import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:ecommerce/core/constants/AppRoutes.dart';
 import 'package:ecommerce/core/functions/toast.dart';
+import 'package:ecommerce/core/services/myServices.dart';
 import 'package:ecommerce/data/dataSource/remote/Auth/loginData.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +13,7 @@ abstract class LoginController extends GetxController {
   passVisible();
   goToSignup();
   goToForgetPassword();
+  logout();
 }
 
 class LoginControllerImp extends LoginController {
@@ -21,6 +22,7 @@ class LoginControllerImp extends LoginController {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool visibility = true;
   var testConnection;
+  MyServices myServices = Get.find();
 
   LoginData loginData = LoginData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
@@ -39,16 +41,18 @@ class LoginControllerImp extends LoginController {
 
         if (statusRequest == StatusRequest.success) {
           if (response['status'] == "success") {
+            myServices.sharedPreferences
+                .setString("userToken", response['token']);
+
             Get.offAllNamed(AppRoutes.home);
           } else {
             update();
             toastAlert(msg: response['message'], color: Colors.red);
           }
-        } else {
-          update();
         }
       }
     }
+    update();
   }
 
   @override
@@ -80,5 +84,12 @@ class LoginControllerImp extends LoginController {
   passVisible() {
     visibility = !visibility;
     update();
+  }
+
+  logout() {
+    loginData.logout(myServices.sharedPreferences.getString('userToken')!);
+
+    myServices.sharedPreferences.clear();
+    Get.offAllNamed(AppRoutes.login);
   }
 }

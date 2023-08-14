@@ -1,14 +1,17 @@
 import 'package:ecommerce/core/Middleware/middleware.dart';
-import 'package:ecommerce/view/screens/Languages.dart';
+import 'package:ecommerce/view/screens/Cart/CartScreen.dart';
+import 'package:ecommerce/view/screens/LanguageScreen/Languages.dart';
 import 'package:ecommerce/view/screens/auth/fogetPassword/VarificationCode.dart';
 import 'package:ecommerce/view/screens/auth/fogetPassword/resetPassword.dart';
 import 'package:ecommerce/view/screens/auth/fogetPassword/successResetPass.dart';
-import 'package:ecommerce/view/screens/auth/login.dart';
+import 'package:ecommerce/view/screens/auth/Login/login.dart';
 import 'package:ecommerce/view/screens/auth/signup/checkEmail.dart';
 import 'package:ecommerce/view/screens/auth/signup/signup.dart';
 import 'package:ecommerce/view/screens/auth/signup/successSignup.dart';
-import 'package:ecommerce/view/screens/home.dart';
-import 'package:ecommerce/view/screens/onBoardingScreen.dart';
+import 'package:ecommerce/view/screens/categoryProductsScreen/categoryProducts.dart';
+import 'package:ecommerce/view/screens/homeNavigationScreen/homeNavigationScreen.dart';
+import 'package:ecommerce/view/screens/onBoardingScreen/onBoardingScreen.dart';
+import 'package:ecommerce/view/screens/productDetailsScreen/productDetails.dart';
 import 'package:get/get.dart';
 import 'core/constants/AppRoutes.dart';
 import 'view/screens/auth/fogetPassword/forgetPassword.dart';
@@ -35,5 +38,9 @@ List<GetPage<dynamic>>? routes = [
 
   // ===================== Home =====================
 
-  GetPage(name: AppRoutes.home, page: () => const Home()),
+  GetPage(name: AppRoutes.home, page: () => const HomeNavigationScreen()),
+  GetPage(
+      name: AppRoutes.categoryProduts, page: () => const CategoryProducts()),
+  GetPage(name: AppRoutes.productDetails, page: () => const ProductDetails()),
+  GetPage(name: AppRoutes.cart, page: () => const CartScreen()),
 ];

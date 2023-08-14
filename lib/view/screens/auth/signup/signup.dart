@@ -1,7 +1,5 @@
 import 'package:ecommerce/controller/auth/signup.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/view/screens/auth/Authloading.dart';
-import 'package:ecommerce/view/screens/auth/offlineAlert.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +8,7 @@ import '../../../../core/functions/validateInputs.dart';
 import '../../../../core/shared/BTN.dart';
 import '../../../../core/shared/customAppBar.dart';
 import '../../../../core/shared/customField.dart';
-import '../../../widgets/Auth/HandleingRequsetData.dart';
+import '../../../../core/shared/HandleingRequsetData.dart';
 
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);

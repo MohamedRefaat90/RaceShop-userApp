@@ -1,5 +1,4 @@
 import 'package:ecommerce/Bindings/myBindings.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
 import 'package:ecommerce/core/localization/changeLanguage.dart';
 import 'package:ecommerce/routes.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class Ecommerce extends GetView<LanguageController> {
       locale: controller.language,
       translations: MyTransilation(),
       initialBinding: myBindings(),
-      initialRoute: AppRoutes.home,
+      // initialRoute: AppRoutes.home,
       getPages: routes,
     );
   }

@@ -12,4 +12,11 @@ class LoginData {
 
     return response.fold((l) => l, (r) => r);
   }
+
+  logout(String userToken) async {
+    var response =
+        await db_helper.postData(ApiLinks.logout, {}, userToken: userToken);
+
+    return response.fold((l) => l, (r) => r);
+  }
 }

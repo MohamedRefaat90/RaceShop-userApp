@@ -18,7 +18,7 @@ class MyTransilation extends Translations {
 
           // Login Screen
           "signin": 'Sign in',
-          'welcome': "Welcome Back",
+          'welcome': "Welcome Biker",
           'welcomDesc':
               'Dolor nulla officia et minim aliquip consectetur do adipisicing deserunt id voluptate nulla. Qui ad quis do esse commodo.',
           'email': "Email",
@@ -86,6 +86,23 @@ class MyTransilation extends Translations {
           "alertDesc": "Are You Sure Wanna Leave The App",
           "yes": "Yes",
           "no": "No",
+
+          // Home
+          "findProduct": "Find Product",
+          "offerTitle": "Summer Suprise",
+          "offerDesc": "Cashback 20%",
+          "productForYou": "Products For You",
+          "offerThisMonth": "Offer This Month",
+
+          // CategoryProducts
+          "Filters": "Filters",
+          "highestPrice": "Highest Price",
+          "lowestPrice": "Lowest Price",
+          'MostRecent': "Most Recent",
+          'Oldest': "Oldest",
+
+          // Product Details
+          "ColorsandSizes": "Colors and Sizes"
         },
         "ar": {
           // Language Screen
@@ -102,7 +119,7 @@ class MyTransilation extends Translations {
 
           // Login Screen
           "signin": 'تسجيل الدخول',
-          'welcome': "مرحبا بك",
+          'welcome': "مرحبا بك يا بايكر",
           'welcomDesc':
               " هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأهاء",
           'email': "البريد الالكتروني",
@@ -169,6 +186,22 @@ class MyTransilation extends Translations {
           "alertDesc": "هل انت من متاكد من رغبتك في مغادرة التطبيق؟",
           "yes": "نعم",
           "no": "لا",
+
+          // Home
+          "findProduct": "البحث عن منتج",
+          "offerTitle": "عروض الصيف",
+          "offerDesc": "كاش باك 20%",
+          "productForYou": "منتجات لك",
+          "offerThisMonth": "عروض هذا الشهر",
+
+          // CategoryProducts
+          "Filters": "عرض حسب",
+          "highestPrice": "الأعلي سعراَ",
+          "lowestPrice": "الأقل سعراّ",
+          'MostRecent': "الأحدث",
+          'Oldest': "الأقدم",
+          // Product Details
+          "ColorsandSizes": "الالوان و المقاسات"
         }
       };
 }

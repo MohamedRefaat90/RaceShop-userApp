@@ -1,4 +1,4 @@
-import 'package:ecommerce/controller/onBoardingController.dart';
+import 'package:ecommerce/controller/onBoarding/onBoardingController.dart';
 import 'package:ecommerce/core/constants/AppColors.dart';
 import 'package:ecommerce/data/dataSource/static/static.dart';
 import 'package:flutter/material.dart';

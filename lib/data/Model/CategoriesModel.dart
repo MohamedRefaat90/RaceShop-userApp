@@ -3,32 +3,41 @@ class CategoriesModel {
   String? categoryName;
   String? categoryNameAr;
   String? categoryImage;
-  String? categoryDateTime;
+  String? categoryCreatedAt;
+  String? categoryUpdatedAt;
+  int? categoryV;
 
   CategoriesModel({
     required this.categoryID,
     required this.categoryName,
     required this.categoryNameAr,
     required this.categoryImage,
-    required this.categoryDateTime,
+    required this.categoryCreatedAt,
+    required this.categoryUpdatedAt,
+    required this.categoryV,
   });
 
-  CategoriesModel.fromJson(Map jsonData) {
-    categoryID = jsonData['categoryID'];
-    categoryName = jsonData['categoryName'];
-    categoryNameAr = jsonData['categoryNameAr'];
-    categoryImage = jsonData['categoryImage'];
-    categoryDateTime = jsonData['categoryDateTime'];
+  factory CategoriesModel.fromJson(Map jsonData) {
+    return CategoriesModel(
+        categoryID: jsonData['_id'],
+        categoryName: jsonData['name'],
+        categoryNameAr: jsonData['name_ar'],
+        categoryImage: jsonData['image'],
+        categoryCreatedAt: jsonData['createdAt'],
+        categoryUpdatedAt: jsonData['updatedAt'],
+        categoryV: jsonData['__v']);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
 
-    data['categoryID'] = categoryID;
-    data['categoryName'] = categoryName;
-    data['categoryNameAr'] = categoryNameAr;
-    data['categoryImage'] = categoryImage;
-    data['categoryDateTime'] = categoryDateTime;
+    data['_id'] = categoryID;
+    data['name'] = categoryName;
+    data['name_ar'] = categoryNameAr;
+    data['image'] = categoryImage;
+    data['createdAt'] = categoryCreatedAt;
+    data['updatedAt'] = categoryUpdatedAt;
+    data['__v'] = categoryV;
 
     return data;
   }
