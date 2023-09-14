@@ -9,10 +9,4 @@ class CategoriesData {
 
     return response.fold((l) => l, (r) => r);
   }
-
-  // createCategory() async {
-  //   var response = await db_helper.postData(ApiLinks.category, {});
-
-  //   return response.fold((l) => l, (r) => r);
-  // }
 }

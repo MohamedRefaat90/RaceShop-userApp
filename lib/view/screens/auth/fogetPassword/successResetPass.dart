@@ -26,7 +26,7 @@ class SuccessResetPass extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             BTN(
-                lable: 'Login',
+                widget: Text('Login'),
                 press: () {
                   Get.offAllNamed(AppRoutes.login);
                 })

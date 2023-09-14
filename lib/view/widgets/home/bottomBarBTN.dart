@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../core/constants/AppColors.dart';
 
 class bottomBarBTN extends StatelessWidget {
-  const bottomBarBTN({
-    super.key,
-    required this.title,
-    required this.icon,
-    required this.press,
-    required this.isActive,
-  });
+  const bottomBarBTN(
+      {super.key,
+      required this.title,
+      required this.icon,
+      required this.press,
+      required this.isActive});
   final void Function()? press;
   final String title;
   final IconData icon;

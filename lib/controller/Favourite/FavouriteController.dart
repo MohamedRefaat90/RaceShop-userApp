@@ -29,6 +29,7 @@ class FavouriteControllerImp extends FavouriteController {
   void onInit() {
     userToken = myServices.sharedPreferences.getString('userToken')!;
     getFavProducts();
+    print(productsFav);
     super.onInit();
   }
 
@@ -48,18 +49,22 @@ class FavouriteControllerImp extends FavouriteController {
 
   @override
   productRemoveFromFav(productID, {index}) {
-    favouriteData.removeFromFav(productID, userToken);
-    toastAlert(
-        msg: 'Product Removerd From Favourite List', color: Colors.redAccent);
     if (favouriteProducts.isEmpty) {
       statusRequest = StatusRequest.failure;
     }
+    favouriteData.removeFromFav(productID, userToken);
+
+    favouriteProducts.removeWhere((element) => element.productID == productID);
+
+    toastAlert(
+        msg: 'Product Removerd From Favourite List', color: Colors.redAccent);
+
     update();
   }
 
   @override
   goToProductDetails(product) {
-    Get.toNamed(AppRoutes.productDetails, arguments: product);
+    Get.toNamed(AppRoutes.productDetails, arguments: {'product': product});
   }
 
   @override
@@ -70,16 +75,15 @@ class FavouriteControllerImp extends FavouriteController {
     var response = await favouriteData.getFavProducts(userToken);
 
     statusRequest = handelData(response);
+
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == 'success') {
         favouriteProducts.addAll(
             response['data']['data'].map((e) => productModel.formjson(e)));
-      } else {
-        statusRequest = StatusRequest.failure;
       }
+    } else {
+      statusRequest = StatusRequest.none;
     }
     update();
-
-    print(favouriteProducts);
   }
 }

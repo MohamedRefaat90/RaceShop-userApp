@@ -76,7 +76,7 @@ class Login extends StatelessWidget {
                           ),
                         ),
                         BTN(
-                          lable: 'signin'.tr,
+                          widget: Text('signin'.tr),
                           press: () {
                             controller.login();
                           },

@@ -18,7 +18,8 @@ abstract class SignupController extends GetxController {
 late String useremail;
 
 class SignupControllerImp extends SignupController {
-  late TextEditingController username;
+  late TextEditingController firstName;
+  late TextEditingController lastName;
   late TextEditingController email;
   late TextEditingController phone;
   late TextEditingController password;
@@ -37,8 +38,13 @@ class SignupControllerImp extends SignupController {
     if (fromdata!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response = await signupData.postSignupData(username.text,
-          email.text.trim(), password.text, confirmPassword.text, phone.text);
+      var response = await signupData.postSignupData(
+          firstName: firstName.text,
+          lastName: lastName.text,
+          email: email.text.trim(),
+          password: password.text,
+          passwordConfirm: confirmPassword.text,
+          phone: phone.text);
 
       statusRequest = handelData(response);
 
@@ -68,7 +74,8 @@ class SignupControllerImp extends SignupController {
 
   @override
   void onInit() {
-    username = TextEditingController();
+    firstName = TextEditingController();
+    lastName = TextEditingController();
     email = TextEditingController();
     phone = TextEditingController();
     password = TextEditingController();
@@ -84,7 +91,8 @@ class SignupControllerImp extends SignupController {
 
   @override
   void dispose() {
-    username.dispose();
+    firstName.dispose();
+    lastName.dispose();
     email.dispose();
     phone.dispose();
     password.dispose();

@@ -5,7 +5,7 @@ class customField extends StatelessWidget {
   const customField({
     super.key,
     required this.lable,
-    required this.icon,
+    this.icon,
     required this.hint,
     this.textEditingController,
     this.isPass = false,
@@ -15,7 +15,7 @@ class customField extends StatelessWidget {
   });
   final String lable;
   final String hint;
-  final IconData icon;
+  final IconData? icon;
   final TextEditingController? textEditingController;
   final String? Function(String?)? validator;
   final Function()? iconPress;

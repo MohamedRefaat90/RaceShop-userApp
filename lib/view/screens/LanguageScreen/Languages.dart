@@ -19,7 +19,10 @@ class Languages extends GetView<LanguageController> {
               style: Theme.of(context).textTheme.displayLarge),
           const SizedBox(height: 20),
           BTN(
-              lable: "Ar",
+              widget: Text(
+                "Ar",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               width: 120,
               press: () {
                 controller.changeLanguage('ar');
@@ -27,7 +30,7 @@ class Languages extends GetView<LanguageController> {
               }),
           const SizedBox(height: 20),
           BTN(
-              lable: "En",
+              widget: Text("En", style: TextStyle(fontWeight: FontWeight.bold)),
               width: 120,
               press: () {
                 controller.changeLanguage('en');

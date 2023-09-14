@@ -43,7 +43,7 @@ class forgetPassword extends StatelessWidget {
                         hint: "enterEmail".tr),
                     const SizedBox(height: 60),
                     BTN(
-                        lable: 'check'.tr,
+                        widget: Text('check'.tr),
                         press: () {
                           controller.goToVarificationCode();
                         },

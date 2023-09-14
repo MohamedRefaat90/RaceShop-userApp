@@ -54,7 +54,7 @@ class resetPassword extends GetView<resetPasswordImp> {
                         hint: "passConfirm".tr),
                     const SizedBox(height: 20),
                     BTN(
-                        lable: 'reset'.tr,
+                        widget: Text('reset'.tr),
                         press: () {
                           controller.resetPassword();
                         },

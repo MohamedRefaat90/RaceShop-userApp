@@ -10,16 +10,16 @@ abstract class ProductDetailsController extends GetxController {
   upProductQuantity();
   downProductQuantity();
   changeImageSliderIndicator(int index);
-  changeSelectedProductColor(int Colorindex, int Sizeindex);
+  changeSelectedProductColor(String ColorName, int Sizeindex);
   // productAddtoFav(productID);
 }
 
 class ProductDetailsControllerImp extends ProductDetailsController {
   late productModel product;
-  late int productIndex;
+  late int? productIndex;
   int productQuantity = 1;
   int imagesSliderIndicator = 0;
-  int selectedProductColor = 0;
+  String selectedProductColor = "";
   int selectedProductSize = 0;
   MyServices myServices = Get.find();
   late String lang;
@@ -29,13 +29,13 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
   ProductsData productsData = ProductsData(Get.find());
 
-  Map<String, Color> productColors = {
+  Map productColors = {
     "black": Colors.black,
     "white": Colors.white,
     "red": Colors.red,
     "blue": Colors.blue,
     "green": Colors.green,
-    "yellow": Colors.yellow,
+    "yellow": Colors.yellow
   };
 
   @override
@@ -70,8 +70,8 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   }
 
   @override
-  changeSelectedProductColor(Colorindex, Sizeindex) {
-    selectedProductColor = Colorindex;
+  changeSelectedProductColor(ColorName, Sizeindex) {
+    selectedProductColor = ColorName;
     selectedProductSize = Sizeindex;
     update();
   }

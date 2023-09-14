@@ -12,6 +12,7 @@ import 'package:ecommerce/view/screens/categoryProductsScreen/categoryProducts.d
 import 'package:ecommerce/view/screens/homeNavigationScreen/homeNavigationScreen.dart';
 import 'package:ecommerce/view/screens/onBoardingScreen/onBoardingScreen.dart';
 import 'package:ecommerce/view/screens/productDetailsScreen/productDetails.dart';
+import 'package:ecommerce/view/test.dart';
 import 'package:get/get.dart';
 import 'core/constants/AppRoutes.dart';
 import 'view/screens/auth/fogetPassword/forgetPassword.dart';
@@ -41,6 +42,9 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoutes.home, page: () => const HomeNavigationScreen()),
   GetPage(
       name: AppRoutes.categoryProduts, page: () => const CategoryProducts()),
-  GetPage(name: AppRoutes.productDetails, page: () => const ProductDetails()),
+  GetPage(name: AppRoutes.productDetails, page: () => ProductDetails()),
   GetPage(name: AppRoutes.cart, page: () => const CartScreen()),
+
+// ================= test =================
+  GetPage(name: AppRoutes.test, page: () => const Test()),
 ];

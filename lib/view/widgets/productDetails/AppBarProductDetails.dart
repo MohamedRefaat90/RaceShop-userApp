@@ -13,7 +13,7 @@ class AppBarProductDetails extends GetView<ProductDetailsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProductDetailsControllerImp());
+    Get.find<ProductDetailsControllerImp>();
     FavouriteControllerImp FavController = Get.put(FavouriteControllerImp());
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       AppBarIcon(
@@ -21,7 +21,10 @@ class AppBarProductDetails extends GetView<ProductDetailsControllerImp> {
               ? Alignment.centerRight
               : Alignment.centerLeft,
           x: controller.lang == 'ar' ? -19 : 19,
-          press: () => Get.back(),
+          press: () {
+            Get.back(closeOverlays: true);
+            // controller.dispose();
+          },
           icon: Icons.arrow_back,
           color: AppColors.black),
       GetBuilder<FavouriteControllerImp>(builder: (context) {

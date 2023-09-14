@@ -26,7 +26,7 @@ class SuccessSignup extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             BTN(
-                lable: 'signin'.tr,
+                widget: Text('signin'.tr),
                 press: () {
                   Get.offAllNamed(AppRoutes.login);
                 })

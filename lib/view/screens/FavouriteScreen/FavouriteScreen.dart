@@ -1,4 +1,5 @@
 import 'package:ecommerce/controller/Favourite/FavouriteController.dart';
+import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:ecommerce/core/shared/HandleingRequsetData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,8 +19,19 @@ class FavouriteScreen extends StatelessWidget {
             statusRequest: controller.statusRequest!,
             widget: ListView(
               children: [
-                Searchbar_with_NotificationIcon(),
-                FavouritesProducts()
+                controller.favouriteProducts.isEmpty
+                    ? SizedBox()
+                    : Searchbar_with_NotificationIcon(),
+                (controller.statusRequest == StatusRequest.none ||
+                        controller.favouriteProducts.isEmpty)
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 350),
+                        child: Center(
+                            child: Text("No Products in your Favourit List",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold))))
+                    : FavouritesProducts()
               ],
             ));
       }),

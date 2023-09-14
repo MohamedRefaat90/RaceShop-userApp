@@ -10,6 +10,7 @@ class AppAssets {
   static const String onBoardingImageThree = "$rootImages/onBoarding/three.png";
 
   static const String loading = "$rootAnimations/loading.json";
+  static const String loader = "$rootAnimations/horizontalLoader.json";
   static const String offline = "$rootAnimations/offline.json";
   static const String noData = "$rootAnimations/Pre-comp.json";
 

@@ -5,9 +5,7 @@ import 'package:get/get.dart';
 import '../../../controller/productDetails/ProductController.dart';
 
 class ColorsandSizes extends GetView<ProductDetailsControllerImp> {
-  const ColorsandSizes({
-    super.key,
-  });
+  const ColorsandSizes({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +16,7 @@ class ColorsandSizes extends GetView<ProductDetailsControllerImp> {
             style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
         ListView.builder(
             shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             itemCount: controller.product.productVariationsBySize!.length,
             itemBuilder: (context, index) => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,15 +33,18 @@ class ColorsandSizes extends GetView<ProductDetailsControllerImp> {
                                   .product
                                   .productVariationsBySize![
                                       controller.productVariationsSize[index]]
-                                  .length,
-                              (i) => productColorDot(
-                                  color: controller.productColors[controller
-                                              .product.productVariationsBySize![
-                                          controller
-                                              .productVariationsSize[index]][i]
-                                      ['color']]!,
-                                  colorIndex: i,
-                                  sizeIndex: index)))
+                                  .length, (i) {
+                        return productColorDot(
+                            color: controller.productColors[
+                                controller.product.productVariationsBySize![
+                                        controller.productVariationsSize[index]]
+                                    [i]['color']],
+                            colorName:
+                                controller.product.productVariationsBySize![
+                                        controller.productVariationsSize[index]]
+                                    [i]['color'],
+                            sizeIndex: index);
+                      }))
                     ])),
       ],
     );

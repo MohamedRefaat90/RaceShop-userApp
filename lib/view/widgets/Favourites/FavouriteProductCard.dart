@@ -57,6 +57,7 @@ class FavouriteProductCard extends GetView<FavouriteControllerImp> {
                     const Spacer(),
                     IconButton(
                         onPressed: () {
+                          controller.setIsFav(product.productID, false);
                           controller.productRemoveFromFav(product.productID,
                               index: index);
                         },

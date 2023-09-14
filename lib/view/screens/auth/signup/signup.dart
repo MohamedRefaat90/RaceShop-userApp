@@ -29,15 +29,32 @@ class Signup extends StatelessWidget {
                   widget: Column(
                     children: [
                       const SizedBox(height: 60),
-                      customField(
-                          validator: (value) {
-                            return ValidateInputs(
-                                value!.trim(), "username", 5, 30);
-                          },
-                          textEditingController: controller.username,
-                          lable: 'name'.tr,
-                          icon: Icons.person_3_outlined,
-                          hint: "enterName".tr),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: customField(
+                                validator: (value) {
+                                  return ValidateInputs(
+                                      value!.trim(), "username", 5, 30);
+                                },
+                                textEditingController: controller.firstName,
+                                lable: 'firstName'.tr,
+                                hint: "firstName".tr),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: customField(
+                                validator: (value) {
+                                  return ValidateInputs(
+                                      value!.trim(), "username", 5, 30);
+                                },
+                                textEditingController: controller.lastName,
+                                lable: 'lastName'.tr,
+                                hint: "lastName".tr),
+                          ),
+                        ],
+                      ),
                       const SizedBox(height: 20),
                       customField(
                           validator: (value) {
@@ -92,9 +109,9 @@ class Signup extends StatelessWidget {
                             iconPress: () => context.confirmPassVisible(),
                             hint: "passConfirm".tr);
                       }),
-                      const SizedBox(height: 60),
+                      const SizedBox(height: 40),
                       BTN(
-                          lable: 'signup'.tr,
+                          widget: Text('signup'.tr),
                           press: () {
                             controller.signup(context);
                           },

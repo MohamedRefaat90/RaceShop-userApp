@@ -17,4 +17,7 @@ class AppRoutes {
   static const categoryProduts = "/category";
   static const productDetails = "/productDetails";
   static const cart = "/cart";
+
+  // test
+  static const test = "/test";
 }

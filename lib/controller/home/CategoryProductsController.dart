@@ -4,76 +4,130 @@ import 'package:ecommerce/core/functions/handelDataController.dart';
 import 'package:ecommerce/core/services/myServices.dart';
 import 'package:ecommerce/data/Model/productModel.dart';
 import 'package:ecommerce/data/dataSource/remote/CategoryProducts/CategoryProductsData.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class CategoryProductsController extends GetxController {
-  getCategoryProducts({
-    required String categoryID,
-    double? minPrice,
-    double? maxPrice,
-    String? sort,
-  });
-
-  changeCategoryBarIndicator(int index);
+  getCategoryProducts(
+      {required String categoryID,
+      double? minPrice,
+      double? maxPrice,
+      String? sort,
+      String? sortBy,
+      int? limit,
+      int? page});
   goToProductDetails(productModel product, int index);
-  changeSliderValuse({required double lowerValue, required double upperValue});
+  changeSliderValues({required double lowerValue, required double upperValue});
 }
 
 class CategoryProductsControllerImp extends CategoryProductsController {
   late int selectedCat;
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest = StatusRequest.loading;
   CategoryProductsData categoryProductsData = CategoryProductsData(Get.find());
   MyServices myServices = Get.find();
   late String userToken;
-  // late CategoriesModel categoriesModel;
   List categoryProducts = [];
+
+  double minPrice = 0;
+  double maxPrice = 50000;
+
+  // price Slider
   double lowerPrice = 0;
   double hightPrice = 0;
+
   late List categoriesList;
+  late bool hasMoreData;
+  late ScrollController scrollController;
+  late int totalItems;
+  late int pageNumber;
+  late bool loading;
+  final int numOfProductsPerRequest = 6;
 
   @override
   void onInit() {
     categoriesList = Get.arguments['categories'];
     selectedCat = Get.arguments['selectedCategoryIndex'];
     userToken = myServices.sharedPreferences.getString('userToken')!;
-    getCategoryProducts(categoryID: categoriesList[selectedCat].categoryID);
+    scrollController = ScrollController();
+    pageNumber = 1;
+    loading = false;
+
+    getCategoryProducts(
+        categoryID: categoriesList[selectedCat].categoryID,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        page: pageNumber,
+        limit: numOfProductsPerRequest,
+        sort: "desc",
+        sortBy: "price");
+
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        if (hasMoreData) {
+          loading = true;
+          update();
+          getCategoryProducts(
+              categoryID: categoriesList[selectedCat].categoryID,
+              minPrice: minPrice,
+              maxPrice: maxPrice,
+              page: pageNumber,
+              limit: numOfProductsPerRequest,
+              sort: "desc",
+              sortBy: "price");
+        } else {
+          statusRequest = StatusRequest.none;
+          update();
+        }
+      }
+    });
+
+    loading = false;
 
     super.onInit();
   }
 
   @override
-  getCategoryProducts({
-    required categoryID,
-    minPrice = 0,
-    maxPrice = 10000,
-    sort = "desc",
-  }) async {
-    categoryProducts.clear();
-    statusRequest = StatusRequest.loading;
-    update();
-    // print(categoryID);
+  getCategoryProducts(
+      {required categoryID,
+      minPrice,
+      maxPrice,
+      sort,
+      sortBy,
+      page,
+      limit}) async {
     var response = await categoryProductsData.getCategoryProductsData(
         categoryID: categoryID,
-        minPrice: minPrice!,
-        maxPrice: maxPrice!,
-        sort: sort!,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        sort: sort,
+        sortBy: sortBy,
+        page: pageNumber,
+        limit: numOfProductsPerRequest,
         userToken: userToken);
+
     statusRequest = handelData(response);
 
     if (statusRequest == StatusRequest.success) {
+      pageNumber++;
+      loading = false;
       if (response['status'] == "success") {
-        categoryProducts.addAll(response['data']['data']);
+        totalItems = response['data']['totalItems'];
+
+        List products = response['data']['data']
+            .map((e) => productModel.formjson(e))
+            .toList();
+        categoryProducts.addAll(products);
+        hasMoreData = totalItems == numOfProductsPerRequest;
+
+        update();
       }
     } else {
-      statusRequest = StatusRequest.failure;
-      // print(response.toString());
+      statusRequest =
+          categoryProducts.isEmpty ? StatusRequest.failure : StatusRequest.none;
+      loading = false;
     }
-    update();
-  }
 
-  @override
-  changeCategoryBarIndicator(int index) {
-    selectedCat = index;
     update();
   }
 
@@ -84,8 +138,14 @@ class CategoryProductsControllerImp extends CategoryProductsController {
   }
 
   @override
-  changeSliderValuse({required lowerValue, required upperValue}) {
+  changeSliderValues({required lowerValue, required upperValue}) {
     lowerPrice = lowerValue;
     hightPrice = upperValue;
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }

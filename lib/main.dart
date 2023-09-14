@@ -1,8 +1,10 @@
 import 'package:ecommerce/Bindings/myBindings.dart';
 import 'package:ecommerce/core/localization/changeLanguage.dart';
 import 'package:ecommerce/routes.dart';
+import 'package:ecommerce/view/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'core/constants/AppRoutes.dart';
 import 'core/localization/transilation.dart';
 import 'core/services/myServices.dart';
 
@@ -20,13 +22,13 @@ class Ecommerce extends GetView<LanguageController> {
   Widget build(BuildContext context) {
     Get.put(LanguageController());
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: controller.theme,
-      locale: controller.language,
-      translations: MyTransilation(),
-      initialBinding: myBindings(),
-      // initialRoute: AppRoutes.home,
-      getPages: routes,
-    );
+        debugShowCheckedModeBanner: false,
+        theme: controller.theme,
+        locale: controller.language,
+        translations: MyTransilation(),
+        initialBinding: myBindings(),
+        // initialRoute: AppRoutes.login,
+        // initialRoute: AppRoutes.test,
+        getPages: routes);
   }
 }

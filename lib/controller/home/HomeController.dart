@@ -19,30 +19,29 @@ class HomeControllerImp extends HomeController {
   List categoriesList = [];
   List productList = [];
   String? lang;
+
+  @override
+  void onInit() async {
+    lang = myServices.sharedPreferences.getString('lang');
+    getData();
+    super.onInit();
+  }
+
   @override
   getData() async {
     categoriesList.clear();
     statusRequest = StatusRequest.loading;
-
+    update();
     var response = await homeData.getAllData();
     statusRequest = handelData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        // categoriesList.addAll(response['data']['data']);
-
         for (int i = 0; i < response['data']['data'].length; i++) {
           categoriesList
               .add(CategoriesModel.fromJson(response['data']['data'][i]));
         }
-        // productList.addAll(response['products']);
-        print("Data Arrived Succesfully");
-      } else {
-        print("Data NOT Arrived");
       }
-    } else {
-      print("Error Because ===> $response");
     }
-
     update();
   }
 
@@ -52,13 +51,5 @@ class HomeControllerImp extends HomeController {
       "categories": categoriesList,
       "selectedCategoryIndex": selectedCat
     });
-    // print(selectedCat);
-  }
-
-  @override
-  void onInit() async {
-    lang = myServices.sharedPreferences.getString('lang');
-    getData();
-    super.onInit();
   }
 }

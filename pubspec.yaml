@@ -91,6 +91,10 @@ dependencies:
   icons_launcher: ^2.1.3
   string_to_color: ^2.0.0
   string_to_hex: ^0.2.2
+  dio: ^5.3.2
+  infinite_scroll_pagination: ^4.0.0
+  glitters: ^0.4.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

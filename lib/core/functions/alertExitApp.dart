@@ -10,14 +10,14 @@ AlertExitApp() {
       content: Text('alertDesc'.tr),
       actions: [
         BTN(
-            lable: 'yes'.tr,
+            widget: Text('yes'.tr),
             width: 80,
             color: Colors.red,
             press: () {
               exit(0);
             }),
         BTN(
-            lable: 'no'.tr,
+            widget: Text('no'.tr),
             width: 80,
             color: Colors.green,
             press: () {

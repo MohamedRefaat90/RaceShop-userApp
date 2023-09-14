@@ -28,7 +28,10 @@ class OnBoardingScreen extends GetView<onBoardingControllerImp> {
                 const DottsController(),
                 const SizedBox(height: 50),
                 BTN(
-                  lable: "continue".tr,
+                  widget: Text(
+                    "continue".tr,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   press: () => controller.next(),
                   color: AppColors.primaryColor,
                   width: 250,

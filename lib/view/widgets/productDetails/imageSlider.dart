@@ -13,9 +13,9 @@ class imageSlider extends GetView<ProductDetailsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProductDetailsControllerImp());
+    Get.find<ProductDetailsControllerImp>();
     return Container(
-        margin: const EdgeInsets.symmetric(vertical: 25),
+        margin: const EdgeInsets.only(top: 25, bottom: 15),
         padding: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -52,7 +52,7 @@ class imageSliderIndicators extends StatelessWidget {
       return SizedBox(
           height: 10,
           child: ListView.builder(
-              itemCount: controller.product.productImages!.length,
+              itemCount: controller.product.productImages.length,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemBuilder: (context, index) => AnimatedContainer(

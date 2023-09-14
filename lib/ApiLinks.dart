@@ -30,4 +30,8 @@ class ApiLinks {
 
   // ==================== Favourite ============================
   static const String myFav = "$baseURL/api/v1/product/favourite/me";
+
+  // ==================== Cart ============================
+  static const String cart = "$baseURL/api/v1/cart";
+  static const String removeFromCart = "$baseURL/api/v1/cart/item/";
 }

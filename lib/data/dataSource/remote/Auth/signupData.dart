@@ -7,10 +7,16 @@ class SignupData {
 
   SignupData(this.db_helper);
 
-  postSignupData(String name, String email, String password,
-      String passwordConfirm, String phone) async {
+  postSignupData(
+      {required String firstName,
+      required String lastName,
+      required String email,
+      required String password,
+      required String passwordConfirm,
+      required String phone}) async {
     var response = await db_helper.postData(ApiLinks.signup, {
-      "name": name,
+      "Fname": firstName,
+      "Lame": lastName,
       "email": email,
       "password": password,
       "passwordConfirm": passwordConfirm,

@@ -1,27 +1,33 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:ecommerce/core/functions/checkInternetConncetion.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class DB_helper {
-  Future<Either<StatusRequest, Map>> postData(String url, Map data,
+  final dio = Dio();
+
+  Future<Either<StatusRequest, Map>> postData(String url, data,
       {String? userToken}) async {
-    try {
-      if (await checkInternetConnection()) {
-        var response = await http.post(Uri.parse(url),
-            body: data,
-            headers: {"Accept": "*/*", 'Authorization': 'Bearer $userToken'});
-
-        Map responseBody = jsonDecode(response.body);
-
-        return Right(responseBody);
-      } else {
-        return const Left(StatusRequest.offlineFailure);
+    if (await checkInternetConnection()) {
+      try {
+        var response = await dio.post(url,
+            data: data,
+            options: Options(headers: {
+              "Accept": "*/*",
+              'Authorization': 'Bearer $userToken'
+            }));
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          // Map responseBody = response.data;
+          return Right(response.data);
+        } else {
+          return const Left(StatusRequest.failure);
+        }
+      } on DioException catch (e) {
+        print(e.message);
+        return const Left(StatusRequest.failure);
       }
-    } catch (e) {
-      return const Left(StatusRequest.failure);
+    } else {
+      return const Left(StatusRequest.offlineFailure);
     }
   }
 
@@ -29,17 +35,21 @@ class DB_helper {
       {String? userToken}) async {
     try {
       if (await checkInternetConnection()) {
-        var response = await http.patch(Uri.parse(url),
-            body: data,
-            headers: {"Accept": "*/*", 'Authorization': 'Bearer $userToken'});
+        var response = await dio.patch(url,
+            data: data,
+            options: Options(headers: {
+              "Accept": "*/*",
+              'Authorization': 'Bearer $userToken'
+            }));
 
-        Map responseBody = jsonDecode(response.body);
+        // Map responseBody = response.data;
 
-        return Right(responseBody);
+        return Right(response.data);
       } else {
         return const Left(StatusRequest.offlineFailure);
       }
-    } catch (e) {
+    } on DioException catch (e) {
+      print(e.message);
       return const Left(StatusRequest.failure);
     }
   }
@@ -47,12 +57,17 @@ class DB_helper {
   Future<Either<StatusRequest, Map>> getAllData(String url,
       {String? userToken}) async {
     if (await checkInternetConnection()) {
-      var response = await http
-          .get(Uri.parse(url), headers: {'Authorization': 'Bearer $userToken'});
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        Map responseBody = jsonDecode(response.body);
-        return Right(responseBody);
-      } else {
+      try {
+        var response = await dio.get(url,
+            options: Options(headers: {'Authorization': 'Bearer $userToken'}));
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          // Map responseBody = response.data;
+          return Right(response.data);
+        }
+        return const Left(StatusRequest.failure);
+      } on DioException catch (e) {
+        print(e.message);
+
         return const Left(StatusRequest.failure);
       }
     } else {
@@ -62,13 +77,18 @@ class DB_helper {
 
   Future<Either<StatusRequest, Map>> deleteData(String url) async {
     if (await checkInternetConnection()) {
-      var response = await http.delete(Uri.parse(url));
+      try {
+        var response = await dio.delete(url);
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        Map responseBody = jsonDecode(response.body);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          // Map responseBody = response.data;
 
-        return Right(responseBody);
-      } else {
+          return Right(response.data);
+        } else {
+          return const Left(StatusRequest.failure);
+        }
+      } on DioException catch (e) {
+        print(e.message);
         return const Left(StatusRequest.failure);
       }
     } else {

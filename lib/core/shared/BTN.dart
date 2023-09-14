@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class BTN extends StatelessWidget {
   const BTN(
       {super.key,
-      required this.lable,
+      required this.widget,
       required this.press,
       this.color,
       this.padding,
       this.width,
       this.isDisabled = false});
-  final String lable;
+  final Widget widget;
   final void Function()? press;
   final Color? color;
   final double? padding;
@@ -28,10 +28,7 @@ class BTN extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       enableFeedback: true,
       disabledColor: Colors.grey,
-      child: Text(
-        lable,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
+      child: widget,
     );
   }
 }

@@ -5,21 +5,20 @@ import '../../../controller/productDetails/ProductController.dart';
 import '../../../core/constants/AppColors.dart';
 
 class productColorDot extends GetView<ProductDetailsControllerImp> {
-  const productColorDot({
-    required this.color,
-    required this.colorIndex,
-    required this.sizeIndex,
-    super.key,
-  });
+  const productColorDot(
+      {required this.color,
+      required this.colorName,
+      required this.sizeIndex,
+      super.key});
   final Color color;
-  final int colorIndex;
+  final String colorName;
   final int sizeIndex;
   @override
   Widget build(BuildContext context) {
     Get.put(ProductDetailsControllerImp());
     return InkWell(
       onTap: () {
-        controller.changeSelectedProductColor(colorIndex, sizeIndex);
+        controller.changeSelectedProductColor(colorName, sizeIndex);
       },
       child: Container(
           width: 20,
@@ -28,9 +27,9 @@ class productColorDot extends GetView<ProductDetailsControllerImp> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: color,
-              border: (controller.selectedProductColor == colorIndex &&
+              border: (controller.selectedProductColor == colorName &&
                       controller.selectedProductSize == sizeIndex)
-                  ? Border.all(width: 2, color: AppColors.black)
+                  ? Border.all(width: 4, color: Colors.deepPurple)
                   : null)),
     );
   }

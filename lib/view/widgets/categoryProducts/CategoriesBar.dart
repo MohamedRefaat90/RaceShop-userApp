@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,9 +23,18 @@ class CategoriesBar extends StatelessWidget {
           itemBuilder: (context, index) => MaterialButton(
             onPressed: () {
               controller.selectedCat = index;
-
+              controller.pageNumber = 1;
+              controller.categoryProducts.clear();
+              controller.statusRequest = StatusRequest.loading;
+              controller.update();
               controller.getCategoryProducts(
-                  categoryID: controller.categoriesList[index].categoryID);
+                  categoryID: controller
+                      .categoriesList[controller.selectedCat].categoryID,
+                  minPrice: 0,
+                  maxPrice: 1000000,
+                  page: controller.pageNumber,
+                  sort: "desc",
+                  sortBy: "price");
             },
             splashColor: Colors.transparent,
             child: Column(
