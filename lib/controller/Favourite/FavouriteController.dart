@@ -43,21 +43,17 @@ class FavouriteControllerImp extends FavouriteController {
   @override
   productAddtoFav(productID) {
     favouriteData.addToFav(productID, userToken);
-    productsFav[productID] = true;
     toastAlert(msg: 'Product Added to Favourite List', color: Colors.green);
   }
 
   @override
   productRemoveFromFav(productID, {index}) {
     favouriteData.removeFromFav(productID, userToken);
-    productsFav[productID] = false;
     toastAlert(
         msg: 'Product Removerd From Favourite List', color: Colors.redAccent);
-
     if (favouriteProducts.isEmpty) {
       statusRequest = StatusRequest.failure;
     }
-
     update();
   }
 
