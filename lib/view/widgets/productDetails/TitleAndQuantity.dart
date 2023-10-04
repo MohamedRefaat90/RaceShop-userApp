@@ -1,7 +1,6 @@
 import 'package:ecommerce/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glitters/glitters.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../controller/productDetails/ProductController.dart';
@@ -60,15 +59,16 @@ class TitleAndQuantity extends GetView<ProductDetailsControllerImp> {
               baseColor: AppColors.black,
               highlightColor: const Color.fromARGB(255, 233, 0, 0),
               child: Container(
-                padding: EdgeInsets.all(10),
+                // padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        strokeAlign: 3, color: AppColors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  // border: Border.all(
+                  //     strokeAlign: 3, color: AppColors.black, width: 2)
+                ),
                 child: Text("${product.productPrice} LE",
                     style: TextStyle(
                         color: AppColors.black,
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: product.productDiscount > 0
                             ? FontWeight.w400
                             : FontWeight.w900,
@@ -83,18 +83,19 @@ class TitleAndQuantity extends GetView<ProductDetailsControllerImp> {
                 baseColor: AppColors.primaryColor,
                 highlightColor: const Color.fromARGB(255, 233, 0, 0),
                 child: Container(
-                    padding: EdgeInsets.all(10),
+                    // padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            strokeAlign: 3, color: AppColors.black, width: 2)),
+                      borderRadius: BorderRadius.circular(10),
+                      // border: Border.all(
+                      //     strokeAlign: 3, color: AppColors.black, width: 2)
+                    ),
                     child: Text(
-                      "${product.productPrice - product.productDiscount} LE",
+                      "${(product.productPrice - (product.productDiscount * 100) / 100).toInt()} LE",
                       style: TextStyle(
                           color: product.productDiscount > 0
                               ? AppColors.secondryColor
                               : AppColors.black,
-                          fontSize: 16,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold),
                     )),
               ),

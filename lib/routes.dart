@@ -1,5 +1,8 @@
 import 'package:ecommerce/core/Middleware/middleware.dart';
+import 'package:ecommerce/view/screens/AdressScreen/addressAdd.dart';
+import 'package:ecommerce/view/screens/AdressScreen/addressView.dart';
 import 'package:ecommerce/view/screens/Cart/CartScreen.dart';
+import 'package:ecommerce/view/screens/Checkout/checkout.dart';
 import 'package:ecommerce/view/screens/LanguageScreen/Languages.dart';
 import 'package:ecommerce/view/screens/auth/fogetPassword/VarificationCode.dart';
 import 'package:ecommerce/view/screens/auth/fogetPassword/resetPassword.dart';
@@ -44,6 +47,23 @@ List<GetPage<dynamic>>? routes = [
       name: AppRoutes.categoryProduts, page: () => const CategoryProducts()),
   GetPage(name: AppRoutes.productDetails, page: () => ProductDetails()),
   GetPage(name: AppRoutes.cart, page: () => const CartScreen()),
+
+// ================= Address =================
+  GetPage(
+      name: AppRoutes.addressView,
+      page: () => const AddressView(),
+      transition: Transition.downToUp),
+
+  GetPage(
+      name: AppRoutes.addressAdd,
+      page: () => const AddressAdd(),
+      transition: Transition.fadeIn),
+
+  // ================= Checkout =================
+  GetPage(
+      name: AppRoutes.checkout,
+      page: () => const Checkout(),
+      transition: Transition.upToDown),
 
 // ================= test =================
   GetPage(name: AppRoutes.test, page: () => const Test()),

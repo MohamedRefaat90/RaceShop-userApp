@@ -16,9 +16,9 @@ class HomeNavigationScreen extends GetView<HomeNavigationControllerImp> {
     Get.put(SearchBarController());
     return GetBuilder<SearchBarController>(
         builder: (searchController) => Scaffold(
-              extendBody: true,
+              extendBody: false,
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
+                  FloatingActionButtonLocation.miniCenterDocked,
               floatingActionButton: MediaQuery.of(context).viewInsets.bottom > 0
                   ? null
                   : FloatingActionButton(

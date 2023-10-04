@@ -4,6 +4,7 @@ import 'package:ecommerce/core/functions/translate.dart';
 import 'package:ecommerce/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../controller/home/CategoryProductsController.dart';
 import '../../../core/constants/AppColors.dart';
@@ -64,14 +65,19 @@ class CategoryProductCard extends GetView<CategoryProductsControllerImp> {
                                           ? TextDecoration.lineThrough
                                           : TextDecoration.none)),
                               if (product.productDiscount > 0)
-                                Text(
-                                  "${product.productPrice - product.productDiscount} LE",
-                                  style: TextStyle(
-                                      color: product.productDiscount > 0
-                                          ? AppColors.secondryColor
-                                          : AppColors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
+                                Shimmer.fromColors(
+                                  baseColor: AppColors.primaryColor,
+                                  highlightColor:
+                                      const Color.fromARGB(255, 233, 0, 0),
+                                  child: Text(
+                                    "${(product.productPrice - (product.productDiscount * 100) / 100).toInt()} LE",
+                                    style: TextStyle(
+                                        color: product.productDiscount > 0
+                                            ? AppColors.secondryColor
+                                            : AppColors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                             ],
                           ),

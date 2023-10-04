@@ -45,10 +45,11 @@ class LoginControllerImp extends LoginController {
                 .setString("userToken", response['token']);
 
             Get.offAllNamed(AppRoutes.home);
-          } else {
-            update();
-            toastAlert(msg: response['message'], color: Colors.red);
           }
+        } else {
+          Get.offAllNamed(AppRoutes.login);
+          toastAlert(
+              msg: "user or paswword not Correct try again", color: Colors.red);
         }
       }
     }

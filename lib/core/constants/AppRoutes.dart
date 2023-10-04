@@ -18,6 +18,12 @@ class AppRoutes {
   static const productDetails = "/productDetails";
   static const cart = "/cart";
 
+  // Address
+  static const addressView = "/addressView";
+  static const addressAdd = "/addressAdd";
+
+  // Checkout
+  static const checkout = "/checkout";
   // test
   static const test = "/test";
 }

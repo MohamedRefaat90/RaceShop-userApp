@@ -1,6 +1,7 @@
 import 'package:ecommerce/controller/auth/login.dart';
 import 'package:ecommerce/controller/settings/SettingsController.dart';
 import 'package:ecommerce/core/constants/AppColors.dart';
+import 'package:ecommerce/core/constants/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -72,7 +73,9 @@ class SettingsScreen extends StatelessWidget {
               settingsFeatrue(
                   title: "Address",
                   trailing: Icon(Icons.location_pin),
-                  press: () {}),
+                  press: () {
+                    Get.toNamed(AppRoutes.addressView);
+                  }),
               settingsFeatrue(
                   title: "About us",
                   trailing: Icon(Icons.info_outline),

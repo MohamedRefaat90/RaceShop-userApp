@@ -19,7 +19,7 @@ class BTN extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      animationDuration: const Duration(milliseconds: 500),
+      animationDuration: const Duration(milliseconds: 300),
       onPressed: isDisabled ? null : press,
       padding: EdgeInsets.all(padding ?? 20),
       minWidth: width ?? 50,

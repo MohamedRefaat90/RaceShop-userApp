@@ -1,7 +1,6 @@
 import 'package:ecommerce/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../controller/home/CategoryProductsController.dart';
 import '../../../controller/Favourite/FavouriteController.dart';

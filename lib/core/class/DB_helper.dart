@@ -14,7 +14,8 @@ class DB_helper {
             data: data,
             options: Options(headers: {
               "Accept": "*/*",
-              'Authorization': 'Bearer $userToken'
+              'Authorization': 'Bearer $userToken',
+              "Content-Type": "application/json"
             }));
         if (response.statusCode == 200 || response.statusCode == 201) {
           // Map responseBody = response.data;
@@ -75,10 +76,12 @@ class DB_helper {
     }
   }
 
-  Future<Either<StatusRequest, Map>> deleteData(String url) async {
+  Future<Either<StatusRequest, Map>> deleteData(
+      String url, String userToken) async {
     if (await checkInternetConnection()) {
       try {
-        var response = await dio.delete(url);
+        var response = await dio.delete(url,
+            options: Options(headers: {'Authorization': 'Bearer $userToken'}));
 
         if (response.statusCode == 200 || response.statusCode == 201) {
           // Map responseBody = response.data;

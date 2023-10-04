@@ -19,4 +19,10 @@ class AppAssets {
 
   // success Reset Pasword
   static const String resetPassword = "$rootAnimations/resetPassword.json";
+
+// Checkout
+  static const String visa = "$rootImages/checkout/visa.png";
+  static const String vodaCash = "$rootImages/checkout/vodaphoneCash.png";
+  static const String fawry = "$rootImages/checkout/fawry.jpg";
+  static const String valu = "$rootImages/checkout/valu.png";
 }

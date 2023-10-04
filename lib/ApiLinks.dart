@@ -34,4 +34,18 @@ class ApiLinks {
   // ==================== Cart ============================
   static const String cart = "$baseURL/api/v1/cart";
   static const String removeFromCart = "$baseURL/api/v1/cart/item/";
+
+  // ==================== User ============================
+  static const String user = "$baseURL/api/v1/users/me";
+  static const String addAddress = "$baseURL/api/v1/users/address";
+  static const String removeAddess = "$baseURL/api/v1/users/address";
+
+  // ==================== Coupon ============================
+  static const String varifyCoupon = "$baseURL/api/v1/coupons/verify?name=";
+
+  // ==================== DeliveryZone ============================
+  static const String deliveryZone = "$baseURL/api/v1/delevieryZone";
+
+  // ==================== Checkout ============================
+  static const String checkout = "$baseURL/api/v1/checkout";
 }

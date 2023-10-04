@@ -11,7 +11,7 @@ class customField extends StatelessWidget {
     this.isPass = false,
     this.isPhone = false,
     this.iconPress,
-    required this.validator,
+    this.validator,
   });
   final String lable;
   final String hint;
@@ -19,6 +19,7 @@ class customField extends StatelessWidget {
   final TextEditingController? textEditingController;
   final String? Function(String?)? validator;
   final Function()? iconPress;
+
   final bool isPass;
   final bool isPhone;
   @override

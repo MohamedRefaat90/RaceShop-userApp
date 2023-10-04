@@ -4,6 +4,7 @@ import 'AppColors.dart';
 
 ThemeData themeEnglish = ThemeData(
     primaryColor: AppColors.primaryColor,
+    appBarTheme: AppBarTheme(color: AppColors.primaryColor),
     textTheme: const TextTheme(
         displayLarge: TextStyle(
             fontFamily: "Almarai", fontWeight: FontWeight.bold, fontSize: 20),
@@ -11,6 +12,7 @@ ThemeData themeEnglish = ThemeData(
 
 ThemeData themeArabic = ThemeData(
     primaryColor: AppColors.primaryColor,
+    appBarTheme: AppBarTheme(color: AppColors.primaryColor),
     textTheme: const TextTheme(
         displayLarge: TextStyle(
             fontFamily: "Cairo", fontWeight: FontWeight.bold, fontSize: 20),
