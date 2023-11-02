@@ -1,10 +1,7 @@
-import 'package:csc_picker/csc_picker.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ecommerce/controller/address/addressAddController.dart';
 import 'package:ecommerce/controller/address/addressViewController.dart';
 import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:ecommerce/core/shared/BTN.dart';
-import 'package:ecommerce/data/Model/DeliveryZoneModel.dart';
 import 'package:ecommerce/view/widgets/Address/DeliveryZoneSelector.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

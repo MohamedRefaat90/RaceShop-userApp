@@ -13,6 +13,8 @@ class AppAssets {
   static const String loader = "$rootAnimations/horizontalLoader.json";
   static const String offline = "$rootAnimations/offline.json";
   static const String noData = "$rootAnimations/Pre-comp.json";
+  static const String orderCompelete1 = "$rootAnimations/orderCompelete1.json";
+  static const String orderCompelete2 = "$rootAnimations/orderCompelete2.json";
 
   // success Signup
   static const String success = "$rootAnimations/Success.json";
@@ -25,4 +27,8 @@ class AppAssets {
   static const String vodaCash = "$rootImages/checkout/vodaphoneCash.png";
   static const String fawry = "$rootImages/checkout/fawry.jpg";
   static const String valu = "$rootImages/checkout/valu.png";
+
+  // Settings
+  static const String whatsappIcon =
+      "$rootImages/settings/whatsapp-svgrepo-com.svg";
 }

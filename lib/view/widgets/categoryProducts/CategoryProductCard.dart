@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../controller/home/CategoryProductsController.dart';
+import '../../../controller/CategoryProducts/CategoryProductsController.dart';
 import '../../../core/constants/AppColors.dart';
 
 class CategoryProductCard extends GetView<CategoryProductsControllerImp> {
@@ -70,7 +70,7 @@ class CategoryProductCard extends GetView<CategoryProductsControllerImp> {
                                   highlightColor:
                                       const Color.fromARGB(255, 233, 0, 0),
                                   child: Text(
-                                    "${(product.productPrice - (product.productDiscount * 100) / 100).toInt()} LE",
+                                    "${product.productPrice - (product.productPrice * product.productDiscount ~/ 100).toInt()} LE",
                                     style: TextStyle(
                                         color: product.productDiscount > 0
                                             ? AppColors.secondryColor
@@ -116,14 +116,16 @@ class CategoryProductCard extends GetView<CategoryProductsControllerImp> {
           if (product.productDiscount > 0)
             Positioned(
                 top: 10,
-                left: 10,
+                right: 10,
                 child: CircleAvatar(
-                  backgroundColor: AppColors.secondryColor,
-                  radius: 27,
+                  backgroundColor: AppColors.primaryColor,
+                  radius: 25,
                   child: Text(
-                    "- ${product.productDiscount} %",
+                    "${product.productDiscount} %",
                     style: TextStyle(
-                        color: AppColors.white, fontWeight: FontWeight.bold),
+                        color: AppColors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
                   ),
                 ))
         ],

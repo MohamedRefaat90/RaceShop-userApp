@@ -1,24 +1,25 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../firebase_options.dart';
 
 class MyServices extends GetxService {
   late SharedPreferences sharedPreferences;
 
   Future<MyServices> init() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
 
-    // FirebaseMessaging messaging = FirebaseMessaging.instance;
+    sharedPreferences.setString("phoneOwner", "01025181548");
+    sharedPreferences.setString("whatsappOwner", "0201025181548");
+    // await Firebase.initializeApp(
+    //     options: DefaultFirebaseOptions.currentPlatform);
 
-    // await messaging.requestPermission();
-    // String? token = await messaging.getToken();
-    // print(token);
+    // // FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    // // await messaging.requestPermission();
+    // // String? token = await messaging.getToken();
+    // // print(token);
+
+    // // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     return this;
   }

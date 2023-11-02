@@ -66,8 +66,8 @@ class DB_helper {
           return Right(response.data);
         }
         return const Left(StatusRequest.failure);
-      } on DioException catch (e) {
-        print(e.message);
+      } on DioException {
+        // print(e.message);
 
         return const Left(StatusRequest.failure);
       }

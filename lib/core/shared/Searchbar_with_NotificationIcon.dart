@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/constants/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,13 +50,12 @@ class Searchbar_with_NotificationIcon extends GetView<SearchBarController> {
             ),
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(AppRoutes.notifications);
+              },
               padding: const EdgeInsets.all(0),
-              icon: const Icon(
-                Icons.notifications_outlined,
-                size: 35,
-                color: AppColors.primaryColor,
-              ))
+              icon: const Icon(Icons.notifications_outlined,
+                  size: 35, color: AppColors.primaryColor))
         ],
       );
     });

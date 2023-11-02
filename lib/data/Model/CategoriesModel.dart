@@ -7,15 +7,14 @@ class CategoriesModel {
   String? categoryUpdatedAt;
   int? categoryV;
 
-  CategoriesModel({
-    required this.categoryID,
-    required this.categoryName,
-    required this.categoryNameAr,
-    required this.categoryImage,
-    required this.categoryCreatedAt,
-    required this.categoryUpdatedAt,
-    required this.categoryV,
-  });
+  CategoriesModel(
+      {required this.categoryID,
+      required this.categoryName,
+      required this.categoryNameAr,
+      required this.categoryImage,
+      required this.categoryCreatedAt,
+      required this.categoryUpdatedAt,
+      required this.categoryV});
 
   factory CategoriesModel.fromJson(Map jsonData) {
     return CategoriesModel(

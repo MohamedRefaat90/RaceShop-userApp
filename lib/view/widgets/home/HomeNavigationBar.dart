@@ -38,7 +38,6 @@ class HomeNavigationBar extends StatelessWidget {
 
                               if (i == 2) {
                                 FavCon.getFavProducts();
-                                print("Fav Refreashed");
                               }
                             });
                   },

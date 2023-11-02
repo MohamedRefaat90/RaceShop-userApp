@@ -26,22 +26,22 @@ class OrderBTN extends GetView<CheckoutController> {
                       color: AppColors.white, strokeWidth: 4)
                   : Text("Order"),
               width: double.infinity,
-              press: () {
+              press: () async {
                 if (controller.SelectedPaymentMethod.isNotEmpty &&
                     controller.SelectedAddress != null) {
                   if (controller.SelectedPaymentMethod == "cash") {
-                    // print(controller.SelectedAddress!);
-                    // print(controller.deliveryZone!['_id']);
-                    // print(cartController.coupon == null
-                    //     ? ""
-                    //     : cartController.coupon!.name);
-                    controller.checkoutCash(cartController.coupon == null
-                        ? ""
-                        : cartController.coupon!.name);
+                    await controller.checkoutCash(
+                        cartController.coupon == null
+                            ? ""
+                            : cartController.coupon!.name,
+                        context);
+                    controller.getTotalDiscount();
                   } else {
-                    controller.checkoutOnline(cartController.coupon == null
-                        ? ""
-                        : cartController.coupon!.name);
+                    await controller.checkoutOnline(
+                        cartController.coupon == null
+                            ? ""
+                            : cartController.coupon!.name);
+                    controller.getTotalDiscount();
                   }
                 } else {
                   flushBar(context,

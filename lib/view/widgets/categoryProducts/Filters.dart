@@ -6,7 +6,7 @@ import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/home/CategoryProductsController.dart';
+import '../../../controller/CategoryProducts/CategoryProductsController.dart';
 import '../../../core/shared/BTN.dart';
 
 class Filters extends GetView<CategoryProductsControllerImp> {
@@ -42,21 +42,22 @@ class Filters extends GetView<CategoryProductsControllerImp> {
                                   widget: Text('highestPrice'.tr,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold)),
-                                  press: () async {
+                                  press: () {
                                     controller.statusRequest =
                                         StatusRequest.loading;
                                     controller.update();
-                                    print(
-                                        "num of Produtcr => ${controller.categoryProducts.length}");
-                                    await controller.getCategoryProducts(
+                                    controller.categoryProducts.clear();
+                                    controller.pageNumber = 1;
+                                    controller.getCategoryProducts(
                                         categoryID: controller
                                             .categoriesList[
                                                 controller.selectedCat]
                                             .categoryID,
                                         sort: "desc",
                                         sortBy: "price",
-                                        page: 1,
-                                        limit: 12,
+                                        // page: controller.pageNumber,
+                                        // limit:
+                                        //     controller.categoryProducts.length,
                                         minPrice: controller.minPrice,
                                         maxPrice: controller.maxPrice);
                                   },
@@ -67,27 +68,24 @@ class Filters extends GetView<CategoryProductsControllerImp> {
                                   widget: Text('lowestPrice'.tr,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold)),
-                                  press: () async {
+                                  press: () {
                                     controller.statusRequest =
                                         StatusRequest.loading;
                                     controller.update();
-                                    // controller.categoryProducts.clear();
+                                    controller.categoryProducts.clear();
+                                    controller.pageNumber = 1;
                                     controller.getCategoryProducts(
                                         categoryID: controller
                                             .categoriesList[
                                                 controller.selectedCat]
                                             .categoryID,
                                         sort: "aesc",
-                                        page: 1,
+                                        // page: controller.pageNumber,
+                                        // limit:
+                                        //     controller.categoryProducts.length,
                                         sortBy: "price",
-                                        limit:
-                                            controller.categoryProducts.length,
                                         minPrice: controller.minPrice,
                                         maxPrice: controller.maxPrice);
-                                    controller.update();
-                                    print("num of prod =>" +
-                                        controller.categoryProducts.length
-                                            .toString());
                                   },
                                   padding: 10),
                               const SizedBox(width: 10),
@@ -101,13 +99,19 @@ class Filters extends GetView<CategoryProductsControllerImp> {
                                     controller.statusRequest =
                                         StatusRequest.loading;
                                     controller.update();
+                                    controller.categoryProducts.clear();
                                     controller.getCategoryProducts(
                                         categoryID: controller
                                             .categoriesList[
                                                 controller.selectedCat]
                                             .categoryID,
                                         sort: "desc",
-                                        sortBy: "createdAt");
+                                        // page: controller.pageNumber,
+                                        // limit:
+                                        //     controller.categoryProducts.length,
+                                        sortBy: "createdAt",
+                                        minPrice: controller.minPrice,
+                                        maxPrice: controller.maxPrice);
                                   },
                                   padding: 10),
                               const SizedBox(width: 10),
@@ -122,13 +126,19 @@ class Filters extends GetView<CategoryProductsControllerImp> {
                                     controller.statusRequest =
                                         StatusRequest.loading;
                                     controller.update();
+                                    controller.categoryProducts.clear();
                                     controller.getCategoryProducts(
                                         categoryID: controller
                                             .categoriesList[
                                                 controller.selectedCat]
                                             .categoryID,
                                         sort: "aesc",
-                                        sortBy: "createdAt");
+                                        // page: controller.pageNumber,
+                                        // limit:
+                                        //     controller.categoryProducts.length,
+                                        sortBy: "createdAt",
+                                        minPrice: controller.minPrice,
+                                        maxPrice: controller.maxPrice);
                                   },
                                   padding: 10)
                             ]),
@@ -139,13 +149,17 @@ class Filters extends GetView<CategoryProductsControllerImp> {
                           child: SliderPrice()),
                       TextButton(
                           onPressed: () {
+                            controller.statusRequest = StatusRequest.loading;
+                            controller.update();
+                            controller.categoryProducts.clear();
                             controller.getCategoryProducts(
                                 categoryID: controller
                                     .categoriesList[controller.selectedCat]
                                     .categoryID,
                                 minPrice: controller.lowerPrice,
                                 maxPrice: controller.hightPrice,
-                                sort: "desc");
+                                sort: "desc",
+                                sortBy: "price");
                             print(controller.selectedCat);
                             controller.update();
                           },
@@ -163,23 +177,21 @@ class SliderPrice extends GetView<CategoryProductsControllerImp> {
   @override
   Widget build(BuildContext context) {
     return FlutterSlider(
-      values: const [1550, 10000],
-      rangeSlider: true,
-      tooltip: FlutterSliderTooltip(
-          positionOffset: FlutterSliderTooltipPositionOffset(top: -20),
-          boxStyle: FlutterSliderTooltipBox(
-              decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  border: Border.all(width: 1),
-                  borderRadius: BorderRadius.circular(50))),
-          alwaysShowTooltip: true,
-          textStyle: const TextStyle(fontWeight: FontWeight.bold)),
-      max: 20000,
-      min: 1000,
-      onDragging: (handlerIndex, lowerValue, upperValue) {
-        controller.changeSliderValues(
-            lowerValue: lowerValue, upperValue: upperValue);
-      },
-    );
+        values: [controller.lowerPrice, controller.hightPrice],
+        rangeSlider: true,
+        tooltip: FlutterSliderTooltip(
+            positionOffset: FlutterSliderTooltipPositionOffset(top: -20),
+            boxStyle: FlutterSliderTooltipBox(
+                decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    border: Border.all(width: 1),
+                    borderRadius: BorderRadius.circular(50))),
+            alwaysShowTooltip: true,
+            textStyle: const TextStyle(fontWeight: FontWeight.bold)),
+        min: controller.minPrice,
+        max: controller.maxPrice,
+        onDragging: (handlerIndex, lowerValue, upperValue) =>
+            controller.changeSliderValues(
+                lowerValue: lowerValue, upperValue: upperValue));
   }
 }

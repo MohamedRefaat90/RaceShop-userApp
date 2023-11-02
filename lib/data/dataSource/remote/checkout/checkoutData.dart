@@ -28,6 +28,7 @@ class CheckoutData {
       {required String AddressID,
       required String DelevieryZoneId,
       required String couponName,
+      required String mobileWallet,
       required String paymentMethodType,
       required String userToken}) async {
     var response = await db_helper.postData(
@@ -36,9 +37,18 @@ class CheckoutData {
           "paymentMethod": "online",
           "paymentMethodType": paymentMethodType,
           "addressId": AddressID,
+          "mobileNumber": mobileWallet,
           "delevieryZoneId": DelevieryZoneId,
           "couponName": couponName
         },
+        userToken: userToken);
+
+    return response.fold((l) => l, (r) => r);
+  }
+
+  ConfirmOrder(String preCheckoutID, String userToken) async {
+    var response = await db_helper.postData(
+        "${ApiLinks.checkout}/$preCheckoutID", {},
         userToken: userToken);
 
     return response.fold((l) => l, (r) => r);

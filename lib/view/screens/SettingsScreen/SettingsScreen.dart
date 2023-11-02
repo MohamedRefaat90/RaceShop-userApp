@@ -1,9 +1,14 @@
+import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:ecommerce/controller/auth/login.dart';
 import 'package:ecommerce/controller/settings/SettingsController.dart';
+import 'package:ecommerce/core/constants/AppAssets.dart';
 import 'package:ecommerce/core/constants/AppColors.dart';
 import 'package:ecommerce/core/constants/AppRoutes.dart';
+import 'package:ecommerce/core/shared/BTN.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -25,10 +30,8 @@ class SettingsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(70),
                     bottomRight: Radius.circular(70))),
-            child: Image.asset(
-              'assets/images/settings/1.jpg',
-              fit: BoxFit.contain,
-            ),
+            child: Image.asset('assets/images/settings/1.jpg',
+                fit: BoxFit.contain),
           ),
           Container(
             height: Get.width / 1.5,
@@ -61,15 +64,27 @@ class SettingsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Card(
                 child: Column(children: [
+              // settingsFeatrue(
+              //     title: 'Notifications',
+              //     trailing: Switch.adaptive(
+              //         value: controller.notificationEnable,
+              //         onChanged: (val) {
+              //           controller.notificationEnable = val;
+              //           controller.update();
+              //         }),
+              //     press: () {}),
+              // settingsFeatrue(
+              //     title: "Orders",
+              //     trailing: Icon(Icons.shopping_bag),
+              //     press: () {
+              //       Get.toNamed(AppRoutes.orders);
+              //     }),
               settingsFeatrue(
-                  title: 'Notifications',
-                  trailing: Switch.adaptive(
-                      value: controller.notificationEnable,
-                      onChanged: (val) {
-                        controller.notificationEnable = val;
-                        controller.update();
-                      }),
-                  press: () {}),
+                  title: "Orders History",
+                  trailing: Icon(Icons.watch_later_rounded),
+                  press: () {
+                    Get.toNamed(AppRoutes.ordersHistory);
+                  }),
               settingsFeatrue(
                   title: "Address",
                   trailing: Icon(Icons.location_pin),
@@ -80,10 +95,52 @@ class SettingsScreen extends StatelessWidget {
                   title: "About us",
                   trailing: Icon(Icons.info_outline),
                   press: () {}),
-              settingsFeatrue(
-                  title: "Contact us",
-                  trailing: Icon(Icons.phone),
-                  press: () {}),
+              // settingsFeatrue(
+              //     title: "Contact us",
+              //     trailing: Icon(Icons.phone),
+              //     press: () {}),
+              ExpansionTile(
+                title: Text("Contact us"),
+                trailing: Icon(Icons.phone),
+                childrenPadding: EdgeInsets.all(10),
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BTN(
+                          widget: Row(
+                            children: [
+                              Icon(Icons.phone),
+                              SizedBox(width: 5),
+                              Text('Calling')
+                            ],
+                          ),
+                          color: Colors.blue,
+                          padding: 16,
+                          press: () {
+                            launchUrl(
+                                Uri.parse("tel:${controller.phoneOwner}"));
+                          }),
+                      SizedBox(width: 20),
+                      BTN(
+                          widget: Row(
+                            children: [
+                              SvgPicture.asset(AppAssets.whatsappIcon,
+                                  width: 20, color: AppColors.white),
+                              SizedBox(width: 10),
+                              Text('WhatsApp'),
+                            ],
+                          ),
+                          color: Colors.green,
+                          padding: 16,
+                          press: () {
+                            launchUrl(Uri.parse(
+                                "https://wa.me/${controller.whatsappOwner}"));
+                          }),
+                    ],
+                  )
+                ],
+              ),
               settingsFeatrue(
                   title: "Logout",
                   trailing: Icon(Icons.logout_outlined),

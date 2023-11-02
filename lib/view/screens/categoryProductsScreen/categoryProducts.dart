@@ -1,10 +1,9 @@
-import 'package:ecommerce/controller/home/CategoryProductsController.dart';
+import 'package:ecommerce/controller/CategoryProducts/CategoryProductsController.dart';
 import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:ecommerce/core/constants/AppColors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import '../../widgets/categoryProducts/CategoriesBar.dart';
 

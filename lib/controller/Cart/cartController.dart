@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/class/statusRequest.dart';
+import 'package:ecommerce/core/constants/AppColors.dart';
 import 'package:ecommerce/core/constants/AppRoutes.dart';
 import 'package:ecommerce/core/functions/flushBar.dart';
 import 'package:ecommerce/core/functions/handelDataController.dart';
@@ -11,6 +12,8 @@ import 'package:ecommerce/view/widgets/productDetails/productDesc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/functions/snakbar.dart';
+
 abstract class CartController extends GetxController {
   getCartProducts();
   upProductQuantity();
@@ -19,6 +22,7 @@ abstract class CartController extends GetxController {
       {required String productID,
       required String productName,
       required String productDecs,
+      required String img,
       required int quantity,
       required String color,
       required String size});
@@ -86,6 +90,7 @@ class CartControllerImp extends CartController {
 
   @override
   getCartProducts() async {
+    cartProducts.clear();
     statusRequest = StatusRequest.loading;
 
     update();
@@ -97,16 +102,16 @@ class CartControllerImp extends CartController {
       if (response['status'] == 'success') {
         cartInfo = response['data']['data'];
         totalPrice = cartInfo['totalPrice'];
+        // cartLength = cartInfo['items'].length;
         for (int i = 0; i < cartInfo['items'].length; i++) {
           await getProductData(cartInfo['items'][i]['product']);
           cartQuantity = cartQuantity + cartInfo['items'][i]['quantity'];
           cartDiscount = cartDiscount + cartInfo['items'][i]['discount'];
         }
+        if (cartInfo['items'].isEmpty) {
+          statusRequest = StatusRequest.failure;
+        }
       }
-    }
-
-    if (cartInfo['items'].isEmpty) {
-      statusRequest = StatusRequest.failure;
     }
 
     update();
@@ -117,17 +122,15 @@ class CartControllerImp extends CartController {
       {required productID,
       required productName,
       required productDecs,
+      required img,
       required quantity,
       required color,
       required size}) async {
-    // statusRequest = StatusRequest.loading;
-
-    // update();
-
     var response = await cartData.addToCart(
         productID: productID,
         productName: productName,
         productDesc: productDecs,
+        img: img,
         quantity: quantity,
         color: color,
         size: size,
@@ -137,16 +140,26 @@ class CartControllerImp extends CartController {
 
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == 'success') {
-        Get.showSnackbar(GetSnackBar(
-          message: response['message'],
-          duration: Duration(seconds: 2),
-        ));
-      } else {
-        Get.showSnackbar(GetSnackBar(
-          message: response['message'],
-          duration: Duration(seconds: 2),
-        ));
+        snakBar(
+            message: "Item Added Successfully To Cart",
+            color: Colors.green,
+            btn: Get.currentRoute == "cart"
+                ? TextButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.cart);
+                      updateCart();
+                    },
+                    child: Text("View Cart",
+                        style: TextStyle(
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18)))
+                : null);
       }
+    } else {
+      snakBar(
+          message: "There is No More Quintity For This Product",
+          color: Colors.red);
     }
   }
 
@@ -171,10 +184,7 @@ class CartControllerImp extends CartController {
     cartProducts.removeWhere((e) => e['id'] == productID);
     updateCart();
 
-    Get.showSnackbar(GetSnackBar(
-      message: "Product Remove Successfully From Your Cart",
-      duration: Duration(seconds: 2),
-    ));
+    snakBar(message: "Product Removed From Your Cart");
 
     if (cartInfo['items'].isEmpty) {
       statusRequest = StatusRequest.failure;

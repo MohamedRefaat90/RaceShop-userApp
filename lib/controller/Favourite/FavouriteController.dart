@@ -29,7 +29,6 @@ class FavouriteControllerImp extends FavouriteController {
   void onInit() {
     userToken = myServices.sharedPreferences.getString('userToken')!;
     getFavProducts();
-    print(productsFav);
     super.onInit();
   }
 

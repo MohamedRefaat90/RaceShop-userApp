@@ -1,11 +1,8 @@
 import 'package:ecommerce/controller/Cart/cartController.dart';
-import 'package:ecommerce/controller/checkout/checkout.dart';
 import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppAssets.dart';
 import 'package:ecommerce/core/shared/customField.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../core/constants/AppColors.dart';
 import '../../../core/shared/BTN.dart';

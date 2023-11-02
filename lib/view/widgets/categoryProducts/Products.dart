@@ -2,7 +2,7 @@ import 'package:ecommerce/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/home/CategoryProductsController.dart';
+import '../../../controller/CategoryProducts/CategoryProductsController.dart';
 import '../../../controller/Favourite/FavouriteController.dart';
 import '../../../core/shared/HandleingRequsetData.dart';
 import 'CategoryProductCard.dart';

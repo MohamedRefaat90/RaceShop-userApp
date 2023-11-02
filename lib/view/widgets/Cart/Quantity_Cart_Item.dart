@@ -1,3 +1,4 @@
+import 'package:ecommerce/controller/home/HomeNavigationController.dart';
 import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:ecommerce/core/constants/AppColors.dart';
 import 'package:ecommerce/data/Model/productModel.dart';
@@ -21,6 +22,7 @@ class Quantity_Cart_Item extends StatelessWidget {
   final Map product;
   @override
   Widget build(BuildContext context) {
+    HomeNavigationControllerImp homeNavigationControllerImp = Get.find();
     return GetBuilder<CartControllerImp>(builder: (controller) {
       return Expanded(
           flex: 1,
@@ -37,11 +39,13 @@ class Quantity_Cart_Item extends StatelessWidget {
                           productID: productID,
                           productName: product['productName'],
                           productDecs: product['productDescription'],
+                          img: product['coverImage'],
                           quantity: 1,
                           color: product['selectedVariation']['color'],
                           size: product['selectedVariation']['size']);
                       await controller.updateCart();
                       controller.upProductQuantity();
+                      homeNavigationControllerImp.getCartlength();
                     }),
                 controller.statusRequest == StatusRequest.none
                     ? SizedBox(
@@ -62,15 +66,17 @@ class Quantity_Cart_Item extends StatelessWidget {
                             await controller.removeOneFromCart(productCartID);
                             await controller.updateCart();
                             controller.downProductQuantity();
+                            homeNavigationControllerImp.getCartlength();
                           }
                         }))
               ]),
               SizedBox(
                   width: 30,
                   child: IconButton(
-                      onPressed: () {
-                        controller.removeFromCart(productCartID, productID);
-                        print(productCartID);
+                      onPressed: () async {
+                        await controller.removeFromCart(
+                            productCartID, productID);
+                        homeNavigationControllerImp.getCartlength();
                       },
                       icon: Icon(Icons.delete, color: Colors.red, size: 30),
                       padding: EdgeInsets.zero))

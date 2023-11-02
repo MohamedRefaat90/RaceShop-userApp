@@ -24,6 +24,31 @@ class AppRoutes {
 
   // Checkout
   static const checkout = "/checkout";
+
+  // checkout Details
+  static const checkoutDetails = "/checkoutDetails";
+
+  // Payment
+  static const payment = "/payment";
+
+  // checkout Compelte
+  static const checkoutCompelete = "/checkoutCompelete";
+
+  // orders
+  static const orders = "/orders";
+
+  // orders Details
+  static const ordersDetails = "/ordersDetails";
+
+  // orders Details
+  static const ordersHistory = "/ordersHistory";
+
+  // orders Details
+  static const offers = "/offers";
+
+  // Notifications
+  static const notifications = "/notifications";
+
   // test
   static const test = "/test";
 }

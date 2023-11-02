@@ -45,7 +45,7 @@ class paymentMethodCard extends GetView<CheckoutController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CheckoutController>(builder: (context) {
+    return GetBuilder<CheckoutController>(builder: (controller) {
       return RadioListTile(
           title: Text(name,
               style: TextStyle(
@@ -82,7 +82,7 @@ class paymentMethodCard extends GetView<CheckoutController> {
           // activeColor: Colors.blue,
           selectedTileColor: controller.SelectedTile,
           onChanged: (value) {
-            controller.selectedpaymentMethod(value!);
+            controller.selectedpaymentMethod(value!, context);
           });
     });
   }

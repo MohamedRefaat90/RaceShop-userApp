@@ -5,8 +5,6 @@ import 'package:ecommerce/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/shared/BTN.dart';
-import '../../../core/shared/customField.dart';
 import '../../widgets/Cart/CartAppBar.dart';
 import '../../widgets/Cart/CartBill.dart';
 import '../../widgets/Cart/CartItem.dart';

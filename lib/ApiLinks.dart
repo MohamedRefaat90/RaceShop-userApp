@@ -21,8 +21,8 @@ class ApiLinks {
 
   // ==================== Products ============================
   static const String createProduct = "$baseURL/api/v1/product";
-  static const String getProduct = "$baseURL/api/v1/product/";
-  static const String getAllProduct = "$baseURL/api/v1/product?";
+  static const String getProducts = "$baseURL/api/v1/product/";
+  // static const String getAllProduct = "$baseURL/api/v1/product?";
   static const String deleteProduct =
       "$baseURL/api/v1/product/64c13f300b6261271c058f13";
   static const String updateProduct =
@@ -48,4 +48,7 @@ class ApiLinks {
 
   // ==================== Checkout ============================
   static const String checkout = "$baseURL/api/v1/checkout";
+
+  // ==================== Orders ============================
+  static const String orders = "$baseURL/api/v1/order";
 }

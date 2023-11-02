@@ -1,11 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:ecommerce/controller/home/HomeController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:ecommerce/data/Model/CategoriesModel.dart';
-
 import '../../../core/constants/AppColors.dart';
 import '../../../core/functions/translate.dart';
 
@@ -14,22 +11,20 @@ class CategoriesCards extends GetView<HomeControllerImp> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeControllerImp());
-    return SizedBox(
-      height: 100,
-      child: GetBuilder<HomeControllerImp>(builder: (controller) {
-        return ListView.separated(
+    return GetBuilder<HomeControllerImp>(builder: (controller) {
+      return SizedBox(
+        height: 130,
+        child: ListView.separated(
           itemCount: controller.categoriesList.length,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           itemBuilder: (context, index) => Category(
               selectedCategory: index,
-              category: controller.categoriesList[index]
-              // CategoriesModel.fromJson(controller.categoriesList[index]),
-              ),
+              category: controller.categoriesList[index]),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 }
 

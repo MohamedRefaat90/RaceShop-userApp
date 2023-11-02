@@ -13,7 +13,7 @@ class offersBanar extends GetView<HomeControllerImp> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 150,
+      height: 200,
       clipBehavior: Clip.antiAlias,
       padding: const EdgeInsetsDirectional.only(start: 15),
       decoration: const BoxDecoration(

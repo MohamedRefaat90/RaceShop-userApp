@@ -32,17 +32,17 @@ class CategoryProductsControllerImp extends CategoryProductsController {
   double maxPrice = 50000;
 
   // price Slider
-  double lowerPrice = 0;
-  double hightPrice = 0;
+  double lowerPrice = 1000;
+  double hightPrice = 15000;
 
   late List categoriesList;
-  late bool hasMoreData;
+
   late ScrollController scrollController;
   late int totalItems;
   late int pageNumber;
   late bool loading;
   final int numOfProductsPerRequest = 6;
-
+  int? totalPages;
   @override
   void onInit() {
     categoriesList = Get.arguments['categories'];
@@ -61,30 +61,29 @@ class CategoryProductsControllerImp extends CategoryProductsController {
         sort: "desc",
         sortBy: "price");
 
-    scrollController.addListener(() {
-      if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) {
-        if (hasMoreData) {
-          loading = true;
-          update();
-          getCategoryProducts(
-              categoryID: categoriesList[selectedCat].categoryID,
-              minPrice: minPrice,
-              maxPrice: maxPrice,
-              page: pageNumber,
-              limit: numOfProductsPerRequest,
-              sort: "desc",
-              sortBy: "price");
-        } else {
-          statusRequest = StatusRequest.none;
-          update();
-        }
-      }
-    });
-
-    loading = false;
+    scrollController.addListener(pagination);
 
     super.onInit();
+  }
+
+  pagination() {
+    if ((scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent) &&
+        (pageNumber <= totalPages!)) {
+      loading = true;
+      pageNumber++;
+
+      getCategoryProducts(
+          categoryID: categoriesList[selectedCat].categoryID,
+          minPrice: minPrice,
+          maxPrice: maxPrice,
+          page: pageNumber,
+          limit: categoryProducts.length,
+          sort: "desc",
+          sortBy: "price");
+
+      update();
+    }
   }
 
   @override
@@ -107,20 +106,16 @@ class CategoryProductsControllerImp extends CategoryProductsController {
         userToken: userToken);
 
     statusRequest = handelData(response);
-
+    print("Page :  ${pageNumber}");
     if (statusRequest == StatusRequest.success) {
-      pageNumber++;
-      loading = false;
       if (response['status'] == "success") {
         totalItems = response['data']['totalItems'];
+        totalPages = response['data']['totalPages'];
 
         List products = response['data']['data']
             .map((e) => productModel.formjson(e))
             .toList();
         categoryProducts.addAll(products);
-        hasMoreData = totalItems == numOfProductsPerRequest;
-
-        update();
       }
     } else {
       statusRequest =

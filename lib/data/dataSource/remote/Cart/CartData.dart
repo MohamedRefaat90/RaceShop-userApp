@@ -19,6 +19,7 @@ class CartData {
       {required String productID,
       required String productName,
       required String productDesc,
+      required String img,
       required int quantity,
       required String color,
       required String size,
@@ -30,6 +31,7 @@ class CartData {
             "product": productID,
             "productName": productName,
             "productDescription": productDesc,
+            "coverImage": img,
             "selectedVariation": {"color": color, "size": size},
             "quantity": quantity
           }
@@ -55,7 +57,7 @@ class CartData {
 
   getProductData(String productID, String userToken) async {
     var response = await dB_helper
-        .getAllData("${ApiLinks.getProduct}$productID", userToken: userToken);
+        .getAllData("${ApiLinks.getProducts}/$productID", userToken: userToken);
 
     return response.fold((l) => l, (r) => r);
   }

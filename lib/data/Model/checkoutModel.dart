@@ -1,7 +1,7 @@
 class checkoutModel {
   Address? address;
   String? status;
-  String? sId;
+  String? Id;
   String? user;
   String? delevieryZoneId;
   String? zoneEn;
@@ -11,6 +11,7 @@ class checkoutModel {
   int? delevieryPrice;
   int? delevieryTimeInDays;
   String? paymentMethod;
+  String? paymentMethodType;
   List<Items>? items;
   String? couponId;
   Coupon? coupon;
@@ -22,7 +23,7 @@ class checkoutModel {
   checkoutModel(
       {this.address,
       this.status,
-      this.sId,
+      this.Id,
       this.user,
       this.delevieryZoneId,
       this.zoneEn,
@@ -44,7 +45,7 @@ class checkoutModel {
     address =
         json['address'] != null ? new Address.fromJson(json['address']) : null;
     status = json['status'];
-    sId = json['_id'];
+    Id = json['_id'];
     user = json['user'];
     delevieryZoneId = json['delevieryZoneId'];
     zoneEn = json['zoneEn'];
@@ -54,6 +55,7 @@ class checkoutModel {
     delevieryPrice = json['delevieryPrice'];
     delevieryTimeInDays = json['delevieryTimeInDays'];
     paymentMethod = json['paymentMethod'];
+    paymentMethodType = json['paymentMethodType'];
     if (json['items'] != null) {
       items = <Items>[];
       json['items'].forEach((v) {
@@ -67,36 +69,6 @@ class checkoutModel {
     updatedAt = json['updatedAt'];
     totalPrice = json['totalPrice'];
     iV = json['__v'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.address != null) {
-      data['address'] = this.address!.toJson();
-    }
-    data['status'] = this.status;
-    data['_id'] = this.sId;
-    data['user'] = this.user;
-    data['delevieryZoneId'] = this.delevieryZoneId;
-    data['zoneEn'] = this.zoneEn;
-    data['zoneAr'] = this.zoneAr;
-    data['addressId'] = this.addressId;
-    data['totalItemsPrice'] = this.totalItemsPrice;
-    data['delevieryPrice'] = this.delevieryPrice;
-    data['delevieryTimeInDays'] = this.delevieryTimeInDays;
-    data['paymentMethod'] = this.paymentMethod;
-    if (this.items != null) {
-      data['items'] = this.items!.map((v) => v.toJson()).toList();
-    }
-    data['couponId'] = this.couponId;
-    if (this.coupon != null) {
-      data['coupon'] = this.coupon!.toJson();
-    }
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['totalPrice'] = this.totalPrice;
-    data['__v'] = this.iV;
-    return data;
   }
 }
 
@@ -152,6 +124,7 @@ class Items {
   String? product;
   String? productName;
   String? productDescription;
+  String? coverImage;
   int? quantity;
   int? price;
 
@@ -162,6 +135,7 @@ class Items {
       this.product,
       this.productName,
       this.productDescription,
+      this.coverImage,
       this.quantity,
       this.price});
 
@@ -174,6 +148,7 @@ class Items {
     product = json['product'];
     productName = json['productName'];
     productDescription = json['productDescription'];
+    coverImage = json['coverImage'];
     quantity = json['quantity'];
     price = json['price'];
   }

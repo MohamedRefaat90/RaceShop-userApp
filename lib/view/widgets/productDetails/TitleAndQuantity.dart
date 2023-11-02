@@ -90,7 +90,7 @@ class TitleAndQuantity extends GetView<ProductDetailsControllerImp> {
                       //     strokeAlign: 3, color: AppColors.black, width: 2)
                     ),
                     child: Text(
-                      "${(product.productPrice - (product.productDiscount * 100) / 100).toInt()} LE",
+                      "${product.productPrice - (product.productPrice * product.productDiscount ~/ 100).toInt()} LE",
                       style: TextStyle(
                           color: product.productDiscount > 0
                               ? AppColors.secondryColor

@@ -2,14 +2,12 @@ import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/home/CategoryProductsController.dart';
+import '../../../controller/CategoryProducts/CategoryProductsController.dart';
 import '../../../core/constants/AppColors.dart';
 import '../../../core/functions/translate.dart';
 
 class CategoriesBar extends StatelessWidget {
-  const CategoriesBar({
-    super.key,
-  });
+  const CategoriesBar({super.key});
 
   @override
   Widget build(BuildContext context) {
