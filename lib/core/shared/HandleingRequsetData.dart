@@ -1,7 +1,7 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/shared/Loading.dart';
-import 'package:ecommerce/core/shared/noData.dart';
-import 'package:ecommerce/core/shared/offlineAlert.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/shared/Loading.dart';
+import 'package:race_shop/core/shared/noData.dart';
+import 'package:race_shop/core/shared/offlineAlert.dart';
 
 import 'package:flutter/material.dart';
 

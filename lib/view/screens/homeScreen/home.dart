@@ -1,11 +1,13 @@
-import 'package:ecommerce/controller/home/HomeController.dart';
-import 'package:ecommerce/controller/search/searchController.dart';
-import 'package:ecommerce/core/shared/HandleingRequsetData.dart';
-import 'package:ecommerce/view/screens/SearchScreen/searchScreen.dart';
+import 'package:race_shop/controller/home/HomeController.dart';
+import 'package:race_shop/controller/search/searchController.dart';
+import 'package:race_shop/core/functions/Responsive.dart';
+import 'package:race_shop/core/shared/HandleingRequsetData.dart';
+import 'package:race_shop/view/screens/SearchScreen/searchScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/home/HomeNavigationController.dart';
+import '../../../controller/settings/SettingsController.dart';
 import '../../widgets/home/CategoriesCards.dart';
 import '../../../core/shared/Searchbar_with_NotificationIcon.dart';
 import '../../widgets/home/offersBanar.dart';
@@ -19,6 +21,7 @@ class Home extends GetView<HomeControllerImp> {
     Get.put(HomeControllerImp());
     Get.put(HomeNavigationControllerImp());
     Get.put(SearchBarController());
+    // Get.put(SettingsController());
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -36,14 +39,14 @@ class Home extends GetView<HomeControllerImp> {
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Categories",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displayLarge),
+                                Text("Categories".tr,
+                                    style: TextStyle(
+                                        fontSize: screenWidth(context) * 0.085,
+                                        fontFamily: "Cairo")),
                                 SizedBox(height: 10),
                                 const CategoriesCards()
                               ]),
-                          productsSlider(sliderTitle: 'Offers'.tr),
+                          productsSlider(),
                         ])
                 ]));
           });

@@ -1,13 +1,14 @@
-import 'package:ecommerce/controller/auth/signup.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/functions/toast.dart';
-import 'package:ecommerce/data/dataSource/remote/Auth/forgetPasswrodData.dart';
+import 'package:race_shop/controller/auth/signup.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/functions/toast.dart';
+import 'package:race_shop/data/dataSource/remote/Auth/forgetPasswrodData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:otp_timer_button/otp_timer_button.dart';
 
+import '../../core/services/myServices.dart';
 import '../../data/dataSource/remote/Auth/resendOTPData.dart';
 
 abstract class forgetPassword extends GetxController {
@@ -22,15 +23,18 @@ class forgetPasswordImp extends forgetPassword {
   ResendOTPData resendOTPData = ResendOTPData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   late OtpTimerButtonController otpTimerButtonController;
+  MyServices myServices = Get.find();
   int otpTimer = 90;
   @override
   goToVarificationCode() async {
     var fromdata = formkey.currentState;
     if (fromdata!.validate()) {
       statusRequest = StatusRequest.loading;
-      useremail = email.text.trim();
+      myServices.sharedPreferences.setString("useremail", email.text.trim());
+
       update();
-      var response = await forgetPasswordData.forgetPasswordData(useremail);
+      var response = await forgetPasswordData.forgetPasswordData(
+          myServices.sharedPreferences.getString("useremail")!);
 
       statusRequest = handelData(response);
 
@@ -49,19 +53,16 @@ class forgetPasswordImp extends forgetPassword {
 
   @override
   resendOTP(BuildContext context) async {
-    // resetOTP_Btn();
-    // print(otpTimer);
-    var response = await resendOTPData.resendOTP(useremail);
+    var response = await resendOTPData
+        .resendOTP(myServices.sharedPreferences.getString("useremail")!);
 
     statusRequest = handelData(response);
-    print(useremail);
+
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         toastAlert(msg: response['message'], color: Colors.green);
-        print(useremail);
       } else {
         toastAlert(msg: response['message'], color: Colors.red);
-        print(useremail);
       }
     }
   }

@@ -1,8 +1,8 @@
-import 'package:ecommerce/controller/address/addressAddController.dart';
-import 'package:ecommerce/controller/address/addressViewController.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/shared/BTN.dart';
-import 'package:ecommerce/view/widgets/Address/DeliveryZoneSelector.dart';
+import 'package:race_shop/controller/address/addressAddController.dart';
+import 'package:race_shop/controller/address/addressViewController.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/shared/BTN.dart';
+import 'package:race_shop/view/widgets/Address/DeliveryZoneSelector.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,61 +42,62 @@ class AddressDetailsDialog extends GetView<AddressAddController> {
               Transform.translate(
                 offset: Offset(58, 0),
                 child: Divider(
-                  color: AppColors.secondryColor,
-                  height: 5,
-                  thickness: 3,
-                  endIndent: 290,
-                ),
+                    color: AppColors.secondryColor,
+                    height: 5,
+                    thickness: 3,
+                    endIndent: 290),
               ),
               Center(
-                child: Text("Address Detials",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+                child: Text("AddressDetials".tr,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        color: AppColors.black)),
               ),
               Transform.translate(
                 offset: Offset(-55, 0),
                 child: Divider(
-                  color: AppColors.secondryColor,
-                  height: 5,
-                  thickness: 3,
-                  indent: 290,
-                ),
+                    color: AppColors.secondryColor,
+                    height: 5,
+                    thickness: 3,
+                    indent: 290),
               ),
               SizedBox(height: spaceBetweenFileds),
               customField(
                   textEditingController: controller.AddressName,
+                  color: AppColors.black,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "notEmpty".tr;
                     }
                     return null;
                   },
-                  lable: "Address Name",
-                  hint: "Home / Work"),
+                  lable: "AddressName".tr,
+                  hint: "Home/Work".tr),
               SizedBox(height: spaceBetweenFileds),
               DeliveryZoneSelector(),
               SizedBox(height: spaceBetweenFileds),
               customField(
                   textEditingController: controller.Street,
+                  color: AppColors.black,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "notEmpty".tr;
                     }
                     return null;
                   },
-                  lable: "Street",
-                  hint: "Enter Street"),
+                  lable: "Street".tr),
               SizedBox(height: spaceBetweenFileds),
               customField(
                   textEditingController: controller.BuildingNum,
+                  color: AppColors.black,
                   validator: (value) {
                     if (value!.isEmpty || !GetUtils.isNumericOnly(value)) {
-                      return "Enter a Number";
+                      return "EnterNumber".tr;
                     }
                     return null;
                   },
-                  lable: "Building Number",
-                  hint: "Building Number"),
+                  lable: "Building".tr),
               SizedBox(height: spaceBetweenFileds),
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -104,29 +105,29 @@ class AddressDetailsDialog extends GetView<AddressAddController> {
                   Expanded(
                     child: customField(
                         textEditingController: controller.floorNum,
+                        color: AppColors.black,
                         validator: (value) {
                           if (value!.isEmpty ||
                               !GetUtils.isNumericOnly(value)) {
-                            return "Enter a Number";
+                            return "EnterNumber".tr;
                           }
                           return null;
                         },
-                        lable: "Floor Number",
-                        hint: "Floor Number"),
+                        lable: "Floor".tr),
                   ),
                   SizedBox(width: 10),
                   Expanded(
                       child: customField(
                           textEditingController: controller.ApartmentNum,
+                          color: AppColors.black,
                           validator: (value) {
                             if (value!.isEmpty ||
                                 !GetUtils.isNumericOnly(value)) {
-                              return "Enter a Number";
+                              return "EnterNumber".tr;
                             }
                             return null;
                           },
-                          lable: "Apartment Number",
-                          hint: "Apartment Number"))
+                          lable: "Apartment".tr))
                 ],
               ),
               SizedBox(height: spaceBetweenFileds),
@@ -139,34 +140,36 @@ class AddressDetailsDialog extends GetView<AddressAddController> {
                               height: 25,
                               width: 25,
                               child: CircularProgressIndicator(
-                                color: AppColors.white,
-                              ),
+                                  color: AppColors.white),
                             )
-                          : Text("Submit",
+                          : Text("Submit".tr,
                               style: TextStyle(fontWeight: FontWeight.bold)),
                       width: 150,
                       color: AppColors.secondryColor,
                       press: () async {
                         if (controller.formKey.currentState!.validate()) {
                           await controller.addAddress();
-                          if (checkoutController.isCheckout!) {
+                          if (checkoutController.isCheckout != null ||
+                              checkoutController.isCheckout == true) {
                             Get.offAllNamed(AppRoutes.checkout);
                             addressViewController.getAllAddresses();
                             checkoutController.isCheckout = false;
                           } else {
-                            Get.offAllNamed(AppRoutes.home);
+                            // Get.offNamed(AppRoutes.addressView);
+                            Get.back();
+
+                            addressViewController.getAllAddresses();
                           }
                         }
                       }),
                 );
               }),
               Transform.translate(
-                offset: Offset(0, 10),
-                child: IconButton(
-                    onPressed: () => controller.CloseAddressDetailsDialog(),
-                    icon: Icon(Icons.cancel_outlined,
-                        color: Colors.red, size: 35)),
-              ),
+                  offset: Offset(0, 10),
+                  child: IconButton(
+                      onPressed: () => controller.CloseAddressDetailsDialog(),
+                      icon: Icon(Icons.cancel_outlined,
+                          color: Colors.red, size: 35))),
             ]),
           ),
         ),

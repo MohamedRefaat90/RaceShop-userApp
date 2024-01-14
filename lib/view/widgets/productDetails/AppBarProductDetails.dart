@@ -1,5 +1,5 @@
-import 'package:ecommerce/controller/Favourite/FavouriteController.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
+import 'package:race_shop/controller/Favourite/FavouriteController.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

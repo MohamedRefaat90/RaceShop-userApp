@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/shared/customAppBar.dart';
+import 'package:race_shop/core/shared/customAppBar.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsScreen extends StatelessWidget {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:race_shop/controller/LanguageController/LanguageController.dart';
 
 import '../../../core/constants/AppAssets.dart';
 
@@ -8,6 +10,10 @@ class Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Lottie.asset(AppAssets.loading));
+    LanguageController languageController = Get.find();
+    return Center(
+        child: Lottie.asset(languageController.themeMode == ThemeMode.light
+            ? AppAssets.DarkLoading
+            : AppAssets.LightLoading));
   }
 }

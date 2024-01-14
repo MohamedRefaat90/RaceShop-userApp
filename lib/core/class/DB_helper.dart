@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/checkInternetConncetion.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/checkInternetConncetion.dart';
 import 'package:dio/dio.dart';
 
 class DB_helper {
   final dio = Dio();
 
-  Future<Either<StatusRequest, Map>> postData(String url, data,
+  Future<Either<StatusRequest, Map>> postData(String url, Map data,
       {String? userToken}) async {
     if (await checkInternetConnection()) {
       try {
@@ -23,8 +23,8 @@ class DB_helper {
         } else {
           return const Left(StatusRequest.failure);
         }
-      } on DioException catch (e) {
-        print(e.message);
+      } on DioException {
+        // print(e.message);
         return const Left(StatusRequest.failure);
       }
     } else {

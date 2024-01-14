@@ -1,18 +1,32 @@
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/services/myServices.dart';
+import 'package:race_shop/controller/auth/login.dart';
+import 'package:race_shop/core/class/DB_helper.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/services/myServices.dart';
 import 'package:flutter/src/widgets/navigator.dart';
 import 'package:get/get.dart';
 
-class Middleware extends GetMiddleware {
+class LanguageMiddleware extends GetMiddleware {
   @override
   int? get priority => 0;
-  MyServices myServices = Get.find();
+  static MyServices myServices = Get.find();
   @override
   RouteSettings? redirect(String? route) {
     if (myServices.sharedPreferences.getBool("isFirstTime") == false) {
-      // return const RouteSettings(name: AppRoutes.login);
       return const RouteSettings(name: AppRoutes.home);
     }
     return super.redirect(route);
+  }
+}
+
+class LoginMiddleware extends GetMiddleware {
+  @override
+  int? get priority => 0;
+  static MyServices myServices = Get.find();
+  RouteSettings? redirect(String? route) {
+    if (myServices.sharedPreferences.getBool("isLogin")! == false) {
+      return const RouteSettings(name: AppRoutes.login);
+    } else {
+      return super.redirect(route);
+    }
   }
 }

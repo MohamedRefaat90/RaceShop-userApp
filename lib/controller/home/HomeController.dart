@@ -1,15 +1,16 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/Model/CategoriesModel.dart';
-import 'package:ecommerce/data/dataSource/remote/Home/homeData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/CategoriesModel.dart';
+import 'package:race_shop/data/Model/userModel.dart';
+import 'package:race_shop/data/dataSource/remote/Home/homeData.dart';
 import 'package:get/get.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import '../../core/constants/AppRoutes.dart';
 import '../../data/dataSource/remote/offers/offersData.dart';
 
 abstract class HomeController extends GetxController {
-  getData();
+  getCategories();
   goToCategoryProducts(int selectedCat);
 }
 
@@ -17,23 +18,21 @@ class HomeControllerImp extends HomeController {
   HomeData homeData = HomeData(Get.find());
   offersData OffersData = offersData(Get.find());
   MyServices myServices = Get.find();
+  userModel? user;
   StatusRequest? statusRequest;
-  String? lang;
   List categoriesList = [];
   List offersProducts = [];
 
   @override
   void onInit() {
-    lang = myServices.sharedPreferences.getString('lang');
-
-    getData();
+    user = Get.arguments;
+    getCategories();
     getOffersProducts();
-
     super.onInit();
   }
 
   @override
-  getData() async {
+  getCategories() async {
     categoriesList.clear();
     statusRequest = StatusRequest.loading;
     update();
@@ -59,6 +58,7 @@ class HomeControllerImp extends HomeController {
   }
 
   getOffersProducts() async {
+    offersProducts.clear();
     statusRequest = StatusRequest.loading;
     update();
 
@@ -72,6 +72,7 @@ class HomeControllerImp extends HomeController {
             .map((e) => productModel.formjson(e))
             .toList();
         offersProducts.addAll(products);
+        products.clear();
       }
     }
     update();

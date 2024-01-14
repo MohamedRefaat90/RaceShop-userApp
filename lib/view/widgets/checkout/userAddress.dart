@@ -1,5 +1,5 @@
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/data/Model/userModel.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/data/Model/userModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +21,7 @@ class userAddress extends GetView<AddressViewController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Delivery Address",
+              "DeliveryAddress".tr,
               style: TextStyle(fontSize: 20),
             ),
             if (controller.addressList.length < 3)
@@ -29,13 +29,13 @@ class userAddress extends GetView<AddressViewController> {
                   onPressed: () {
                     Get.toNamed(AppRoutes.addressView);
                   },
-                  child: Text("Add"))
+                  child: Text("Add".tr))
           ],
         ),
         SizedBox(height: 10),
         controller.addressList.isEmpty
             ? Center(
-                child: Text("You Not Add Any Address Yet",
+                child: Text("YouNotAddAnyAddressYet".tr,
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 15)))
             : ListView.separated(

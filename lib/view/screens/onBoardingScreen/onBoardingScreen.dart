@@ -1,6 +1,6 @@
-import 'package:ecommerce/controller/onBoarding/onBoardingController.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/shared/BTN.dart';
+import 'package:race_shop/controller/onBoarding/onBoardingController.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/shared/BTN.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,10 +17,7 @@ class OnBoardingScreen extends GetView<onBoardingControllerImp> {
       body: SafeArea(
           child: Column(
         children: [
-          const Expanded(
-            flex: 3,
-            child: onBoardingSlider(),
-          ),
+          const Expanded(flex: 3, child: onBoardingSlider()),
           Expanded(
             flex: 1,
             child: Column(

@@ -1,5 +1,5 @@
-import 'package:ecommerce/ApiLinks.dart';
-import 'package:ecommerce/core/class/DB_helper.dart';
+import 'package:race_shop/ApiLinks.dart';
+import 'package:race_shop/core/class/DB_helper.dart';
 
 class CheckoutData {
   DB_helper db_helper;
@@ -31,6 +31,7 @@ class CheckoutData {
       required String mobileWallet,
       required String paymentMethodType,
       required String userToken}) async {
+    // print(mobileWallet);
     var response = await db_helper.postData(
         ApiLinks.checkout,
         {

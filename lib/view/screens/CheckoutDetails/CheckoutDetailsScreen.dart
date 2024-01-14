@@ -1,5 +1,5 @@
-import 'package:ecommerce/controller/checkout/checkout.dart';
-import 'package:ecommerce/core/shared/customAppBar.dart';
+import 'package:race_shop/controller/checkout/checkout.dart';
+import 'package:race_shop/core/shared/customAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,15 +14,17 @@ class CheckoutDetailsScreen extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     Get.put(CheckoutController());
     return Scaffold(
-      appBar: customAppBar(context, "Checkout Details"),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CheckoutDetailsAddress(),
-          CheckoutDetailsBill(),
-        ],
+      appBar: customAppBar(context, "CheckoutDetails".tr),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CheckoutDetailsItems(),
+            CheckoutDetailsAddress(),
+            CheckoutDetailsBill()
+          ],
+        ),
       ),
-      body: CheckoutDetailsItems(),
     );
   }
 }

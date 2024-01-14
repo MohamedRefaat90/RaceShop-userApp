@@ -1,4 +1,5 @@
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/controller/LanguageController/LanguageController.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -15,6 +16,7 @@ class TitleAndQuantity extends GetView<ProductDetailsControllerImp> {
   @override
   Widget build(BuildContext context) {
     Get.find<ProductDetailsControllerImp>();
+    LanguageController languageController = Get.find();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -56,7 +58,9 @@ class TitleAndQuantity extends GetView<ProductDetailsControllerImp> {
           children: [
             Shimmer.fromColors(
               enabled: product.productDiscount > 0 ? false : true,
-              baseColor: AppColors.black,
+              baseColor: languageController.themeMode == ThemeMode.dark
+                  ? AppColors.white
+                  : AppColors.black,
               highlightColor: const Color.fromARGB(255, 233, 0, 0),
               child: Container(
                 // padding: EdgeInsets.all(10),

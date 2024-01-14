@@ -1,5 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
 import 'package:flutter/material.dart';
 
 flushBar(BuildContext context,

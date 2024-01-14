@@ -1,0 +1,9 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "race_shop",
+      "sha256_cert_fingerprints":
+      ["15:D3:A1:C6:75:29:90:25:F3:0A:60:71:D1:CA:65:83:B6:13:5C:3E:DC:6C:5A:8A:0A:63:90:CD:05:99:61:D8"]
+    }
+  }]

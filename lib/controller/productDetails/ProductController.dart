@@ -1,6 +1,6 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/dataSource/remote/Product/productData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/dataSource/remote/Product/productData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,8 +44,6 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     productIndex = Get.arguments['index'];
     lang = myServices.sharedPreferences.getString('lang')!;
     productVariationsSize = product.productVariationsBySize!.keys.toList();
-    print(
-        product.productVariationsBySize![productVariationsSize[0]][0]['color']);
     super.onInit();
   }
 

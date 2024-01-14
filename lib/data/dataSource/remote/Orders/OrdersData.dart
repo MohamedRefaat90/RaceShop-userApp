@@ -1,14 +1,17 @@
-import 'package:ecommerce/ApiLinks.dart';
-import 'package:ecommerce/core/class/DB_helper.dart';
+import 'package:race_shop/ApiLinks.dart';
+import 'package:race_shop/core/class/DB_helper.dart';
 
 class OrdersData {
   final DB_helper db_helper;
 
   OrdersData(this.db_helper);
 
-  getAllOrders({required String userToken, required int page}) async {
+  getAllOrders(
+      {required String userToken,
+      required int page,
+      required int numofOrdersPerRequest}) async {
     var response = await db_helper.getAllData(
-        "${ApiLinks.orders}?page=$page&limit=10&sort=desc",
+        "${ApiLinks.orders}?page=$page&limit=$numofOrdersPerRequest&sort=desc",
         userToken: userToken);
 
     return response.fold((l) => l, (r) => r);
@@ -26,7 +29,6 @@ class OrdersData {
     var response = await db_helper.getAllData(
         "${ApiLinks.orders}?page=1&limit=20&sort=desc&status=completed",
         userToken: userToken);
-    print(userToken);
     return response.fold((l) => l, (r) => r);
   }
 }

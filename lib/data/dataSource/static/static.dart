@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/constants/AppAssets.dart';
+import 'package:race_shop/core/constants/AppAssets.dart';
 import 'package:get/get.dart';
 
 import '../../Model/onBoardingModel.dart';

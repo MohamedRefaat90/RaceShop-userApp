@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

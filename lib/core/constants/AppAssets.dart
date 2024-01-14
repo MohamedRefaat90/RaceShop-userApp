@@ -9,11 +9,12 @@ class AppAssets {
   static const String onBoardingImageTwo = "$rootImages/onBoarding/two.png";
   static const String onBoardingImageThree = "$rootImages/onBoarding/three.png";
 
-  static const String loading = "$rootAnimations/loading.json";
-  static const String loader = "$rootAnimations/horizontalLoader.json";
+  static const String LightLoading = "$rootAnimations/LightLoading.json";
+  static const String DarkLoading = "$rootAnimations/DarkLoading.json";
+
   static const String offline = "$rootAnimations/offline.json";
-  static const String noData = "$rootAnimations/Pre-comp.json";
-  static const String orderCompelete1 = "$rootAnimations/orderCompelete1.json";
+  static const String noData = "$rootAnimations/noData.json";
+
   static const String orderCompelete2 = "$rootAnimations/orderCompelete2.json";
 
   // success Signup

@@ -1,24 +1,24 @@
-import 'package:ecommerce/core/Middleware/middleware.dart';
-import 'package:ecommerce/view/screens/AdressScreen/addressAdd.dart';
-import 'package:ecommerce/view/screens/AdressScreen/addressView.dart';
-import 'package:ecommerce/view/screens/Cart/CartScreen.dart';
-import 'package:ecommerce/view/screens/Checkout/checkout.dart';
-import 'package:ecommerce/view/screens/LanguageScreen/Languages.dart';
-import 'package:ecommerce/view/screens/CheckoutDetails/CheckoutDetailsScreen.dart';
-import 'package:ecommerce/view/screens/PaymentScreen/PaymentScreen.dart';
-import 'package:ecommerce/view/screens/auth/fogetPassword/VarificationCode.dart';
-import 'package:ecommerce/view/screens/auth/fogetPassword/resetPassword.dart';
-import 'package:ecommerce/view/screens/auth/fogetPassword/successResetPass.dart';
-import 'package:ecommerce/view/screens/auth/Login/login.dart';
-import 'package:ecommerce/view/screens/auth/signup/checkEmail.dart';
-import 'package:ecommerce/view/screens/auth/signup/signup.dart';
-import 'package:ecommerce/view/screens/auth/signup/successSignup.dart';
-import 'package:ecommerce/view/screens/categoryProductsScreen/categoryProducts.dart';
-import 'package:ecommerce/view/screens/homeNavigationScreen/homeNavigationScreen.dart';
-import 'package:ecommerce/view/screens/onBoardingScreen/onBoardingScreen.dart';
-import 'package:ecommerce/view/screens/CheckoutCompelete/CheckoutCompeleteScreen.dart';
-import 'package:ecommerce/view/screens/productDetailsScreen/productDetails.dart';
-import 'package:ecommerce/view/test.dart';
+import 'package:race_shop/core/Middleware/middleware.dart';
+import 'package:race_shop/view/screens/AdressScreen/addressAdd.dart';
+import 'package:race_shop/view/screens/AdressScreen/addressView.dart';
+import 'package:race_shop/view/screens/Cart/CartScreen.dart';
+import 'package:race_shop/view/screens/Checkout/checkout.dart';
+import 'package:race_shop/view/screens/LanguageScreen/Languages.dart';
+import 'package:race_shop/view/screens/CheckoutDetails/CheckoutDetailsScreen.dart';
+import 'package:race_shop/view/screens/PaymentScreen/PaymentScreen.dart';
+import 'package:race_shop/view/screens/auth/fogetPassword/VarificationCode.dart';
+import 'package:race_shop/view/screens/auth/fogetPassword/resetPassword.dart';
+import 'package:race_shop/view/screens/auth/fogetPassword/successResetPass.dart';
+import 'package:race_shop/view/screens/auth/Login/login.dart';
+import 'package:race_shop/view/screens/auth/signup/checkEmail.dart';
+import 'package:race_shop/view/screens/auth/signup/signup.dart';
+import 'package:race_shop/view/screens/auth/signup/successSignup.dart';
+import 'package:race_shop/view/screens/categoryProductsScreen/categoryProducts.dart';
+import 'package:race_shop/view/screens/homeNavigationScreen/homeNavigationScreen.dart';
+import 'package:race_shop/view/screens/onBoardingScreen/onBoardingScreen.dart';
+import 'package:race_shop/view/screens/CheckoutCompelete/CheckoutCompeleteScreen.dart';
+import 'package:race_shop/view/screens/productDetailsScreen/productDetails.dart';
+import 'package:race_shop/view/test.dart';
 import 'package:get/get.dart';
 import 'core/constants/AppRoutes.dart';
 import 'view/screens/Notifications/NotificationsScreen.dart';
@@ -31,13 +31,15 @@ import 'view/screens/orderDetails/OrderDetailsScreen.dart';
 List<GetPage<dynamic>>? routes = [
   // ================== Languages ==================
   GetPage(
-      name: '/', page: () => const Languages(), middlewares: [Middleware()]),
+      name: '/',
+      page: () => const Languages(),
+      middlewares: [LanguageMiddleware()]),
 
   // ================== onBoarding ==================
   GetPage(name: AppRoutes.onBoarding, page: () => const OnBoardingScreen()),
 
   // ===================== Auth =====================
-  GetPage(name: AppRoutes.login, page: () => const Login()),
+  GetPage(name: AppRoutes.login, page: () => Login()),
   GetPage(name: AppRoutes.signup, page: () => const Signup()),
   GetPage(name: AppRoutes.forgetPassword, page: () => const forgetPassword()),
   GetPage(
@@ -50,7 +52,10 @@ List<GetPage<dynamic>>? routes = [
 
   // ===================== Home =====================
 
-  GetPage(name: AppRoutes.home, page: () => const HomeNavigationScreen()),
+  GetPage(
+      name: AppRoutes.home,
+      page: () => const HomeNavigationScreen(),
+      middlewares: [LoginMiddleware()]),
   GetPage(
       name: AppRoutes.categoryProduts, page: () => const CategoryProducts()),
   GetPage(name: AppRoutes.productDetails, page: () => ProductDetails()),

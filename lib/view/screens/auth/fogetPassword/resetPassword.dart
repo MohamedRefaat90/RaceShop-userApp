@@ -1,5 +1,5 @@
-import 'package:ecommerce/core/shared/BTN.dart';
-import 'package:ecommerce/core/shared/HandleingRequsetData.dart';
+import 'package:race_shop/core/shared/BTN.dart';
+import 'package:race_shop/core/shared/HandleingRequsetData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

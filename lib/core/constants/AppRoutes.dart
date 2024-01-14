@@ -40,10 +40,10 @@ class AppRoutes {
   // orders Details
   static const ordersDetails = "/ordersDetails";
 
-  // orders Details
+  // orders History
   static const ordersHistory = "/ordersHistory";
 
-  // orders Details
+  // offers
   static const offers = "/offers";
 
   // Notifications

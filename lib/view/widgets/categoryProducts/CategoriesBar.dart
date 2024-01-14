@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,7 +45,7 @@ class CategoriesBar extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: AppColors.deepGray,
+                      // color: AppColors.deepGray,
                       fontFamily: "cairo"),
                 ),
                 controller.selectedCat == index

@@ -1,6 +1,7 @@
-import 'package:ecommerce/controller/checkout/checkout.dart';
+import 'package:race_shop/controller/checkout/checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:race_shop/core/functions/ThemeColorFix.dart';
 
 class CheckoutDetailsAddress extends GetView<CheckoutController> {
   const CheckoutDetailsAddress({super.key});
@@ -10,7 +11,7 @@ class CheckoutDetailsAddress extends GetView<CheckoutController> {
     Get.put(CheckoutController());
 
     return DefaultTextStyle(
-      style: TextStyle(color: Colors.grey[700], fontSize: 18),
+      style: TextStyle(fontSize: 15, color: ThemeColorFix()),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -24,24 +25,26 @@ class CheckoutDetailsAddress extends GetView<CheckoutController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Text("Delivery Details",
+                  child: Text("DeliveryDetails".tr,
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 ),
                 SizedBox(height: 10),
-                Text.rich(TextSpan(children: [
-                  TextSpan(
-                      text: 'Street : ',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: '${controller.checkout.address!.street}'),
-                ])),
+                Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                          text: 'Street:'.tr,
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: '${controller.checkout.address!.street}'),
+                    ]),
+                    softWrap: true),
                 SizedBox(height: 5),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text.rich(TextSpan(children: [
                         TextSpan(
-                            text: 'Building :  ',
+                            text: 'Building:'.tr,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
                             text:
@@ -49,7 +52,7 @@ class CheckoutDetailsAddress extends GetView<CheckoutController> {
                       ])),
                       Text.rich(TextSpan(children: [
                         TextSpan(
-                            text: 'Floor : ',
+                            text: 'Floor:'.tr,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
                             text:
@@ -57,7 +60,7 @@ class CheckoutDetailsAddress extends GetView<CheckoutController> {
                       ])),
                       Text.rich(TextSpan(children: [
                         TextSpan(
-                            text: 'Apartment :',
+                            text: 'Apartment:'.tr,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
                             text:
@@ -67,20 +70,21 @@ class CheckoutDetailsAddress extends GetView<CheckoutController> {
                 SizedBox(height: 5),
                 Text.rich(TextSpan(children: [
                   TextSpan(
-                      text: 'Zone : ',
+                      text: 'Zone:'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${controller.checkout.address!.city}'),
                 ])),
                 SizedBox(height: 5),
                 Text.rich(TextSpan(children: [
                   TextSpan(
-                      text: 'Delivey Time : ',
+                      text: 'DeliveyTime:'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(text: "within".tr),
                   TextSpan(
-                      text:
-                          'with in ${controller.checkout.delevieryTimeInDays} days'),
+                      text: ' ${controller.checkout.delevieryTimeInDays} '),
+                  TextSpan(text: "Days".tr),
                 ])),
-                SizedBox(height: 5),
+                SizedBox(height: 5)
               ],
             ),
           ),

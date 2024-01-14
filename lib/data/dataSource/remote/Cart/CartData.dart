@@ -1,7 +1,5 @@
-import 'dart:convert';
-
-import 'package:ecommerce/ApiLinks.dart';
-import 'package:ecommerce/core/class/DB_helper.dart';
+import 'package:race_shop/ApiLinks.dart';
+import 'package:race_shop/core/class/DB_helper.dart';
 
 class CartData {
   DB_helper dB_helper;

@@ -1,7 +1,7 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -54,7 +54,6 @@ class SearchBarController extends GetxController {
       statusRequest = StatusRequest.failure;
       update();
     }
-    print(searchedProducts);
     update();
   }
 

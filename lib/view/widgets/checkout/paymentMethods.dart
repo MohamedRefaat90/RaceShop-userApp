@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/checkout/checkout.dart';
-import '../../../core/constants/AppColors.dart';
 
 class paymentMethods extends GetView<CheckoutController> {
   const paymentMethods({super.key});
@@ -47,33 +46,17 @@ class paymentMethodCard extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     return GetBuilder<CheckoutController>(builder: (controller) {
       return RadioListTile(
-          title: Text(name,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: controller.SelectedPaymentMethod == value
-                      ? AppColors.white
-                      : AppColors.black)),
+          title: Text(name, style: TextStyle(fontSize: 20)),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           contentPadding: EdgeInsets.only(bottom: 10),
           subtitle: Row(
             children: [
               img.isEmpty
-                  ? Text("Payment When Recive The Order",
-                      style: TextStyle(
-                          color: controller.SelectedPaymentMethod == value
-                              ? AppColors.white
-                              : AppColors.black))
+                  ? Text("PaymentWhenReciveTheOrder".tr)
                   : Image.asset(img, width: 70),
               SizedBox(width: 10),
-              if (name == "Valu")
-                Text(
-                  "Installments up to 60 months",
-                  style: TextStyle(
-                      color: controller.SelectedPaymentMethod == value
-                          ? AppColors.white
-                          : AppColors.black),
-                )
+              if (name == "Valu") Text("Installmentsupto60months".tr)
             ],
           ),
           value: value,

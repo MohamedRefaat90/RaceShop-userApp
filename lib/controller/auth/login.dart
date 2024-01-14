@@ -1,76 +1,78 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/functions/toast.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/dataSource/remote/Auth/loginData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/functions/toast.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/userModel.dart';
+import 'package:race_shop/data/dataSource/remote/Auth/loginData.dart';
+import 'package:race_shop/data/dataSource/remote/User/userData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/functions/handelDataController.dart';
 
-abstract class LoginController extends GetxController {
-  login();
-  passVisible();
-  goToSignup();
-  goToForgetPassword();
-  logout();
-}
-
-class LoginControllerImp extends LoginController {
+class LoginController extends GetxController {
   late TextEditingController email;
   late TextEditingController password;
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool visibility = true;
   var testConnection;
   MyServices myServices = Get.find();
-
+  userModel? user;
   LoginData loginData = LoginData(Get.find());
+  UserData userData = UserData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
-  @override
+  bool isLogin = false;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   login() async {
-    var fromdata = formkey.currentState;
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await loginData.loginData(
+        email: email.text.trim(), password: password.text);
 
-    if (fromdata!.validate()) {
-      {
-        statusRequest = StatusRequest.loading;
-        update();
-        var response = await loginData.loginData(
-            email: email.text.trim(), password: password.text);
+    statusRequest = handelData(response);
 
-        statusRequest = handelData(response);
-
-        if (statusRequest == StatusRequest.success) {
-          if (response['status'] == "success") {
-            myServices.sharedPreferences
-                .setString("userToken", response['token']);
-
-            Get.offAllNamed(AppRoutes.home);
-          }
-        } else {
-          Get.offAllNamed(AppRoutes.login);
-          toastAlert(
-              msg: "user or paswword not Correct try again", color: Colors.red);
-        }
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        myServices.sharedPreferences.setString("userToken", response['token']);
+        myServices.sharedPreferences.setBool("isLogin", true);
+        getUserData();
+        Get.toNamed(AppRoutes.home, arguments: user);
       }
+    } else {
+      // Get.offAllNamed(AppRoutes.login);
+      toastAlert(msg: "userorpaswwordnotCorrecttryagain".tr, color: Colors.red);
     }
+
     update();
   }
 
-  @override
+  getUserData() async {
+    var response = await userData
+        .getUserData(myServices.sharedPreferences.getString("userToken")!);
+    statusRequest = handelData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        user = userModel.fromJson(response['data']['data']);
+
+        myServices.sharedPreferences.setString("fName", user!.firstName!);
+        myServices.sharedPreferences.setString("lName", user!.lastName!);
+        myServices.sharedPreferences.setString("Uid", user!.Id!);
+
+        // Get.toNamed(AppRoutes.home);
+      }
+    }
+  }
+
   goToSignup() {
     Get.toNamed(AppRoutes.signup);
   }
 
-  @override
   goToForgetPassword() {
     Get.toNamed(AppRoutes.forgetPassword);
   }
 
-  @override
   void onInit() async {
     email = TextEditingController();
     password = TextEditingController();
-
     super.onInit();
   }
 
@@ -81,7 +83,6 @@ class LoginControllerImp extends LoginController {
     super.dispose();
   }
 
-  @override
   passVisible() {
     visibility = !visibility;
     update();
@@ -89,8 +90,8 @@ class LoginControllerImp extends LoginController {
 
   logout() {
     loginData.logout(myServices.sharedPreferences.getString('userToken')!);
+    myServices.sharedPreferences.setBool("isLogin", false);
 
-    myServices.sharedPreferences.clear();
     Get.offAllNamed(AppRoutes.login);
   }
 }

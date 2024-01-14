@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/LanguageController/LanguageController.dart';
 import '../../../controller/home/HomeController.dart';
+import '../../../core/class/responsive.dart';
 import '../../../core/constants/AppColors.dart';
 
-class offersBanar extends GetView<HomeControllerImp> {
-  const offersBanar({
-    super.key,
-  });
+class offersBanar extends GetView<LanguageController> {
+  const offersBanar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,20 @@ class offersBanar extends GetView<HomeControllerImp> {
           color: AppColors.primaryColor,
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Stack(children: [
+        GetBuilder<LanguageController>(builder: (controller) {
+          return Positioned(
+            right: controller.sharedLang == "en" ? -50 : 180,
+            // left: controller.lang == "ar" ? -50 : null,
+            top: -20,
+            child: Container(
+              width: Responsive.getSize(context).width * 0.70,
+              height: Responsive.getSize(context).width * 0.70,
+              decoration: const BoxDecoration(
+                  color: AppColors.secondryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(5000))),
+            ),
+          );
+        }),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,18 +52,6 @@ class offersBanar extends GetView<HomeControllerImp> {
                     .copyWith(fontSize: 20, color: AppColors.white)),
           ],
         ),
-        Positioned(
-          right: controller.lang == "en" ? -50 : null,
-          left: controller.lang == "ar" ? -50 : null,
-          top: -10,
-          child: Container(
-            width: 200,
-            height: 200,
-            decoration: const BoxDecoration(
-                color: AppColors.secondryColor,
-                borderRadius: BorderRadius.all(Radius.circular(5000))),
-          ),
-        )
       ]),
     );
   }

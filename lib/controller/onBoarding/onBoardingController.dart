@@ -1,5 +1,5 @@
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/dataSource/static/static.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/dataSource/static/static.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

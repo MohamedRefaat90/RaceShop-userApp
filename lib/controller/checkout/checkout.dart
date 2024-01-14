@@ -1,13 +1,12 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppAssets.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/functions/flushBar.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/core/shared/BTN.dart';
-import 'package:ecommerce/core/shared/customField.dart';
-import 'package:ecommerce/data/Model/checkoutModel.dart';
-import 'package:ecommerce/data/dataSource/remote/checkout/checkoutData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppAssets.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/core/shared/BTN.dart';
+import 'package:race_shop/core/shared/customField.dart';
+import 'package:race_shop/data/Model/checkoutModel.dart';
+import 'package:race_shop/data/dataSource/remote/checkout/checkoutData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +35,6 @@ class CheckoutController extends GetxController {
 
   @override
   void onInit() {
-    isCheckout = true;
     userToken = myServices.sharedPreferences.getString('userToken');
     mobileWallet = TextEditingController();
     super.onInit();
@@ -47,7 +45,7 @@ class CheckoutController extends GetxController {
 
     if (val == "wallet") {
       Get.defaultDialog(
-          title: "Enter Mobile Number Wallet",
+          title: "EnterVodaCash".tr,
           titleStyle: TextStyle(fontSize: 20),
           titlePadding: EdgeInsets.all(20),
           contentPadding: EdgeInsets.all(20),
@@ -59,11 +57,11 @@ class CheckoutController extends GetxController {
                   SizedBox(height: 20),
                   customField(
                       lable: "Mobile Number",
-                      hint: "Mobile Number",
+                      hint: "ex : 01010101010",
                       textEditingController: mobileWallet),
                   Spacer(),
                   BTN(
-                      widget: Text("Submit"),
+                      widget: Text("Submit".tr),
                       press: () {
                         Get.back();
                       },
@@ -76,7 +74,6 @@ class CheckoutController extends GetxController {
 
   selectedAddress(String? val) {
     SelectedAddress = val;
-    print(SelectedAddress);
     update();
   }
 
@@ -109,7 +106,7 @@ class CheckoutController extends GetxController {
         AddressID: SelectedAddress!,
         DelevieryZoneId: deliveryZone!['_id'],
         couponName: couponName!,
-        mobileWallet: mobileWallet.text.trim(),
+        mobileWallet: "01010101010",
         paymentMethodType: SelectedPaymentMethod,
         userToken: userToken!);
 
@@ -122,7 +119,6 @@ class CheckoutController extends GetxController {
       }
     }
     update();
-    print(checkout.paymentMethod);
   }
 
   getTotalDiscount() {
@@ -130,7 +126,9 @@ class CheckoutController extends GetxController {
       totalItemsDiscount = checkout.items![i].discount!;
     }
 
-    totalItemsDiscount += checkout.coupon!.discount!;
+    if (checkout.coupon != null) {
+      totalItemsDiscount += checkout.coupon!.discount!;
+    }
   }
 
   ConfirmOrder(BuildContext context) async {

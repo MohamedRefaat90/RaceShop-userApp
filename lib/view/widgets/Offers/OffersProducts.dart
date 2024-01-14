@@ -1,5 +1,5 @@
-import 'package:ecommerce/controller/home/HomeController.dart';
-import 'package:ecommerce/view/widgets/Offers/OffersProductCard.dart';
+import 'package:race_shop/controller/home/HomeController.dart';
+import 'package:race_shop/view/widgets/Offers/OffersProductCard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/Favourite/FavouriteController.dart';

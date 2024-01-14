@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce/controller/Favourite/FavouriteController.dart';
-import 'package:ecommerce/controller/home/HomeController.dart';
-import 'package:ecommerce/core/functions/translate.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/controller/Favourite/FavouriteController.dart';
+import 'package:race_shop/controller/home/HomeController.dart';
+import 'package:race_shop/core/functions/translate.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -44,9 +44,7 @@ class OffersProductCard extends GetView<HomeControllerImp> {
                     child: Text(
                         translate(product.productName, product.productNameAr),
                         style: const TextStyle(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17)),
+                            fontWeight: FontWeight.bold, fontSize: 17)),
                   ),
                   GetBuilder<FavouriteControllerImp>(builder: (context) {
                     return Row(
@@ -57,7 +55,6 @@ class OffersProductCard extends GetView<HomeControllerImp> {
                             children: [
                               Text("${product.productPrice} LE",
                                   style: TextStyle(
-                                      color: AppColors.black,
                                       fontSize: 16,
                                       decoration: product.productDiscount > 0
                                           ? TextDecoration.lineThrough

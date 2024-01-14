@@ -2,7 +2,7 @@ import 'package:another_xlider/another_xlider.dart';
 import 'package:another_xlider/models/tooltip/tooltip.dart';
 import 'package:another_xlider/models/tooltip/tooltip_box.dart';
 import 'package:another_xlider/models/tooltip/tooltip_position_offset.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,6 @@ class Filters extends GetView<CategoryProductsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.selectedCat);
     return Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: ExpansionTile(
@@ -152,7 +151,9 @@ class Filters extends GetView<CategoryProductsControllerImp> {
                             controller.statusRequest = StatusRequest.loading;
                             controller.update();
                             controller.categoryProducts.clear();
+
                             controller.getCategoryProducts(
+                                page: 1,
                                 categoryID: controller
                                     .categoriesList[controller.selectedCat]
                                     .categoryID,
@@ -160,7 +161,7 @@ class Filters extends GetView<CategoryProductsControllerImp> {
                                 maxPrice: controller.hightPrice,
                                 sort: "desc",
                                 sortBy: "price");
-                            print(controller.selectedCat);
+
                             controller.update();
                           },
                           child: const Text('Search',
@@ -183,7 +184,7 @@ class SliderPrice extends GetView<CategoryProductsControllerImp> {
             positionOffset: FlutterSliderTooltipPositionOffset(top: -20),
             boxStyle: FlutterSliderTooltipBox(
                 decoration: BoxDecoration(
-                    color: Colors.grey[100],
+                    color: Colors.grey[800],
                     border: Border.all(width: 1),
                     borderRadius: BorderRadius.circular(50))),
             alwaysShowTooltip: true,

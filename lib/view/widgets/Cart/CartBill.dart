@@ -1,6 +1,7 @@
-import 'package:ecommerce/controller/Cart/cartController.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/shared/customField.dart';
+import 'package:race_shop/controller/Cart/cartController.dart';
+import 'package:race_shop/controller/LanguageController/LanguageController.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/shared/customField.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,9 +14,13 @@ class CartBill extends GetView<CartControllerImp> {
   @override
   Widget build(BuildContext context) {
     Get.put(CartControllerImp());
-
+    LanguageController languageController = Get.find();
     return DefaultTextStyle(
-      style: TextStyle(color: Colors.grey[700], fontSize: 18),
+      style: TextStyle(
+          fontSize: 18,
+          color: languageController.themeMode == ThemeMode.dark
+              ? AppColors.white
+              : AppColors.black),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -28,10 +33,9 @@ class CartBill extends GetView<CartControllerImp> {
                     opacity: controller.opacity2,
                     child: TextButton(
                         onPressed: () {
-                          print('Yes i have a Copun');
                           controller.haveCoupon();
                         },
-                        child: Text("You Have a Copun")),
+                        child: Text("HaveaCopun".tr)),
                   ),
                 ),
                 AnimatedOpacity(
@@ -47,7 +51,7 @@ class CartBill extends GetView<CartControllerImp> {
                         Expanded(
                             flex: 2,
                             child: customField(
-                                lable: "Copun Name",
+                                lable: "CopunName".tr,
                                 hint: "",
                                 textEditingController: controller.couponName)),
                         SizedBox(width: 10),
@@ -58,8 +62,8 @@ class CartBill extends GetView<CartControllerImp> {
                             duration: Duration(milliseconds: 300),
                             child: BTN(
                                 widget: Text(controller.coupon == null
-                                    ? "Apply"
-                                    : "Cancel"),
+                                    ? "Apply".tr
+                                    : "Cancel".tr),
                                 width: controller.statusRequest ==
                                         StatusRequest.none
                                     ? 70
@@ -89,22 +93,23 @@ class CartBill extends GetView<CartControllerImp> {
           }),
           SizedBox(height: 10),
           Container(
-            height: 230,
+            height: languageController.lang == "en" ? 240 : 260,
             decoration: BoxDecoration(
                 border: Border.all(color: AppColors.primaryColor, width: 3),
                 borderRadius: BorderRadius.circular(20)),
             padding: EdgeInsets.symmetric(horizontal: 20)
                 .copyWith(top: 20, bottom: 10),
             child: Column(
+              // mainAxisSize: MainAxisSize.min,
               children: [
                 Row(children: [
-                  Text('Price'),
+                  Text('Price'.tr),
                   Spacer(),
                   Text("${controller.totalPrice} LE")
                 ]),
                 SizedBox(height: 5),
                 Row(children: [
-                  Text('Discount'),
+                  Text('Discount'.tr),
                   Spacer(),
                   controller.coupon == null
                       ? Text("${controller.cartDiscount} %")
@@ -113,7 +118,7 @@ class CartBill extends GetView<CartControllerImp> {
                 ]),
                 SizedBox(height: 5),
                 Row(children: [
-                  Text('You Saved'),
+                  Text('YouSaved'.tr),
                   Spacer(),
                   controller.coupon == null
                       ? Text(
@@ -121,19 +126,15 @@ class CartBill extends GetView<CartControllerImp> {
                       : Text(
                           "${(controller.totalPrice * (controller.cartDiscount + controller.couponDiscount)) ~/ 100} LE")
                 ]),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 Divider(
-                  thickness: 2,
-                  color: Colors.grey,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                SizedBox(height: 7),
+                    thickness: 2,
+                    color: Colors.grey,
+                    indent: 20,
+                    endIndent: 20),
+                SizedBox(height: 5),
                 Row(children: [
-                  Text(
-                    'Total Price',
-                    style: TextStyle(color: AppColors.black),
-                  ),
+                  Text('TotalPrice'.tr),
                   Spacer(),
                   Text(
                       "${controller.totalPrice - (controller.totalPrice * (controller.cartDiscount + controller.couponDiscount)) ~/ 100} LE",
@@ -163,19 +164,19 @@ class checkoutBTN extends StatelessWidget {
         width: controller.statusRequest == StatusRequest.none ? 60 : 300,
         height: controller.statusRequest == StatusRequest.none ? 60 : 55,
         child: BTN(
-          widget: controller.statusRequest == StatusRequest.none
-              ? Center(child: CircularProgressIndicator(color: AppColors.white))
-              : Text(
-                  "Check Out",
-                  style: const TextStyle(
-                      color: AppColors.white, fontWeight: FontWeight.bold),
-                ),
-          press: () {
-            controller.goToCheckoutPage();
-          },
-          padding: 20,
-          color: AppColors.secondryColor,
-        ),
+            widget: controller.statusRequest == StatusRequest.none
+                ? Center(
+                    child: CircularProgressIndicator(color: AppColors.white))
+                : Text(
+                    "CheckOut".tr,
+                    style: const TextStyle(
+                        color: AppColors.white, fontWeight: FontWeight.bold),
+                  ),
+            press: () {
+              controller.goToCheckoutPage();
+            },
+            padding: 0,
+            color: AppColors.secondryColor),
       );
     });
   }

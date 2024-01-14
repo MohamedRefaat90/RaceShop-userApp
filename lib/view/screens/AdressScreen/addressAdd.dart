@@ -1,10 +1,8 @@
-import 'package:ecommerce/controller/address/addressAddController.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/shared/BTN.dart';
+import 'package:race_shop/controller/address/addressAddController.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/shared/BTN.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../controller/checkout/checkout.dart';
 import '../../widgets/Address/AddressDetailsDialog.dart';
 import '../../widgets/Address/OSmap.dart';
 
@@ -22,7 +20,7 @@ class AddressAdd extends StatelessWidget {
           children: [
             OSmap(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 45),
               child: controller.mapIsReady
                   ? BTN(
                       widget: Text("Pick",

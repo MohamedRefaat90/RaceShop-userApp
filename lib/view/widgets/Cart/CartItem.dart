@@ -1,5 +1,5 @@
-import 'package:ecommerce/controller/Cart/cartController.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/controller/Cart/cartController.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,19 +42,23 @@ class Cart_Item_Info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
-            mainAxisSize: MainAxisSize.min,
+            // mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-          Text(name, style: TextStyle(fontSize: 16)),
-          SizedBox(height: 10),
-          Text('$price LE',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
-        ]));
+              Text(name, style: TextStyle(fontSize: 16)),
+              SizedBox(height: 10),
+              Text('$price LE',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+            ]),
+      ),
+    );
   }
 }
 
-class Cart_Item_Image extends GetView<CartControllerImp> {
+class Cart_Item_Image extends StatelessWidget {
   const Cart_Item_Image({super.key, required this.img});
   final String img;
   @override

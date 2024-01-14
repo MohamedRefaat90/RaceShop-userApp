@@ -1,9 +1,9 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
-import 'package:ecommerce/data/dataSource/remote/CategoryProducts/CategoryProductsData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/productModel.dart';
+import 'package:race_shop/data/dataSource/remote/CategoryProducts/CategoryProductsData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +41,7 @@ class CategoryProductsControllerImp extends CategoryProductsController {
   late int totalItems;
   late int pageNumber;
   late bool loading;
-  final int numOfProductsPerRequest = 6;
+  final int numOfProductsPerRequest = 20;
   int? totalPages;
   @override
   void onInit() {
@@ -106,7 +106,7 @@ class CategoryProductsControllerImp extends CategoryProductsController {
         userToken: userToken);
 
     statusRequest = handelData(response);
-    print("Page :  ${pageNumber}");
+
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         totalItems = response['data']['totalItems'];

@@ -1,11 +1,13 @@
-import 'package:ecommerce/core/services/myServices.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class SettingsController extends GetxController {}
+import '../LanguageController/LanguageController.dart';
 
-class SettingsControllerImp extends SettingsController {
+class SettingsController extends GetxController {
   MyServices myServices = Get.find();
-  bool notificationEnable = true;
+  LanguageController languageController = Get.find();
+  bool? isDarkMode;
 
   late String phoneOwner;
   late String whatsappOwner;
@@ -14,6 +16,16 @@ class SettingsControllerImp extends SettingsController {
   void onInit() {
     phoneOwner = myServices.sharedPreferences.getString("phoneOwner")!;
     whatsappOwner = myServices.sharedPreferences.getString("whatsappOwner")!;
+    isDarkMode = myServices.sharedPreferences.getBool("isDarkMode") ?? false;
     super.onInit();
+  }
+
+  ToggelDarkMode(bool val) {
+    myServices.sharedPreferences.setBool("isDarkMode", val);
+    isDarkMode = val;
+    languageController.themeMode =
+        isDarkMode! ? ThemeMode.dark : ThemeMode.light;
+    Get.changeThemeMode(languageController.themeMode);
+    update();
   }
 }

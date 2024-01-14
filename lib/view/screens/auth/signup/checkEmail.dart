@@ -1,5 +1,5 @@
-import 'package:ecommerce/controller/auth/checkEmail.dart';
-import 'package:ecommerce/view/widgets/Auth/OTPFields.dart';
+import 'package:race_shop/controller/auth/checkEmail.dart';
+import 'package:race_shop/view/widgets/Auth/OTPFields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/shared/customAppBar.dart';

@@ -1,4 +1,4 @@
-import 'package:ecommerce/view/widgets/productDetails/productColorDot.dart';
+import 'package:race_shop/view/widgets/productDetails/productColorDot.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

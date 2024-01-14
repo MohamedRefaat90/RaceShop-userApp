@@ -1,7 +1,7 @@
-import 'package:ecommerce/controller/auth/checkEmail.dart';
-import 'package:ecommerce/controller/auth/forgetPassword.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
+import 'package:race_shop/controller/auth/checkEmail.dart';
+import 'package:race_shop/controller/auth/forgetPassword.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';

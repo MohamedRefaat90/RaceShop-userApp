@@ -1,14 +1,11 @@
-import 'package:ecommerce/core/shared/customAppBar.dart';
+import 'package:race_shop/core/shared/customAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../controller/ordersHistory/ordersHistoryController.dart';
 import '../../../core/class/statusRequest.dart';
-import '../../../core/constants/AppColors.dart';
 import '../../../core/shared/HandleingRequsetData.dart';
 import '../../../core/shared/Loading.dart';
 import '../../../data/Model/OrderModel.dart';
-import '../../widgets/Orders/OrderCard.dart';
 import '../../widgets/ordersHistory/orderCompeletedCard.dart';
 
 class OrdersHistoryScreen extends StatelessWidget {
@@ -18,8 +15,8 @@ class OrdersHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ordersHistoryController());
     return Scaffold(
-      appBar: customAppBar(context, "Orders History"),
-      backgroundColor: AppColors.white.withOpacity(0.9),
+      appBar: customAppBar(context, "OrdersHistory".tr),
+      // backgroundColor: AppColors.white.withOpacity(0.9),
       body: GetBuilder<ordersHistoryController>(builder: (controller) {
         return HandleingRequsetData(
             statusRequest: controller.statusRequest!,

@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
 
 handelData(response) {
   if (response is StatusRequest) {

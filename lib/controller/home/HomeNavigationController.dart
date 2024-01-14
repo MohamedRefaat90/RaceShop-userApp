@@ -1,12 +1,11 @@
-import 'package:ecommerce/data/dataSource/remote/Orders/OrdersData.dart';
-import 'package:ecommerce/view/screens/FavouriteScreen/FavouriteScreen.dart';
-import 'package:ecommerce/view/screens/OrdersScreen/OrdersScreen.dart';
-import 'package:ecommerce/view/screens/homeScreen/home.dart';
+import 'package:race_shop/data/dataSource/remote/Orders/OrdersData.dart';
+import 'package:race_shop/view/screens/FavouriteScreen/FavouriteScreen.dart';
+import 'package:race_shop/view/screens/OrdersScreen/OrdersScreen.dart';
+import 'package:race_shop/view/screens/homeScreen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/class/statusRequest.dart';
-import '../../core/functions/handelDataController.dart';
 import '../../core/services/myServices.dart';
 import '../../data/dataSource/remote/Cart/CartData.dart';
 import '../../view/screens/SettingsScreen/SettingsScreen.dart';
@@ -55,7 +54,6 @@ class HomeNavigationControllerImp extends HomeNavigationController {
     var data = response['data']['data'];
     for (int i = 0; i < data['items'].length; i++) {
       cartLength = cartLength + data['items'][i]['quantity'];
-      print(cartLength);
     }
     update();
   }

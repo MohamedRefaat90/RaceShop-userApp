@@ -1,7 +1,9 @@
-import 'package:ecommerce/controller/checkoutCompelete/checkoutCompeleteController.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/shared/BTN.dart';
+import 'package:race_shop/controller/Cart/cartController.dart';
+import 'package:race_shop/controller/checkoutCompelete/checkoutCompeleteController.dart';
+import 'package:race_shop/core/class/responsive.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/shared/BTN.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -14,6 +16,7 @@ class checkoutCompeleteScreen extends GetView<CheckoutCompeleteController> {
   @override
   Widget build(BuildContext context) {
     Get.put(CheckoutCompeleteController());
+    CartControllerImp cartControllerImp = Get.find();
     return Scaffold(
       backgroundColor: AppColors.white.withOpacity(0.8),
       body: Center(
@@ -28,9 +31,11 @@ class checkoutCompeleteScreen extends GetView<CheckoutCompeleteController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Lottie.asset(AppAssets.orderCompelete2, height: 200),
-                    Text("Congratulation Your Order is Compelete",
+                    Text("CongratulationYourOrderisCompelete".tr,
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
+                            fontSize: Responsive.getSize(context).width * 0.039,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.black)),
                     SizedBox(height: 20),
                     BTN(
                         widget: Row(
@@ -38,12 +43,13 @@ class checkoutCompeleteScreen extends GetView<CheckoutCompeleteController> {
                           children: [
                             Icon(Icons.home, size: 30),
                             SizedBox(width: 5),
-                            Text("Home", style: TextStyle(fontSize: 18)),
+                            Text("Home".tr, style: TextStyle(fontSize: 18)),
                           ],
                         ),
                         padding: 10,
                         width: 170,
                         press: () {
+                          // cartControllerImp.cartProducts.clear();
                           Get.offAllNamed(AppRoutes.home);
                         })
                   ],
@@ -52,18 +58,28 @@ class checkoutCompeleteScreen extends GetView<CheckoutCompeleteController> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                      Text("Congratulation Your Order is Compelete",
-                          style: TextStyle(fontSize: 16)),
-                      Lottie.asset(AppAssets.orderCompelete2, height: 200),
-                      Text("Bill ID :  ${controller.BillID.toString()}",
+                      Text("CongratulationYourOrderisCompelete".tr,
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
+                              fontSize:
+                                  Responsive.getSize(context).width * 0.039,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.black)),
+                      Lottie.asset(AppAssets.orderCompelete2, height: 200),
+                      Text.rich(TextSpan(
+                          children: [
+                            TextSpan(text: "BillID:".tr),
+                            TextSpan(text: "${controller.BillID.toString()}"),
+                          ],
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.black))),
                       SizedBox(height: 10),
                       Text(
-                        "Use This Bill ID To Nearest Fawry Machine For Compelete Your Purchase",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18),
-                      ),
+                          "UseThisBillIDToNearestFawryMachineForCompeleteYourPurchase"
+                              .tr,
+                          style:
+                              TextStyle(fontSize: 18, color: AppColors.black)),
                       SizedBox(height: 20),
                       BTN(
                           widget: Row(
@@ -71,13 +87,15 @@ class checkoutCompeleteScreen extends GetView<CheckoutCompeleteController> {
                             children: [
                               Icon(Icons.home, size: 30),
                               SizedBox(width: 5),
-                              Text("Home", style: TextStyle(fontSize: 18)),
+                              Text("Home".tr, style: TextStyle(fontSize: 18)),
                             ],
                           ),
                           padding: 10,
                           width: 170,
                           press: () {
+                            cartControllerImp.cartProducts.clear();
                             Get.offAllNamed(AppRoutes.home);
+                            cartControllerImp.cartProducts.clear();
                           })
                     ]),
         ),

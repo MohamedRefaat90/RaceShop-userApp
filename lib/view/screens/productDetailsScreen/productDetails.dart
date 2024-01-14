@@ -1,10 +1,11 @@
-import 'package:ecommerce/controller/Cart/cartController.dart';
-import 'package:ecommerce/controller/home/HomeNavigationController.dart';
-import 'package:ecommerce/controller/productDetails/ProductController.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/functions/flushBar.dart';
+import 'package:race_shop/controller/Cart/cartController.dart';
+import 'package:race_shop/controller/home/HomeNavigationController.dart';
+import 'package:race_shop/controller/productDetails/ProductController.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/functions/flushBar.dart';
 
-import 'package:ecommerce/core/shared/BTN.dart';
+import 'package:race_shop/core/shared/BTN.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,64 +24,62 @@ class ProductDetails extends StatelessWidget {
     CartControllerImp cartController = Get.put(CartControllerImp());
     HomeNavigationControllerImp homeNavigationControllerImp = Get.find();
     return Scaffold(
-        backgroundColor: AppColors.white.withOpacity(0.93),
+        // backgroundColor: AppColors.white.withOpacity(0.93),
         body: GetBuilder<ProductDetailsControllerImp>(builder: (controller) {
-          return SafeArea(
-              child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: ListView(children: [
-                    const AppBarProductDetails(),
-                    const imageSlider(),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TitleAndQuantity(product: controller.product),
-                          SizedBox(height: 10),
-                          productDesc(),
-                          SizedBox(height: 10),
-                          ColorsandSizes(),
-                          Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: BTN(
-                                  widget: Text("Add to Cart",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  padding: 25,
-                                  press: () async {
-                                    if (controller
-                                        .selectedProductColor.isNotEmpty) {
-                                      await cartController.addToCart(
-                                          productID:
-                                              controller.product.productID,
-                                          productName: controller.lang == "en"
-                                              ? controller.product.productName
-                                              : controller
-                                                  .product.productNameAr,
-                                          productDecs: controller.lang == "en"
-                                              ? controller.product.productDesc
-                                              : controller
-                                                  .product.productDescAr,
-                                          img: controller
-                                              .product.productCoverImage,
-                                          quantity: controller.productQuantity,
-                                          color:
-                                              controller.selectedProductColor,
-                                          size: controller
-                                                  .productVariationsSize[
-                                              controller.selectedProductSize]);
-                                      homeNavigationControllerImp
-                                          .getCartlength();
-                                    } else {
-                                      flushBar(context,
-                                          message:
-                                              "Selecat Color & Size Please",
-                                          color: Colors.redAccent);
-                                    }
-                                  },
-                                  width: double.infinity,
-                                  color: AppColors.primaryColor))
-                        ])
-                  ])));
-        }));
+      return SafeArea(
+          child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: ListView(children: [
+                const AppBarProductDetails(),
+                const imageSlider(),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  TitleAndQuantity(product: controller.product),
+                  SizedBox(height: 10),
+                  productDesc(),
+                  SizedBox(height: 10),
+                  ColorsandSizes(),
+                  GetBuilder<CartControllerImp>(builder: (cartController) {
+                    return Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: BTN(
+                            widget: cartController.statusRequest ==
+                                    StatusRequest.none
+                                ? SizedBox(
+                                    width: 25,
+                                    height: 25,
+                                    child: CircularProgressIndicator(
+                                        color: AppColors.white, strokeWidth: 4))
+                                : Text("AddtoCart".tr,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                            padding: 25,
+                            press: () {
+                              if (controller.selectedProductColor.isNotEmpty) {
+                                cartController.addToCart(
+                                    productID: controller.product.productID,
+                                    productName: controller.lang == "en"
+                                        ? controller.product.productName
+                                        : controller.product.productNameAr,
+                                    productDecs: controller.lang == "en"
+                                        ? controller.product.productDesc
+                                        : controller.product.productDescAr,
+                                    img: controller.product.productCoverImage,
+                                    quantity: controller.productQuantity,
+                                    color: controller.selectedProductColor,
+                                    size: controller.productVariationsSize[
+                                        controller.selectedProductSize]);
+                                homeNavigationControllerImp.getCartlength();
+                              } else {
+                                flushBar(context,
+                                    message: "SelectColor&SizePlease".tr,
+                                    color: Colors.redAccent);
+                              }
+                            },
+                            width: double.infinity,
+                            color: AppColors.primaryColor));
+                  })
+                ])
+              ])));
+    }));
   }
 }

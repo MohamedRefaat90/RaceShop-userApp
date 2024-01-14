@@ -1,7 +1,7 @@
-import 'package:ecommerce/controller/home/HomeNavigationController.dart';
-import 'package:ecommerce/controller/search/searchController.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
+import 'package:race_shop/controller/home/HomeNavigationController.dart';
+import 'package:race_shop/controller/search/searchController.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:badges/badges.dart' as badges;
@@ -33,9 +33,13 @@ class HomeNavigationScreen extends GetView<HomeNavigationControllerImp> {
                         badgeAnimation: badges.BadgeAnimation.scale(),
                         showBadge: controller.cartLength > 0,
                         child: FloatingActionButton(
+                          heroTag: 'homeNavigation',
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)),
                           onPressed: () => Get.toNamed(AppRoutes.cart),
                           backgroundColor: AppColors.secondryColor,
-                          child: const Icon(Icons.shopping_basket_outlined),
+                          child: const Icon(Icons.shopping_basket_outlined,
+                              color: AppColors.white),
                         ),
                       );
                     }),

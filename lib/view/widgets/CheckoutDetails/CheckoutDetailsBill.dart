@@ -1,9 +1,9 @@
-import 'package:ecommerce/controller/checkout/checkout.dart';
+import 'package:race_shop/controller/checkout/checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:ecommerce/controller/Cart/cartController.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/ThemeColorFix.dart';
 
 import '../../../core/constants/AppColors.dart';
 import '../../../core/shared/BTN.dart';
@@ -16,12 +16,12 @@ class CheckoutDetailsBill extends GetView<CheckoutController> {
     Get.put(CheckoutController());
 
     return DefaultTextStyle(
-      style: TextStyle(color: Colors.grey[700], fontSize: 18),
+      style: TextStyle(fontSize: 18, color: ThemeColorFix()),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Container(
-            height: 300,
+            height: controller.checkout.coupon != null ? 355 : 325,
             decoration: BoxDecoration(
                 border: Border.all(color: AppColors.primaryColor, width: 3),
                 borderRadius: BorderRadius.circular(20)),
@@ -29,37 +29,40 @@ class CheckoutDetailsBill extends GetView<CheckoutController> {
                 .copyWith(top: 10, bottom: 10),
             child: Column(
               children: [
-                Text("The Bill",
+                Text("Bill".tr,
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 Row(children: [
-                  Text('Price'),
+                  Text('Price'.tr),
                   Spacer(),
                   Text("${controller.checkout.totalItemsPrice} LE")
                 ]),
                 if (controller.checkout.coupon != null)
                   Row(children: [
                     SizedBox(height: 5),
-                    Text('Coupon : ${controller.checkout.coupon!.name}'),
+                    Text.rich(TextSpan(children: [
+                      TextSpan(text: "Coupon:".tr),
+                      TextSpan(text: controller.checkout.coupon!.name),
+                    ])),
                     Spacer(),
                     Text("${controller.checkout.coupon!.discount} %")
                   ]),
                 SizedBox(height: 5),
                 Row(children: [
-                  Text('Total Discount'),
+                  Text('Discount'.tr),
                   Spacer(),
                   Text('${controller.totalItemsDiscount} %'),
                 ]),
                 SizedBox(height: 5),
                 Row(children: [
-                  Text('Shipping'),
+                  Text('Shipping'.tr),
                   Spacer(),
                   Text("${controller.checkout.delevieryPrice} LE")
                 ]),
                 SizedBox(height: 5),
                 Row(children: [
-                  Text('Payment Method'),
+                  Text('PaymentMethod'.tr),
                   Spacer(),
                   Text("${controller.checkout.paymentMethod}")
                 ]),
@@ -72,15 +75,11 @@ class CheckoutDetailsBill extends GetView<CheckoutController> {
                 ),
                 SizedBox(height: 7),
                 Row(children: [
-                  Text(
-                    'Total Price',
-                    style: TextStyle(color: AppColors.black),
-                  ),
+                  Text('TotalPrice'.tr),
                   Spacer(),
-                  Text(
-                    "${controller.checkout.totalPrice!} LE",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  )
+                  Text("${controller.checkout.totalPrice!} LE",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20))
                 ]),
                 Spacer(),
                 ConfirmOrderBTN()
@@ -108,7 +107,7 @@ class ConfirmOrderBTN extends StatelessWidget {
                 ? Center(
                     child: CircularProgressIndicator(color: AppColors.white))
                 : Text(
-                    "Confirm Order",
+                    "ConfirmOrder".tr,
                     style: const TextStyle(
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),

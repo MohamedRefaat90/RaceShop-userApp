@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:462519218804:android:e46f11699ba52cfa2b5721",
         "android_client_info": {
-          "package_name": "com.example.ecommarce"
+          "package_name": "com.race_shop"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "462519218804-u917bs7t54c213l246l5j37rttcm0bor.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.ecommarce"
+                "bundle_id": "com.race_shop"
               }
             }
           ]

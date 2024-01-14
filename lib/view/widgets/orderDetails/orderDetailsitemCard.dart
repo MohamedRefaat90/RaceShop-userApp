@@ -95,14 +95,23 @@ class orderDetails_Info extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
           Text(name, style: TextStyle(fontSize: 18)),
-          SizedBox(height: 10),
+          // SizedBox(height: 10),
           Text('$price LE',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text("Color : $Color"),
-            Text("Size : $Size"),
-            Text("Quantity : $quantity")
+            Text.rich(TextSpan(children: [
+              TextSpan(text: "Color:".tr),
+              TextSpan(text: Color),
+            ])),
+            Text.rich(TextSpan(children: [
+              TextSpan(text: "Size:".tr),
+              TextSpan(text: Size),
+            ])),
+            Text.rich(TextSpan(children: [
+              TextSpan(text: "Quantity:".tr),
+              TextSpan(text: quantity.toString()),
+            ])),
           ])
         ]));
   }

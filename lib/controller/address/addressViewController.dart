@@ -1,8 +1,8 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/Model/userModel.dart';
-import 'package:ecommerce/data/dataSource/remote/Address/AddressData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/userModel.dart';
+import 'package:race_shop/data/dataSource/remote/Address/AddressData.dart';
 import 'package:get/get.dart';
 
 import '../../data/Model/DeliveryZoneModel.dart';

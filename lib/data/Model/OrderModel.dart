@@ -50,7 +50,7 @@ class OrderModel {
     zoneAr = json['zoneAr'];
     addressId = json['addressId'];
 
-    totalItemsPrice = json['totalItemsPrice'];
+    totalItemsPrice = json['totalItemsPrice'].toInt();
     delevieryPrice = json['delevieryPrice'];
     delevieryTimeInDays = json['delevieryTimeInDays'];
     paymentMethod = json['paymentMethod'];
@@ -62,7 +62,7 @@ class OrderModel {
     }
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    totalPrice = json['totalPrice'];
+    totalPrice = json['totalPrice'].toInt();
     iV = json['__v'];
   }
 

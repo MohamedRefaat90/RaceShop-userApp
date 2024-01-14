@@ -1,4 +1,4 @@
-import 'package:ecommerce/controller/address/addressAddController.dart';
+import 'package:race_shop/controller/address/addressAddController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,17 +27,10 @@ class userAddressCard extends GetView<CheckoutController> {
           selectedTileColor: controller.SelectedTile,
           title: Text(
             addressInfo.name!,
-            style: TextStyle(
-                fontSize: 18,
-                color: controller.SelectedAddress == addressInfo.Id
-                    ? AppColors.white
-                    : AppColors.black),
+            style: TextStyle(fontSize: 18),
           ),
-          subtitle: DefaultTextStyle(
-            style: TextStyle(
-                color: controller.SelectedAddress == addressInfo.Id
-                    ? AppColors.white
-                    : AppColors.black),
+          subtitle: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,13 +38,18 @@ class userAddressCard extends GetView<CheckoutController> {
                 SizedBox(height: 5),
                 Text("Street : ${addressInfo.street!}"),
                 SizedBox(height: 5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Building : ${addressInfo.buildingNumber}"),
-                    Text("Floor : ${addressInfo.floorNumber}"),
-                    Text("Apartment : ${addressInfo.apartmentNumber}"),
-                  ],
+                DefaultTextStyle(
+                  style: TextStyle(fontSize: 12, color: Colors.white70),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("Building : ${addressInfo.buildingNumber}"),
+                      SizedBox(width: 15),
+                      Text("Floor : ${addressInfo.floorNumber}"),
+                      SizedBox(width: 15),
+                      Text("Apartment : ${addressInfo.apartmentNumber}"),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 5)
               ],

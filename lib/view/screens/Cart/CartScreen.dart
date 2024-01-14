@@ -1,7 +1,7 @@
-import 'package:ecommerce/controller/Cart/cartController.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/shared/HandleingRequsetData.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/controller/Cart/cartController.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/shared/HandleingRequsetData.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +10,7 @@ import '../../widgets/Cart/CartBill.dart';
 import '../../widgets/Cart/CartItem.dart';
 import '../../widgets/Cart/CartTitle.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends GetView<CartControllerImp> {
   const CartScreen({Key? key}) : super(key: key);
 
   @override

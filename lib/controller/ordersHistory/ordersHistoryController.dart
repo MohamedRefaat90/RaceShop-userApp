@@ -1,7 +1,7 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/dataSource/remote/Orders/OrdersData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/dataSource/remote/Orders/OrdersData.dart';
 import 'package:get/get.dart';
 
 class ordersHistoryController extends GetxController {

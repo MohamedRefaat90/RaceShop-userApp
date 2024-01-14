@@ -1,4 +1,4 @@
-import 'package:ecommerce/data/Model/OrderModel.dart';
+import 'package:race_shop/data/Model/OrderModel.dart';
 import 'package:get/get.dart';
 
 class orderDetailsController extends GetxController {

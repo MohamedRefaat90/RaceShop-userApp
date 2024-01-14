@@ -24,7 +24,7 @@ class OrderBTN extends GetView<CheckoutController> {
               widget: controller.statusRequest == StatusRequest.loading
                   ? CircularProgressIndicator(
                       color: AppColors.white, strokeWidth: 4)
-                  : Text("Order"),
+                  : Text("Order".tr),
               width: double.infinity,
               press: () async {
                 if (controller.SelectedPaymentMethod.isNotEmpty &&
@@ -45,8 +45,7 @@ class OrderBTN extends GetView<CheckoutController> {
                   }
                 } else {
                   flushBar(context,
-                      message:
-                          "You Must Choose Delivery Address & Payment Method",
+                      message: "YouMustChooseDeliveryAddress&PaymentMethod".tr,
                       color: Colors.red);
                 }
               }),

@@ -1,8 +1,9 @@
 import 'package:cached_network_svg_image/cached_network_svg_image.dart';
-import 'package:ecommerce/controller/home/HomeController.dart';
+import 'package:race_shop/controller/home/HomeController.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ecommerce/data/Model/CategoriesModel.dart';
+import 'package:race_shop/data/Model/CategoriesModel.dart';
 import '../../../core/constants/AppColors.dart';
 import '../../../core/functions/translate.dart';
 

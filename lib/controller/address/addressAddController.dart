@@ -1,10 +1,10 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/functions/flushBar.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/Model/userModel.dart';
-import 'package:ecommerce/data/dataSource/remote/Address/AddressData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/functions/flushBar.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/userModel.dart';
+import 'package:race_shop/data/dataSource/remote/Address/AddressData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:get/get.dart';
@@ -26,7 +26,7 @@ class AddressAddController extends GetxController {
   late String userToken;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   userModel? userData;
-  double isAddressDialogVisible = 520;
+  double isAddressDialogVisible = 1020;
   bool isAddressDialogActive = false;
   double opacity = 1;
   final GlobalKey barrierKey = GlobalKey();
@@ -80,7 +80,7 @@ class AddressAddController extends GetxController {
       update();
     } else {
       flushBar(context,
-          message: "Pick a Location to Continue",
+          message: "PickaLocationtoContinue".tr,
           color: AppColors.secondryColor);
     }
   }
@@ -117,7 +117,6 @@ class AddressAddController extends GetxController {
     }
 
     update();
-    print(statusRequest);
   }
 
   MapIsReady(bool isReady) {
@@ -136,13 +135,13 @@ class AddressAddController extends GetxController {
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         var responseData = response["data"]["data"];
-        // print(responseData);
+
         deliveryZoneList.addAll(responseData);
 
         update();
       }
     }
-    print(deliveryZoneList.length);
+
     update();
   }
 
@@ -150,7 +149,7 @@ class AddressAddController extends GetxController {
     deliveryZone = city;
     selectedDeliveryZone = city['zoneName_en'];
     selectedDeliveryZoneID = city["_id"];
-    print(selectedDeliveryZoneID);
+
     update();
   }
 

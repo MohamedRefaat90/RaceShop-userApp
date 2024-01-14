@@ -1,22 +1,29 @@
-import 'package:cached_network_svg_image/cached_network_svg_image.dart';
-import 'package:ecommerce/controller/auth/login.dart';
-import 'package:ecommerce/controller/settings/SettingsController.dart';
-import 'package:ecommerce/core/constants/AppAssets.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/shared/BTN.dart';
+import 'package:race_shop/controller/LanguageController/LanguageController.dart';
+import 'package:race_shop/controller/auth/login.dart';
+import 'package:race_shop/controller/home/HomeController.dart';
+import 'package:race_shop/core/constants/AppAssets.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/constants/AppTheme.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/core/shared/BTN.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../controller/settings/SettingsController.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(SettingsControllerImp());
-    LoginControllerImp loginController = Get.put(LoginControllerImp());
+    Get.put(SettingsController());
+    LoginController loginController = Get.put(LoginController());
+    SharedPreferences userData = Get.find<MyServices>().sharedPreferences;
+    LanguageController languageController = Get.find();
     return ListView(children: [
       Stack(
         alignment: Alignment.bottomCenter,
@@ -59,40 +66,31 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
       SizedBox(height: 40),
-      GetBuilder<SettingsControllerImp>(builder: (controller) {
+      Center(
+          child: Text(
+              "${userData.getString("fName")} ${userData.getString("lName")}",
+              style: TextStyle(fontWeight: FontWeight.bold))),
+      Center(child: Text("UID : ${userData.getString("Uid")}")),
+      SizedBox(height: 0),
+      GetBuilder<SettingsController>(builder: (controller) {
         return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Card(
                 child: Column(children: [
-              // settingsFeatrue(
-              //     title: 'Notifications',
-              //     trailing: Switch.adaptive(
-              //         value: controller.notificationEnable,
-              //         onChanged: (val) {
-              //           controller.notificationEnable = val;
-              //           controller.update();
-              //         }),
-              //     press: () {}),
-              // settingsFeatrue(
-              //     title: "Orders",
-              //     trailing: Icon(Icons.shopping_bag),
-              //     press: () {
-              //       Get.toNamed(AppRoutes.orders);
-              //     }),
               settingsFeatrue(
-                  title: "Orders History",
+                  title: "OrdersHistory".tr,
                   trailing: Icon(Icons.watch_later_rounded),
                   press: () {
                     Get.toNamed(AppRoutes.ordersHistory);
                   }),
               settingsFeatrue(
-                  title: "Address",
+                  title: "Address".tr,
                   trailing: Icon(Icons.location_pin),
                   press: () {
                     Get.toNamed(AppRoutes.addressView);
                   }),
               settingsFeatrue(
-                  title: "About us",
+                  title: "Aboutus".tr,
                   trailing: Icon(Icons.info_outline),
                   press: () {}),
               // settingsFeatrue(
@@ -100,7 +98,7 @@ class SettingsScreen extends StatelessWidget {
               //     trailing: Icon(Icons.phone),
               //     press: () {}),
               ExpansionTile(
-                title: Text("Contact us"),
+                title: Text("Contactus".tr),
                 trailing: Icon(Icons.phone),
                 childrenPadding: EdgeInsets.all(10),
                 children: [
@@ -112,7 +110,7 @@ class SettingsScreen extends StatelessWidget {
                             children: [
                               Icon(Icons.phone),
                               SizedBox(width: 5),
-                              Text('Calling')
+                              Text('Calling'.tr)
                             ],
                           ),
                           color: Colors.blue,
@@ -128,7 +126,7 @@ class SettingsScreen extends StatelessWidget {
                               SvgPicture.asset(AppAssets.whatsappIcon,
                                   width: 20, color: AppColors.white),
                               SizedBox(width: 10),
-                              Text('WhatsApp'),
+                              Text('WhatsApp'.tr),
                             ],
                           ),
                           color: Colors.green,
@@ -142,31 +140,62 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
               settingsFeatrue(
-                  title: "Logout",
-                  trailing: Icon(Icons.logout_outlined),
-                  press: () {
-                    loginController.logout();
-                  }),
+                  title: 'DarkMode'.tr,
+                  trailing: Switch.adaptive(
+                      value: controller.isDarkMode!,
+                      onChanged: (val) => controller.ToggelDarkMode(val)),
+                  press: () {}),
+              ExpansionTile(
+                title: Text("Languages".tr),
+                trailing: Icon(Icons.language),
+                childrenPadding: EdgeInsets.all(10),
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BTN(
+                          widget: Text('Arabic'.tr),
+                          width: 100,
+                          color: AppColors.primaryColor,
+                          padding: 16,
+                          press: () => languageController.changeLanguage('ar')),
+                      SizedBox(width: 20),
+                      BTN(
+                          widget: Text('English'.tr),
+                          width: 100,
+                          color: AppColors.primaryColor,
+                          padding: 16,
+                          press: () => languageController.changeLanguage('en')),
+                    ],
+                  )
+                ],
+              ),
+              settingsFeatrue(
+                  title: "Logout".tr,
+                  color: Colors.red,
+                  trailing: Icon(Icons.logout_outlined, color: Colors.red),
+                  press: () => loginController.logout()),
             ])));
       })
     ]);
   }
 }
 
-class settingsFeatrue extends GetView<SettingsControllerImp> {
-  const settingsFeatrue({
-    required this.title,
-    required this.trailing,
-    required this.press,
-    super.key,
-  });
+class settingsFeatrue extends GetView<SettingsController> {
+  settingsFeatrue(
+      {required this.title,
+      required this.trailing,
+      required this.press,
+      this.color,
+      super.key});
   final String title;
   final Widget trailing;
   final Function()? press;
+  Color? color;
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        title: Text(title),
+        title: Text(title, style: TextStyle(color: color)),
         trailing: trailing,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         onTap: press);

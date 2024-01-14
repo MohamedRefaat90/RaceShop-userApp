@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/class/DB_helper.dart';
+import 'package:race_shop/core/class/DB_helper.dart';
 import 'package:get/get.dart';
 
 class myBindings extends Bindings {

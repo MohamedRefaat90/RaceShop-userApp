@@ -51,7 +51,7 @@ class checkoutModel {
     zoneEn = json['zoneEn'];
     zoneAr = json['zoneAr'];
     addressId = json['addressId'];
-    totalItemsPrice = json['totalItemsPrice'];
+    totalItemsPrice = json['totalItemsPrice'].toInt();
     delevieryPrice = json['delevieryPrice'];
     delevieryTimeInDays = json['delevieryTimeInDays'];
     paymentMethod = json['paymentMethod'];
@@ -67,7 +67,7 @@ class checkoutModel {
         json['coupon'] != null ? new Coupon.fromJson(json['coupon']) : null;
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    totalPrice = json['totalPrice'];
+    totalPrice = json['totalPrice'].toInt();
     iV = json['__v'];
   }
 }

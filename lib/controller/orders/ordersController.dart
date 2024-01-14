@@ -1,8 +1,8 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
 
-import 'package:ecommerce/data/dataSource/remote/Orders/OrdersData.dart';
+import 'package:race_shop/data/dataSource/remote/Orders/OrdersData.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -19,12 +19,14 @@ class ordersController extends GetxController {
   bool loading = false;
   int pageNumber = 1;
   int? totalPages;
+  int numofOrdersPerRequest = 10;
+
   @override
   void onInit() {
     userToken = myServices.sharedPreferences.getString("userToken");
     scrollController = ScrollController();
-    initSocket();
-    getAllOrders();
+    // initSocket();
+    // getAllOrders();
     scrollController.addListener(pagination);
     super.onInit();
   }
@@ -35,6 +37,7 @@ class ordersController extends GetxController {
         (pageNumber <= totalPages!)) {
       loading = true;
       pageNumber++;
+      // numofOrdersPerRequest += 10;
 
       getAllOrders();
 
@@ -42,32 +45,36 @@ class ordersController extends GetxController {
     }
   }
 
-  initSocket() {
-    socket = IO.io(
-        "https://ecommerce-api-lrnu.onrender.com",
-        IO.OptionBuilder().setTransports(['websocket']).setAuth(
-            {'auth': userToken}).setQuery({'auth': userToken}).build());
-    socket.on('connect', (data) => print("Connected to server"));
-    socket.onConnect((_) => print('Connection established'));
-    socket.onReconnecting((_) => print('Reconnecting'));
-    socket.onReconnectAttempt((_) => print('onReconnectAttempt'));
-    socket.onDisconnect((_) => print('Connection Disconnection'));
-    socket.onConnectError((err) => print(err + " onConnectError"));
-    socket.onError((err) => print(err + " onError"));
-  }
+  // initSocket() {
+  //   socket = IO.io(
+  //       "https://race_shop-api-lrnu.onrender.com",
+  //       IO.OptionBuilder().setTransports(['websocket']).setAuth(
+  //           {'auth': userToken}).setQuery({'auth': userToken}).build());
+  //   socket.on('connect', (data) => print("Connected to server"));
+  //   socket.onConnect((_) => print('Connection established'));
+  //   socket.onReconnecting((_) => print('Reconnecting'));
+  //   socket.onReconnectAttempt((_) => print('onReconnectAttempt'));
+  //   socket.onDisconnect((_) => print('Connection Disconnection'));
+  //   socket.onConnectError((err) => print(err + " onConnectError"));
+  //   socket.onError((err) => print(err + " onError"));
+  // }
 
   getAllOrders() async {
-    var response =
-        await ordersData.getAllOrders(userToken: userToken!, page: pageNumber);
+    // orders.clear();
+    print("refreshed");
+    var response = await ordersData.getAllOrders(
+        userToken: userToken!,
+        page: pageNumber,
+        numofOrdersPerRequest: numofOrdersPerRequest);
 
     statusRequest = handelData(response);
 
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         totalPages = response['data']['totalPages'];
-        orders.addAll(response['data']['data'].map((e) {
-          if (e['status'] != "completed") return e;
-        }));
+
+        orders.addAll(
+            response['data']['data'].where((e) => e['status'] != "completed"));
       }
     } else {
       statusRequest = StatusRequest.success;
@@ -78,8 +85,17 @@ class ordersController extends GetxController {
   }
 
   cancelOrder(String orderID) async {
+    statusRequest = StatusRequest.none;
+    update();
     await ordersData.cancelOrder(orderID, userToken!);
+    refreshData();
+  }
 
+  refreshData() {
+    orders.clear();
+    pageNumber = 1;
+    statusRequest = StatusRequest.loading;
+    update();
     getAllOrders();
   }
 
@@ -110,7 +126,7 @@ class ordersController extends GetxController {
 
 
 
-// const socket = io("https://ecommerce-api-lrnu.onrender.com", {
+// const socket = io("https://race_shop-api-lrnu.onrender.com", {
 //   auth: {
 //     token,
 //   },

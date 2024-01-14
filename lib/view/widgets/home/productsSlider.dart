@@ -1,13 +1,14 @@
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
-import 'package:ecommerce/view/widgets/home/homeTitle.dart';
-import 'package:ecommerce/view/widgets/home/productsCard.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/data/Model/productModel.dart';
+import 'package:race_shop/view/widgets/home/homeTitle.dart';
+import 'package:race_shop/view/widgets/home/productsCard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/functions/Responsive.dart';
+
 class productsSlider extends StatelessWidget {
-  const productsSlider({super.key, required this.sliderTitle});
-  final String sliderTitle;
+  const productsSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,13 @@ class productsSlider extends StatelessWidget {
       children: [
         Row(
           children: [
-            homeTitle(title: sliderTitle),
+            Text('Offers'.tr,
+                style: TextStyle(
+                    fontSize: screenWidth(context) * 0.085,
+                    fontFamily: "Cairo")),
             Spacer(),
             TextButton(
-                child: Text("More"),
+                child: Text("More".tr),
                 onPressed: () => Get.toNamed(AppRoutes.offers))
           ],
         ),

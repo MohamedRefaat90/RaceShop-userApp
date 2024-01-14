@@ -1,40 +1,41 @@
-import 'dart:io';
-
-import 'package:ecommerce/Bindings/myBindings.dart';
-import 'package:ecommerce/core/class/https.dart';
-import 'package:ecommerce/core/localization/changeLanguage.dart';
-import 'package:ecommerce/routes.dart';
-import 'package:ecommerce/view/test.dart';
+import 'package:race_shop/Bindings/myBindings.dart';
+import 'package:race_shop/controller/LanguageController/LanguageController.dart';
+import 'package:race_shop/controller/auth/login.dart';
+import 'package:race_shop/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'core/class/DeepLinkHandler.dart';
 import 'core/constants/AppRoutes.dart';
 import 'core/localization/transilation.dart';
 import 'core/services/myServices.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // DeepLinkHandler().initURIHandler();
+
   await initServices();
-  HttpOverrides.global = MyHttpOverrides();
-  runApp(const Ecommerce());
+
+  runApp(const race_shop());
 }
 
-class Ecommerce extends GetView<LanguageController> {
-  const Ecommerce({super.key});
+class race_shop extends GetView<LanguageController> {
+  const race_shop({super.key});
 
   @override
   Widget build(BuildContext context) {
     Get.put(LanguageController());
+    // Get.put(LoginController());
 
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: controller.theme,
-        locale: controller.language,
-        translations: MyTransilation(),
-        initialBinding: myBindings(),
-        // initiaRoute: AppRoutes.home,
-        // initialRoute: AppRoutes.test,
-        getPages: routes);
+    return GetBuilder<LanguageController>(builder: (context) {
+      return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: controller.theme,
+          themeMode: controller.themeMode,
+          locale: controller.language,
+          translations: MyTransilation(),
+          initialBinding: myBindings(),
+          darkTheme: ThemeData.dark(useMaterial3: true),
+          // initialRoute: AppRoutes.login,
+          // initialRoute: AppRoutes.test,
+          getPages: routes);
+    });
   }
 }

@@ -18,7 +18,7 @@ class MyTransilation extends Translations {
 
           // Login Screen
           "signin": 'Sign in',
-          'welcome': "Welcome Biker",
+          'welcome': "Welcome To Race Shop",
           'welcomDesc':
               'Dolor nulla officia et minim aliquip consectetur do adipisicing deserunt id voluptate nulla. Qui ad quis do esse commodo.',
           'email': "Email",
@@ -28,7 +28,8 @@ class MyTransilation extends Translations {
           'forgetPassword': 'forgetPassword',
 
           // Signup Screen
-          "name": "username",
+          'firstName': "First Name",
+          'lastName': "Last Name",
           "enterName": "Enter Name",
           "enterEmail": "Enter Email",
           "enterPhone": "Enter Your Phone",
@@ -36,6 +37,8 @@ class MyTransilation extends Translations {
           "passConfirm": "Confirm Password",
           "signup": "Sign up",
           'haveAcc': "Have Account ",
+          "passReq":
+              "need at least 1 lowercase , 1 uppercase , 1 symbol  , 1 number",
 
           // Forget Pass Screen
           "forgetPass": "Forget Password",
@@ -70,8 +73,8 @@ class MyTransilation extends Translations {
           "namenotValid": "username Not Valid",
           "emailnotValid": "Email Not Valid",
           "phonenotValid": "Phone Not Valid",
-          "nameless5": "Name can't Less than 5",
-          "emailless5": "Email can't Less than 5",
+          "nameless5": "Name can't Less than 3",
+          "emailless5": "Email can't Less than 3",
           "phoneless11": "Phone can't Less than 11",
           "passless8": "Password can't Less than 8",
 
@@ -86,13 +89,19 @@ class MyTransilation extends Translations {
           "alertDesc": "Are You Sure Wanna Leave The App",
           "yes": "Yes",
           "no": "No",
-
+          "apply": "Apply",
           // Home
           "findProduct": "Find Product",
-          "offerTitle": "Summer Suprise",
+          "offerTitle": "Winter Suprise",
           "offerDesc": "Cashback 20%",
           "productForYou": "Products For You",
           "offerThisMonth": "Offer This Month",
+          "Categories": "Categories",
+          "Offers": "Offers",
+          "More": "More",
+          "Home": "Home",
+          "Settings": "Settings",
+          "Favorite": "Favorite",
 
           // CategoryProducts
           "Filters": "Filters",
@@ -102,7 +111,112 @@ class MyTransilation extends Translations {
           'Oldest': "Oldest",
 
           // Product Details
-          "ColorsandSizes": "Colors and Sizes"
+          "ColorsandSizes": "Colors and Sizes",
+          "AddtoCart": "Add to Cart",
+          "SelectColor&SizePlease": "Select Color & Size Please",
+
+          // Settings
+          "OrdersHistory": "Orders History",
+          "Address": "Address",
+          "Aboutus": "About us",
+          "Contactus": "Contact us",
+          'Calling': 'Calling',
+          'WhatsApp': 'WhatsApp',
+          'DarkMode': 'Dark Mode',
+          "Languages": "Languages",
+          'Arabic': 'Arabic',
+          'English': 'English',
+          "Logout": "Logout",
+
+          // Orders
+          "Orders": "Orders",
+          "Cancel": "Cancel",
+          "Canceled": "Canceled",
+          "pending": "Pending",
+          "OrderDetails": "Order Details",
+          "OrderNumber:": "Order Number : ",
+          "PaymentType:": "Payment Type : ",
+          "OrderPrice:": "Order Price : ",
+          "ShippingPrice:": "Shipping Price : ",
+          "Coupon:": "Coupon : ",
+          "CouponDiscount:": "Coupon Discount : ",
+          "ShippingTime:Within": "Shipping Time : With in ",
+          "Shipping": "Shipping",
+          "Days": " Days ",
+          "OrderStatus:": "Order Status : ",
+          "TotalPrice:": "Total Price : ",
+          "Color:": "Color : ",
+          "Size:": "Size : ",
+          "Quantity:": "Quantity : ",
+          "DeliveryDetails": "DeliveryDetails",
+          'Street:': 'Street : ',
+          'Building:': 'Building :  ',
+          'Floor:': 'Floor : ',
+          'Apartment:': 'Apartment : ',
+          'Zone:': 'Zone : ',
+          'DeliveyTime:': 'Delivey Time : ',
+          "within": "with in ",
+
+          // Favourites
+          "Favourites": "Favourites",
+
+          // Cart
+          'Cart': 'Cart',
+          "HaveaCopun": "Have a Copun",
+          "CopunName": "Copun Name",
+          'Price': 'Price',
+          "TotalPrice": "Total Price",
+          'Discount': 'Discount',
+          'YouSaved': 'You Saved',
+          "CheckOut": "CheckOut",
+          "CheckoutDetails": "Checkout Details",
+          "YouHave": "You Have ",
+          "iteminYourCart": " item in Your Cart",
+          'PaymentMethod': 'Payment Method',
+          "ChoosePaymentMethod": "Choose Payment Method",
+          "PaymentWhenReciveTheOrder": "Payment When Recive The Order",
+          "Installments up to 60 months": "Installments up to 60 months",
+          "DeliveryAddress": "DeliveryAddress",
+          "YouNotAddAnyAddressYet": "You Not Add Any Address Yet",
+          "Order": "Order",
+          "Bill": "Bill",
+          "BillID:": "Bill ID : ",
+          "YouMustChooseDeliveryAddress&PaymentMethod":
+              "You Must Choose Delivery Address & Payment Method",
+          "CongratulationYourOrderisCompelete":
+              "Congratulation Your Order is Compelete",
+          "UseThisBillIDToNearestFawryMachineForCompeleteYourPurchase":
+              "Use This Bill ID To Nearest Fawry Machine For Compelete Your Purchase",
+          "ConfirmOrder": "Confirm Order",
+          "ItemAddedToCart": "Item Added To Cart",
+          "ThereisNoMoreQuintityForThisProduct":
+              "There is No More Quintity For This Product",
+          "ProductRemovedFromYourCart": "Product Removed From Your Cart",
+          "CouponNotValid": "Coupon Not Valid",
+          "ViewCart": "View Cart",
+          "EnterVodaCash": "Enter Your Vodafone Cash",
+
+          // Address
+          "youcan'tAddmorethan3Addresses":
+              "you can't Add more than 3 Addresses",
+          "YouDon'tAddAnyAddressyet": "You Don't Add Any Address yet",
+          "AddressDetials": "Address Detials",
+          "AddressName": "Address Name",
+          "Home/Work": "Home / Work",
+          "Submit": "Submit",
+          "Street": "Street",
+          "Building": "Building",
+          "Floor": "Floor",
+          "Apartment": "Apartment",
+          "EnterNumber": "Enter Number",
+          "PickaLocationtoContinue": "Pick a Location to Continue",
+          "completed": "Completed",
+          "cash": "Cash",
+          "online": "Online",
+          "NoProductsWereFound": "No Products Were Found",
+          "userorpaswwordnotCorrecttryagain":
+              "Email or paswword not Correct try again",
+          "Add": "Add"
         },
         "ar": {
           // Language Screen
@@ -119,7 +233,7 @@ class MyTransilation extends Translations {
 
           // Login Screen
           "signin": 'تسجيل الدخول',
-          'welcome': "مرحبا بك يا بايكر",
+          'welcome': "مرحبا بك في ريس شوب",
           'welcomDesc':
               " هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأهاء",
           'email': "البريد الالكتروني",
@@ -129,6 +243,8 @@ class MyTransilation extends Translations {
 
           // Signup Screen
           "name": "الاسم",
+          'firstName': "الاسم الاول",
+          'lastName': "الاسم الاخير",
           "enterEmail": "ادخل الايميل",
           "enterPass": "ادخل كلمة السر",
           "passConfirm": "تأكيد كلمة السر",
@@ -137,6 +253,7 @@ class MyTransilation extends Translations {
           'forgetPassword': 'نسيت كلمة السر',
           'haveAcc': "لديك حساب قم ",
           "signup": "تسجيل حساب",
+          "passReq": "يجب علي الاقل من حرف كبير و حرف صغير و رمز و رقم",
 
           // Forget Pass Screen
           "forgetPass": "نسيت كلمة المرور",
@@ -170,8 +287,8 @@ class MyTransilation extends Translations {
           "namenotValid": "الاسم غير صالح",
           "emailnotValid": "البريد الايكتروني غير صالح",
           "phonenotValid": "رقم الهاتف غير صالح",
-          "nameless5": "الاسم لا يمكن ان يكون اقل من 5 احرف",
-          "emailless5": "الايميل لا يجب ان يكون اقل من 5 احرف",
+          "nameless5": "الاسم لا يمكن ان يكون اقل من 3 احرف",
+          "emailless5": "الايميل لا يجب ان يكون اقل من 3 احرف",
           "phoneless11": "رقم الهاتف لا يجب ان يكون اقل من 11 رقم",
           "passless8": "كلمة السر لا تجب ان تكون اقل من 8 احرف",
 
@@ -186,13 +303,19 @@ class MyTransilation extends Translations {
           "alertDesc": "هل انت من متاكد من رغبتك في مغادرة التطبيق؟",
           "yes": "نعم",
           "no": "لا",
-
+          "Apply": "تطبيق",
           // Home
           "findProduct": "البحث عن منتج",
-          "offerTitle": "عروض الصيف",
+          "offerTitle": "عروض الشتاء",
           "offerDesc": "كاش باك 20%",
           "productForYou": "منتجات لك",
           "offerThisMonth": "عروض هذا الشهر",
+          "Categories": "الأقسام",
+          "Offers": "العروض",
+          "More": "المزيد",
+          "Home": "الرئيسية",
+          "Settings": "الأعدادات",
+          "Favorite": "المفضلة",
 
           // CategoryProducts
           "Filters": "عرض حسب",
@@ -200,8 +323,115 @@ class MyTransilation extends Translations {
           "lowestPrice": "الأقل سعراّ",
           'MostRecent': "الأحدث",
           'Oldest': "الأقدم",
+
           // Product Details
-          "ColorsandSizes": "الالوان و المقاسات"
+          "ColorsandSizes": "الالوان و المقاسات",
+          "AddtoCart": "أضافة الي السلة",
+          "SelectColor&SizePlease": "من فضلك اختار اللون و المقاس",
+
+          // Settings
+          "OrdersHistory": "سجل الطلبات",
+          "Address": "العناويين",
+          "Aboutus": "عنا",
+          "Contactus": "تواصل معنا",
+          'Calling': 'اتصال',
+          'WhatsApp': 'واتساب',
+          'DarkMode': 'الوضع المظلم',
+          "Languages": "اللغة",
+          'Arabic': 'العربية',
+          'English': 'الانجليزية',
+          "Logout": "تسجيل الخروج",
+
+          // Orders
+          "Orders": "الطلبات",
+          "Cancel": "الغاء",
+          "Canceled": "ملغي",
+          "pending": "معلق",
+          "OrderDetails": " تفاصيل الطلب",
+          "OrderNumber:": " رقم الطلب : ",
+          "PaymentType:": " طريقة الدفع : ",
+          "OrderPrice:": " سعر الطلب : ",
+          "ShippingPrice:": " سعر الشحن : ",
+          "Coupon:": "أسم الكوبون : ",
+          "CouponDiscount:": " خصم الكوبون : ",
+          "ShippingTime:Within": "وقت الشحن : خلال ",
+          "Shipping": "الشحن",
+          "Days": " أيام ",
+          "OrderStatus:": " حالة الطلب : ",
+          "TotalPrice:": " السعر الكلي : ",
+          "Color:": " اللون : ",
+          "Size:": " المقاس : ",
+          "Quantity:": " الكمية : ",
+          "DeliveryDetails": "تفاصيل الشحن",
+          'Street:': ' الشارع : ',
+          'Building:': ' المبني  : ',
+          'Floor:': ' الدور : ',
+          'Apartment:': ' الشقة : ',
+          'Zone:': ' المنطقة : ',
+          'DeliveyTime:': ' وقت التوصيل : ',
+          "within": " خلال ",
+
+          // Favourites
+          "Favourites": "المفضلة",
+
+          // Cart
+          'Cart': 'سلة الطلبات',
+          "HaveaCopun": "أمتلك كوبون خصم",
+          "CopunName": "كود الكوبون",
+          'Price': 'السعر',
+          "TotalPrice": "السعر الكلي",
+          'Discount': 'الخصم',
+          'YouSaved': 'لقد وفرت',
+          "CheckOut": "تأكيد الطلب",
+          "CheckoutDetails": "تفاصيل تأكيد الطلب",
+          "Bill": "الفاتورة",
+          "BillID:": "رقم الفاتورة : ",
+          "YouHave": " تمتلك ",
+          "iteminYourCart": "منتج في سلة طلباتك",
+          "ChoosePaymentMethod": "اختر طريقة الدفع",
+          'PaymentMethod': 'طريقة الدفع',
+          "PaymentWhenReciveTheOrder": "أدفع عند استلام الطلب",
+          "Installmentsupto60months": "التقسيط حتي 60 شهر",
+          "DeliveryAddress": "عنوان التوصيل",
+          "YouNotAddAnyAddressYet": "لم تقم بأضافة اي عنوان ",
+          "Order": "أطلب",
+          "YouMustChooseDeliveryAddress&PaymentMethod":
+              "يجب عليك اختيار طريقة الدفع و عنوان التوصيل",
+          "CongratulationYourOrderisCompelete":
+              "تهانينا لقد اكتمل الطلب الخاص بك",
+          "UseThisBillIDToNearestFawryMachineForCompeleteYourPurchase":
+              "استخدم كود هذه الفاتورة لأقرب ماكينة فوري لأتمام عملية الشراء",
+          "ConfirmOrder": "تأكيد الطلب",
+          "ItemAddedToCart": "تم أضافة المنتج الي سلتك",
+          "ThereisNoMoreQuintityForThisProduct":
+              "لا يوجد كمية متاحة من هذا المنتج",
+          "ProductRemovedFromYourCart": "تم حذف المنتج من سلتك",
+          "CouponNotValid": "الكوبون غير صالح",
+          "ViewCart": "الذهاب للسلة",
+
+          // Address
+          "youcan'tAddmorethan3Addresses":
+              "لا يمكنك أضافة أكثر من ثلاثة عناويين",
+          "YouDon'tAddAnyAddressyet": "لم تقم بأضافة اي عنوان توصيل",
+          "AddressDetials": "تفاصيل العنوان",
+          "AddressName": "اسم العنوان",
+          "Home/Work": "المنزل / العمل",
+          "Street": "الشارع",
+          "Building": "المبني",
+          "Floor": "الدور",
+          "Apartment": "الشقة",
+          "Submit": "تأكيد",
+          "EnterNumber": "يجب ادخال ارقام",
+          "PickaLocationtoContinue": "اختار موقعك علي الخريطة",
+          "completed": "مكتمل",
+          "cash": " نقدي ",
+          "online": " اونلاين ",
+          "EnterVodaCash": "أدخل محفظة فودافون كاش",
+
+          "NoProductsWereFound": "لم يتم ايجاد اي منتج",
+          "userorpaswwordnotCorrecttryagain":
+              "الأيميل المستخدم او كلمة السر غير صحيحة حاول مرة اخري",
+          "Add": "أضافة"
         }
       };
 }

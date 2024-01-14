@@ -1,13 +1,12 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
 
 import '../../../controller/orders/ordersController.dart';
 import '../../../core/constants/AppColors.dart';
 import '../../../core/constants/AppRoutes.dart';
 import '../../../core/shared/BTN.dart';
-import '../../../core/shared/Loading.dart';
 import '../../../data/Model/OrderModel.dart';
 import 'orderStatusStepper.dart';
 
@@ -31,33 +30,58 @@ class orderCard extends GetView<ordersController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Order Number : ${index + 1}",
-                      style: TextStyle(fontSize: 20)),
+                  Text.rich(TextSpan(children: [
+                    TextSpan(text: "OrderNumber:".tr),
+                    TextSpan(text: "${index + 1}")
+                  ], style: TextStyle(fontSize: 20))),
                   Text("${Jiffy.parse(order.createdAt!).fromNow()}"),
                 ],
               ),
               SizedBox(height: 10),
-              Text('Payment Type : ${order.paymentMethod}'),
+              Text.rich(TextSpan(children: [
+                TextSpan(text: "PaymentType:".tr),
+                TextSpan(text: "${order.paymentMethod}")
+              ])),
               SizedBox(height: 5),
-              Text('Order Price : ${order.totalItemsPrice} LE'),
+              Text.rich(TextSpan(children: [
+                TextSpan(text: "OrderPrice:".tr),
+                TextSpan(text: "${order.totalItemsPrice} LE")
+              ])),
               SizedBox(height: 5),
-              Text('Shipping Price : ${order.delevieryPrice} LE'),
+              Text.rich(TextSpan(children: [
+                TextSpan(text: "ShippingPrice:".tr),
+                TextSpan(text: "${order.delevieryPrice} LE")
+              ])),
               SizedBox(height: 5),
               if (order.coupon != null)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Coupon : ${order.coupon['name']}'),
+                    Text.rich(TextSpan(children: [
+                      TextSpan(text: "Coupon:".tr),
+                      TextSpan(text: "${order.coupon['name']} LE")
+                    ])),
                     SizedBox(height: 5),
                     if (order.coupon != null)
-                      Text('Coupon Discount : ${order.coupon['discount']} %'),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(text: "CouponDiscount:".tr),
+                        TextSpan(text: "${order.coupon['discount']} %")
+                      ])),
                     SizedBox(height: 5),
                   ],
                 ),
-              Text('Shipping Time : With in ${order.delevieryTimeInDays} Days'),
+              Text.rich(TextSpan(children: [
+                TextSpan(text: "ShippingTime:Within".tr),
+                TextSpan(text: "${order.delevieryTimeInDays}"),
+                TextSpan(text: "Days".tr),
+              ])),
               SizedBox(height: 5),
-              Text(
-                  "Order Status : ${order.status == "canceled" || order.status == "canceledBeforePending" ? "Canceled" : ""}"),
+              Text.rich(TextSpan(children: [
+                TextSpan(text: "OrderStatus:".tr),
+                TextSpan(
+                    text:
+                        "${order.status == "canceled" || order.status == "canceledBeforePending" ? "Canceled".tr : '${order.status}'.tr}"),
+              ])),
               if (order.status != "canceled" &&
                   order.status != "canceledBeforePending")
                 orderStatusStepper(),
@@ -71,17 +95,27 @@ class orderCard extends GetView<ordersController> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Total Price : ${order.totalPrice} LE',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                  Text.rich(TextSpan(
+                      children: [
+                        TextSpan(text: "TotalPrice:".tr),
+                        TextSpan(text: "${order.totalPrice} LE"),
+                      ],
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15))),
                   Spacer(),
                   if (order.status == "pending")
                     BTN(
-                        widget: Text("Cancel"),
+                        widget: controller.statusRequest == StatusRequest.none
+                            ? SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                    strokeWidth: 4, color: AppColors.white),
+                              )
+                            : Text("Cancel".tr),
                         color: AppColors.secondryColor,
                         press: () {
                           if (order.sId == controller.orders[index]['_id']) {
-                            print("true");
                             controller.cancelOrder(order.sId!);
                           }
                         },
@@ -89,7 +123,7 @@ class orderCard extends GetView<ordersController> {
                   if (order.status != "pending" &&
                       order.status != "preCheckout")
                     BTN(
-                        widget: Text("Order Details"),
+                        widget: Text("OrderDetails".tr),
                         press: () {
                           Get.toNamed(AppRoutes.ordersDetails,
                               arguments: {"order": order});
@@ -100,7 +134,7 @@ class orderCard extends GetView<ordersController> {
               SizedBox(height: 10),
               if (order.status == "pending" || order.status == "preCheckout")
                 BTN(
-                    widget: Text("Order Details"),
+                    widget: Text("OrderDetails".tr),
                     width: double.infinity,
                     press: () {
                       Get.toNamed(AppRoutes.ordersDetails,

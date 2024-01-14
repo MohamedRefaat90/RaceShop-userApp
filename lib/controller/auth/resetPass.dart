@@ -1,9 +1,10 @@
-import 'package:ecommerce/controller/auth/checkEmail.dart';
-import 'package:ecommerce/controller/auth/signup.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/functions/toast.dart';
-import 'package:ecommerce/data/dataSource/remote/Auth/resetPasswordData.dart';
+import 'package:race_shop/controller/auth/checkEmail.dart';
+import 'package:race_shop/controller/auth/signup.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/functions/toast.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/dataSource/remote/Auth/resetPasswordData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,7 @@ class resetPasswordImp extends resetPasswordController {
   bool confirmPassVisibility = true;
   ResetPasswordData resetPasswordData = ResetPasswordData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
+  MyServices myServices = Get.find();
   @override
   resetPassword() async {
     var fromdata = formkey.currentState;
@@ -31,12 +33,12 @@ class resetPasswordImp extends resetPasswordController {
       statusRequest = StatusRequest.loading;
       update();
       var response = await resetPasswordData.resetPassword(
-          email: useremail,
+          email: myServices.sharedPreferences.getString("useremail")!,
           password: newPass.text,
           passwordConfirm: reNewPass.text,
           otp: checkEmailControllerImp.virificationCode);
-      print("Reset Password userEmail ==> ${useremail.trim()}");
-      print("virificationCode ==> ${checkEmailControllerImp.virificationCode}");
+      // print("Reset Password userEmail ==> ${useremail.trim()}");
+      // print("virificationCode ==> ${checkEmailControllerImp.virificationCode}");
       statusRequest = handelData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == 'success') {
@@ -65,8 +67,7 @@ class resetPasswordImp extends resetPasswordController {
   void onInit() {
     newPass = TextEditingController();
     reNewPass = TextEditingController();
-    print(useremail.trim());
-    print(checkEmailControllerImp.virificationCode);
+
     super.onInit();
   }
 

@@ -1,6 +1,6 @@
-import 'package:ecommerce/controller/Favourite/FavouriteController.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/shared/HandleingRequsetData.dart';
+import 'package:race_shop/controller/Favourite/FavouriteController.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/shared/HandleingRequsetData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,9 +19,12 @@ class FavouriteScreen extends StatelessWidget {
             statusRequest: controller.statusRequest!,
             widget: ListView(
               children: [
-                controller.favouriteProducts.isEmpty
-                    ? SizedBox()
-                    : Searchbar_with_NotificationIcon(),
+                Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: Center(
+                      child: Text("Favourites".tr,
+                          style: TextStyle(fontSize: 35))),
+                ),
                 (controller.statusRequest == StatusRequest.none ||
                         controller.favouriteProducts.isEmpty)
                     ? Padding(

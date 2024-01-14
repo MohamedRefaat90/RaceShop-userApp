@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/functions/alertExitApp.dart';
+import 'package:race_shop/core/functions/alertExitApp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';

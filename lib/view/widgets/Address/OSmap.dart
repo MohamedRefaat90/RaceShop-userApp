@@ -19,7 +19,6 @@ class OSmap extends GetView<AddressAddController> {
                 color: AppColors.secondryColor, strokeWidth: 5)),
         onMapIsReady: (value) {
           controller.MapIsReady(value);
-          print(value);
           controller.update();
         },
         osmOption: OSMOption(

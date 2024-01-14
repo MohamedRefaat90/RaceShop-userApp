@@ -1,7 +1,7 @@
-import 'package:ecommerce/controller/home/HomeNavigationController.dart';
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/controller/home/HomeNavigationController.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,7 @@
-import 'package:ecommerce/core/constants/AppColors.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:race_shop/core/functions/ThemeColorFix.dart';
 
 import '../../../controller/checkout/checkout.dart';
 
@@ -123,11 +124,25 @@ class orderDetails_Info extends StatelessWidget {
           Text('$price LE',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text("Color : $Color"),
-            Text("Size : $Size"),
-            Text("Quantity : $quantity")
-          ])
+          DefaultTextStyle(
+            style: TextStyle(fontSize: 14, color: ThemeColorFix()),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text.rich(TextSpan(children: [
+                    TextSpan(text: "Color:".tr),
+                    TextSpan(text: Color),
+                  ])),
+                  Text.rich(TextSpan(children: [
+                    TextSpan(text: "Size:".tr),
+                    TextSpan(text: Size),
+                  ])),
+                  Text.rich(TextSpan(children: [
+                    TextSpan(text: "Quantity:".tr),
+                    TextSpan(text: quantity.toString())
+                  ])),
+                ]),
+          )
         ]));
   }
 }

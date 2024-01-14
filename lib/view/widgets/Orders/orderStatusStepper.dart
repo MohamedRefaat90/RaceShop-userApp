@@ -13,7 +13,7 @@ class orderStatusStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ordersController>(builder: (controller) {
       return EasyStepper(
-        activeStep: controller.activeStep!,
+        activeStep: controller.activeStep,
         stepShape: StepShape.rRectangle,
         stepBorderRadius: 15,
         borderThickness: 2,
@@ -30,12 +30,12 @@ class orderStatusStepper extends StatelessWidget {
             customStep: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Opacity(
-                opacity: controller.activeStep! >= 0 ? 1 : 0.3,
+                opacity: controller.activeStep >= 0 ? 1 : 0.3,
                 child: SvgPicture.asset("assets/icons/waiting.svg",
                     width: 35,
-                    color: controller.activeStep! > 0
-                        ? AppColors.white
-                        : AppColors.black),
+                    color: controller.activeStep > 0
+                        ? Colors.purple[300]
+                        : AppColors.white),
               ),
             ),
             customTitle: const Text('Pending', textAlign: TextAlign.center),
@@ -44,10 +44,10 @@ class orderStatusStepper extends StatelessWidget {
             customStep: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Opacity(
-                opacity: controller.activeStep! >= 1 ? 1 : 0.3,
+                opacity: controller.activeStep >= 1 ? 1 : 0.3,
                 child: SvgPicture.asset("assets/icons/shipping.svg",
                     width: 35,
-                    color: controller.activeStep! > 1
+                    color: controller.activeStep > 1
                         ? AppColors.white
                         : AppColors.black),
               ),
@@ -58,10 +58,10 @@ class orderStatusStepper extends StatelessWidget {
             customStep: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Opacity(
-                opacity: controller.activeStep! >= 2 ? 1 : 0.3,
+                opacity: controller.activeStep >= 2 ? 1 : 0.3,
                 child: SvgPicture.asset("assets/icons/Delivered.svg",
                     width: 35,
-                    color: controller.activeStep! > 2
+                    color: controller.activeStep > 2
                         ? AppColors.white
                         : AppColors.black),
               ),

@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:ecommerce/ApiLinks.dart';
-import 'package:ecommerce/core/class/DB_helper.dart';
+import 'package:race_shop/ApiLinks.dart';
+import 'package:race_shop/core/class/DB_helper.dart';
 
 // class DataTest {
 //   DB_helper db_helper;

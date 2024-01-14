@@ -1,14 +1,13 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/constants/AppColors.dart';
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/functions/flushBar.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/Model/CouponModel.dart';
-import 'package:ecommerce/data/dataSource/remote/Cart/CartData.dart';
-import 'package:ecommerce/data/dataSource/remote/Coupon/couponData.dart';
-import 'package:ecommerce/data/dataSource/remote/Product/productData.dart';
-import 'package:ecommerce/view/widgets/productDetails/productDesc.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/core/functions/flushBar.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/CouponModel.dart';
+import 'package:race_shop/data/dataSource/remote/Cart/CartData.dart';
+import 'package:race_shop/data/dataSource/remote/Coupon/couponData.dart';
+import 'package:race_shop/data/dataSource/remote/Product/productData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -90,6 +89,8 @@ class CartControllerImp extends CartController {
 
   @override
   getCartProducts() async {
+    cartQuantity = 0;
+    cartDiscount = 0;
     cartProducts.clear();
     statusRequest = StatusRequest.loading;
 
@@ -101,7 +102,7 @@ class CartControllerImp extends CartController {
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == 'success') {
         cartInfo = response['data']['data'];
-        totalPrice = cartInfo['totalPrice'];
+        totalPrice = cartInfo['totalPrice'].toInt();
         // cartLength = cartInfo['items'].length;
         for (int i = 0; i < cartInfo['items'].length; i++) {
           await getProductData(cartInfo['items'][i]['product']);
@@ -126,6 +127,8 @@ class CartControllerImp extends CartController {
       required quantity,
       required color,
       required size}) async {
+    statusRequest = StatusRequest.none;
+    update();
     var response = await cartData.addToCart(
         productID: productID,
         productName: productName,
@@ -137,29 +140,30 @@ class CartControllerImp extends CartController {
         userToken: userToken);
 
     statusRequest = handelData(response);
-
+    print(Get.currentRoute);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == 'success') {
         snakBar(
-            message: "Item Added Successfully To Cart",
+            message: "ItemAddedToCart".tr,
             color: Colors.green,
-            btn: Get.currentRoute == "cart"
+            btn: Get.currentRoute != "/cart"
                 ? TextButton(
                     onPressed: () {
                       Get.toNamed(AppRoutes.cart);
-                      updateCart();
+                      // cartQuantity = 0;
+                      getCartProducts();
+                      // updateCart();
                     },
-                    child: Text("View Cart",
+                    child: Text("ViewCart".tr,
                         style: TextStyle(
                             color: AppColors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18)))
-                : null);
+                            fontSize: 16)))
+                : SizedBox());
       }
     } else {
       snakBar(
-          message: "There is No More Quintity For This Product",
-          color: Colors.red);
+          message: "ThereisNoMoreQuintityForThisProduct".tr, color: Colors.red);
     }
   }
 
@@ -184,7 +188,7 @@ class CartControllerImp extends CartController {
     cartProducts.removeWhere((e) => e['id'] == productID);
     updateCart();
 
-    snakBar(message: "Product Removed From Your Cart");
+    snakBar(message: "ProductRemovedFromYourCart".tr);
 
     if (cartInfo['items'].isEmpty) {
       statusRequest = StatusRequest.failure;
@@ -200,7 +204,7 @@ class CartControllerImp extends CartController {
     updateCart();
 
     Get.showSnackbar(GetSnackBar(
-      message: "Product Remove Successfully From Your Cart",
+      message: "ProductRemovedFromYourCart".tr,
       duration: Duration(seconds: 2),
     ));
 
@@ -223,12 +227,10 @@ class CartControllerImp extends CartController {
       if (response['status'] == 'success') {
         coupon = CouponModel.fromJson(response['data']['data']);
         couponDiscount = coupon!.discount ?? 0;
-        // notHaveCoupon();
-        print("Coupon Varified");
       }
     } else {
       statusRequest = StatusRequest.success;
-      flushBar(context, message: "Coupon Not Valid", color: Colors.red);
+      flushBar(context, message: "CouponNotValid".tr, color: Colors.red);
     }
 
     update();
@@ -247,7 +249,7 @@ class CartControllerImp extends CartController {
     statusRequest = StatusRequest.success;
 
     cartInfo = response['data']['data'];
-    totalPrice = cartInfo['totalPrice'];
+    totalPrice = cartInfo['totalPrice'].toInt();
     cartQuantity = 0;
     for (int i = 0; i < cartInfo['items'].length; i++) {
       cartQuantity = cartQuantity + cartInfo['items'][i]['quantity'];

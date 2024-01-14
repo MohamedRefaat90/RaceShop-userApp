@@ -57,7 +57,7 @@
           <string>unilinks.example.com</string>
           <key>CFBundleURLSchemes</key>
           <array>
-              <string>RaceShop2023</string>
+              <string>race_shop2023</string>
           </array>
       </dict>
   </array>

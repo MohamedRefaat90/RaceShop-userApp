@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/constants/AppColors.dart';
+import 'package:race_shop/core/constants/AppColors.dart';
 import 'package:flutter/material.dart';
 
 class BTN extends StatelessWidget {

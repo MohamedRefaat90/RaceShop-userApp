@@ -1,4 +1,5 @@
-import 'package:ecommerce/data/dataSource/remote/Auth/signupData.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/dataSource/remote/Auth/signupData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ abstract class SignupController extends GetxController {
   confirmPassVisible();
 }
 
-late String useremail;
+// late String useremail;
 
 class SignupControllerImp extends SignupController {
   late TextEditingController firstName;
@@ -30,47 +31,7 @@ class SignupControllerImp extends SignupController {
   StatusRequest statusRequest = StatusRequest.none;
   SignupData signupData = SignupData(Get.find());
   late String message;
-
-  @override
-  signup(BuildContext context) async {
-    var fromdata = formkey.currentState;
-
-    if (fromdata!.validate()) {
-      statusRequest = StatusRequest.loading;
-      update();
-      var response = await signupData.postSignupData(
-          firstName: firstName.text,
-          lastName: lastName.text,
-          email: email.text.trim(),
-          password: password.text,
-          passwordConfirm: confirmPassword.text,
-          phone: phone.text);
-
-      statusRequest = handelData(response);
-
-      // Means response == Map not statusRequset
-      if (statusRequest == StatusRequest.success) {
-        useremail = email.text;
-
-        if (response['status'] == "success") {
-          Get.toNamed(AppRoutes.checkEmail, arguments: [
-            {"email": email.text.trim()}
-          ]);
-          update();
-          flushBar(context,
-              message: response['message'], status: statusRequest);
-        } else {
-          statusRequest = StatusRequest.failure;
-          update();
-          flushBar(context,
-              message: response['message'], status: statusRequest);
-        }
-      } else {
-        update();
-        flushBar(context, status: statusRequest);
-      }
-    }
-  }
+  MyServices myServices = Get.find();
 
   @override
   void onInit() {
@@ -85,19 +46,49 @@ class SignupControllerImp extends SignupController {
   }
 
   @override
-  goToLogin() {
-    Get.offAllNamed(AppRoutes.login);
+  signup(BuildContext context) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await signupData.postSignupData(
+        firstName: firstName.text,
+        lastName: lastName.text,
+        email: email.text.trim(),
+        password: password.text,
+        passwordConfirm: confirmPassword.text,
+        phone: phone.text);
+
+    statusRequest = handelData(response);
+
+    // Means response == Map not statusRequset
+    if (statusRequest == StatusRequest.success) {
+      myServices.sharedPreferences.setString("useremail", email.text);
+      // useremail = email.text;
+
+      if (response['status'] == "success") {
+        Get.toNamed(AppRoutes.checkEmail, arguments: [
+          {"email": email.text.trim()}
+        ]);
+        update();
+        flushBar(context, message: response['message'], status: statusRequest);
+      } else {
+        statusRequest = StatusRequest.failure;
+        update();
+        flushBar(context, message: response['message'], status: statusRequest);
+      }
+    } else {
+      // statusRequest = StatusRequest.failure;
+      // Get.back();
+      flushBar(context,
+          message: "Email already Exist",
+          status: statusRequest,
+          color: Colors.red);
+      update();
+    }
   }
 
   @override
-  void dispose() {
-    firstName.dispose();
-    lastName.dispose();
-    email.dispose();
-    phone.dispose();
-    password.dispose();
-    confirmPassword.dispose();
-    super.dispose();
+  goToLogin() {
+    Get.offAllNamed(AppRoutes.login);
   }
 
   @override
@@ -110,5 +101,16 @@ class SignupControllerImp extends SignupController {
   confirmPassVisible() {
     confirmPassVisibility = !confirmPassVisibility;
     update();
+  }
+
+  @override
+  void dispose() {
+    firstName.dispose();
+    lastName.dispose();
+    email.dispose();
+    phone.dispose();
+    password.dispose();
+    confirmPassword.dispose();
+    super.dispose();
   }
 }

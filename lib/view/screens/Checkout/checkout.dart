@@ -1,7 +1,7 @@
-import 'package:ecommerce/controller/address/addressViewController.dart';
-import 'package:ecommerce/controller/checkout/checkout.dart';
-import 'package:ecommerce/core/shared/HandleingRequsetData.dart';
-import 'package:ecommerce/core/shared/customAppBar.dart';
+import 'package:race_shop/controller/address/addressViewController.dart';
+import 'package:race_shop/controller/checkout/checkout.dart';
+import 'package:race_shop/core/shared/HandleingRequsetData.dart';
+import 'package:race_shop/core/shared/customAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,9 +16,9 @@ class Checkout extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     Get.put(CheckoutController());
     Get.put(AddressViewController());
-
+    controller.isCheckout = true;
     return Scaffold(
-      appBar: customAppBar(context, "Checkout"),
+      appBar: customAppBar(context, "CheckOut".tr),
       body: SafeArea(
         child:
             GetBuilder<AddressViewController>(builder: (AddressViewcontroller) {
@@ -31,7 +31,7 @@ class Checkout extends GetView<CheckoutController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Choose Payment Method",
+                    Text("ChoosePaymentMethod".tr,
                         style: TextStyle(fontSize: 20)),
                     paymentMethods(),
                     userAddress(),

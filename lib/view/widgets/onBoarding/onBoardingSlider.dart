@@ -1,4 +1,4 @@
-import 'package:ecommerce/controller/onBoarding/onBoardingController.dart';
+import 'package:race_shop/controller/onBoarding/onBoardingController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +26,7 @@ class onBoardingSlider extends GetView<onBoardingControllerImp> {
                   Text(
                     onBoardingList[index].title,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.displayLarge,
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),

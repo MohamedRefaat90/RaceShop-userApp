@@ -15,7 +15,7 @@ ValidateInputs(String value, String type, int min, int max) {
 
   if (type == 'phone') {
     if (!GetUtils.isPhoneNumber(value)) {
-      "phonenotValid".tr;
+      return "phonenotValid".tr;
       // "رقم الهاتف غير صالح"
     }
   }
@@ -36,6 +36,18 @@ ValidateInputs(String value, String type, int min, int max) {
             : type == "phone"
                 ? "phonelarge13".tr
                 : "passlarge30".tr;
+  }
+
+  if (type == "password") {
+    bool hasUppercase = value.contains(new RegExp(r'[A-Z]'));
+    bool hasDigits = value.contains(new RegExp(r'[0-9]'));
+    bool hasLowercase = value.contains(new RegExp(r'[a-z]'));
+    bool hasSpecialCharacters =
+        value.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+
+    if (!hasUppercase && !hasDigits && !hasLowercase && !hasSpecialCharacters) {
+      return "passReq".tr;
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce/controller/home/HomeController.dart';
+import 'package:race_shop/controller/home/HomeController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

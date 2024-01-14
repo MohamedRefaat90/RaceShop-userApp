@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce/controller/Favourite/FavouriteController.dart';
-import 'package:ecommerce/core/functions/translate.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
+import 'package:race_shop/controller/Favourite/FavouriteController.dart';
+import 'package:race_shop/core/functions/translate.dart';
+import 'package:race_shop/data/Model/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -46,7 +46,7 @@ class CategoryProductCard extends GetView<CategoryProductsControllerImp> {
                     child: Text(
                         translate(product.productName, product.productNameAr),
                         style: const TextStyle(
-                            color: AppColors.black,
+                            // color: AppColors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 17)),
                   ),
@@ -54,12 +54,12 @@ class CategoryProductCard extends GetView<CategoryProductsControllerImp> {
                     return Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
                             children: [
                               Text("${product.productPrice} LE",
                                   style: TextStyle(
-                                      color: AppColors.black,
+                                      // color: AppColors.black,
                                       fontSize: 16,
                                       decoration: product.productDiscount > 0
                                           ? TextDecoration.lineThrough

@@ -1,8 +1,8 @@
-import 'package:ecommerce/core/class/statusRequest.dart';
-import 'package:ecommerce/core/functions/handelDataController.dart';
-import 'package:ecommerce/core/services/myServices.dart';
-import 'package:ecommerce/data/Model/productModel.dart';
-import 'package:ecommerce/data/dataSource/remote/Favourite/FavouriteData.dart';
+import 'package:race_shop/core/class/statusRequest.dart';
+import 'package:race_shop/core/functions/handelDataController.dart';
+import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/data/Model/productModel.dart';
+import 'package:race_shop/data/dataSource/remote/Favourite/FavouriteData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,7 +53,7 @@ class FavouriteControllerImp extends FavouriteController {
     }
     favouriteData.removeFromFav(productID, userToken);
 
-    favouriteProducts.removeWhere((element) => element.productID == productID);
+    favouriteProducts.removeAt(index!);
 
     toastAlert(
         msg: 'Product Removerd From Favourite List', color: Colors.redAccent);
@@ -77,8 +77,7 @@ class FavouriteControllerImp extends FavouriteController {
 
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == 'success') {
-        favouriteProducts.addAll(
-            response['data']['data'].map((e) => productModel.formjson(e)));
+        favouriteProducts = response['data']['data'];
       }
     } else {
       statusRequest = StatusRequest.none;

@@ -1,5 +1,5 @@
-import 'package:ecommerce/core/constants/AppRoutes.dart';
-import 'package:ecommerce/core/localization/changeLanguage.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
+import 'package:race_shop/controller/LanguageController/LanguageController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +16,7 @@ class Languages extends GetView<LanguageController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('chooseLang'.tr,
-              style: Theme.of(context).textTheme.displayLarge),
+              style: Theme.of(context).textTheme.displaySmall),
           const SizedBox(height: 20),
           BTN(
               widget: Text(

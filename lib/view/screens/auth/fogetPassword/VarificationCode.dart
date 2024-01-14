@@ -1,6 +1,6 @@
-import 'package:ecommerce/controller/auth/forgetPassword.dart';
-import 'package:ecommerce/core/shared/customAppBar.dart';
-import 'package:ecommerce/view/widgets/Auth/otpTimer.dart';
+import 'package:race_shop/controller/auth/forgetPassword.dart';
+import 'package:race_shop/core/shared/customAppBar.dart';
+import 'package:race_shop/view/widgets/Auth/otpTimer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
