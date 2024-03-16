@@ -45,7 +45,7 @@ ValidateInputs(String value, String type, int min, int max) {
     bool hasSpecialCharacters =
         value.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
 
-    if (!hasUppercase && !hasDigits && !hasLowercase && !hasSpecialCharacters) {
+    if (!hasUppercase || !hasDigits || !hasLowercase || !hasSpecialCharacters) {
       return "passReq".tr;
     }
   }

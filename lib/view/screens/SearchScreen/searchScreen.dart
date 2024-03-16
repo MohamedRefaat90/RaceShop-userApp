@@ -53,20 +53,23 @@ class SearchItemCard extends GetView<SearchBarController> {
         onPressed: () {
           controller.goToProductDetails(product, index);
         },
-        color: Colors.grey[800],
+        color: Colors.grey[500],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         padding: EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
             Image.network(product.productCoverImage, width: 100),
             SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(product.productName),
-                SizedBox(height: 10),
-                Text("${product.productPrice} LE"),
-              ],
+            DefaultTextStyle(
+              style: TextStyle(color: AppColors.white),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(product.productName),
+                  SizedBox(height: 10),
+                  Text("${product.productPrice} LE"),
+                ],
+              ),
             )
           ],
         ),

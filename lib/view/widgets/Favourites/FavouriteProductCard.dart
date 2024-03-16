@@ -1,18 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:race_shop/controller/Favourite/FavouriteController.dart';
 import 'package:race_shop/core/functions/translate.dart';
 import 'package:race_shop/data/Model/productModel.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../core/constants/AppColors.dart';
 
 class FavouriteProductCard extends GetView<FavouriteControllerImp> {
+  final productModel product;
+
+  final int index;
   const FavouriteProductCard(
       {super.key, required this.product, required this.index});
-
-  final productModel product;
-  final int index;
   @override
   Widget build(BuildContext context) {
     Get.put(FavouriteControllerImp());

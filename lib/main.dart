@@ -1,10 +1,9 @@
 import 'package:race_shop/Bindings/myBindings.dart';
 import 'package:race_shop/controller/LanguageController/LanguageController.dart';
-import 'package:race_shop/controller/auth/login.dart';
+import 'package:race_shop/core/constants/AppRoutes.dart';
 import 'package:race_shop/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'core/constants/AppRoutes.dart';
 import 'core/localization/transilation.dart';
 import 'core/services/myServices.dart';
 
@@ -33,7 +32,7 @@ class race_shop extends GetView<LanguageController> {
           translations: MyTransilation(),
           initialBinding: myBindings(),
           darkTheme: ThemeData.dark(useMaterial3: true),
-          // initialRoute: AppRoutes.login,
+          // initialRoute: AppRoutes.checkEmail,
           // initialRoute: AppRoutes.test,
           getPages: routes);
     });

@@ -16,7 +16,6 @@ class checkoutCompeleteScreen extends GetView<CheckoutCompeleteController> {
   @override
   Widget build(BuildContext context) {
     Get.put(CheckoutCompeleteController());
-    CartControllerImp cartControllerImp = Get.find();
     return Scaffold(
       backgroundColor: AppColors.white.withOpacity(0.8),
       body: Center(
@@ -93,9 +92,7 @@ class checkoutCompeleteScreen extends GetView<CheckoutCompeleteController> {
                           padding: 10,
                           width: 170,
                           press: () {
-                            cartControllerImp.cartProducts.clear();
                             Get.offAllNamed(AppRoutes.home);
-                            cartControllerImp.cartProducts.clear();
                           })
                     ]),
         ),

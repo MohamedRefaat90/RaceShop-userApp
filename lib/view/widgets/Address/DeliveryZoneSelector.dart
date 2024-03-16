@@ -22,8 +22,7 @@ class DeliveryZoneSelector extends GetView<AddressAddController> {
               .map((item) => DropdownMenuItem<dynamic>(
                     value: item,
                     child: Text(item["zoneName_en"],
-                        style: const TextStyle(
-                            fontSize: 14, color: AppColors.black)),
+                        style: const TextStyle(fontSize: 14)),
                   ))
               .toList(),
           value: controller.deliveryZone,

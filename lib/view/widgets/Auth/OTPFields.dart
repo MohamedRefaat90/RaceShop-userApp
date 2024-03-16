@@ -7,10 +7,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
 class OTPFields extends StatelessWidget {
-  const OTPFields({
-    super.key,
-    required this.mycontroller,
-  });
+  const OTPFields({super.key, required this.mycontroller});
   final GetxController mycontroller;
   @override
   Widget build(BuildContext context) {

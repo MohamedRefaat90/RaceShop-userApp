@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:race_shop/controller/auth/signup.dart';
 import 'package:race_shop/core/class/statusRequest.dart';
 import 'package:race_shop/core/functions/handelDataController.dart';
 import 'package:race_shop/core/functions/toast.dart';

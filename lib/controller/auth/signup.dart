@@ -69,17 +69,18 @@ class SignupControllerImp extends SignupController {
           {"email": email.text.trim()}
         ]);
         update();
-        flushBar(context, message: response['message'], status: statusRequest);
+        flushBar(context,
+            message: "confirmationtoken".tr, status: statusRequest);
       } else {
         statusRequest = StatusRequest.failure;
         update();
-        flushBar(context, message: response['message'], status: statusRequest);
+        flushBar(context, message: "UseOTP".tr, status: statusRequest);
       }
     } else {
       // statusRequest = StatusRequest.failure;
       // Get.back();
       flushBar(context,
-          message: "Email already Exist",
+          message: "EmailalreadyExist".tr,
           status: statusRequest,
           color: Colors.red);
       update();

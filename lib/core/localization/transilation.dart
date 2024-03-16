@@ -39,11 +39,14 @@ class MyTransilation extends Translations {
           'haveAcc': "Have Account ",
           "passReq":
               "need at least 1 lowercase , 1 uppercase , 1 symbol  , 1 number",
-
+          "EmailalreadyExist": "Email Already Exist",
           // Forget Pass Screen
           "forgetPass": "Forget Password",
           "forgetPassDesc": "Enter your Email to Recive Varification Code",
           "check": "Check",
+          "confirmationtoken": "confirmation token has been sent to the email",
+          "UseOTP":
+              "Use the OTP that was sent to your Email to verify your Email",
 
           // Varification Screen
           "verify": "Verifiy Code",
@@ -253,7 +256,10 @@ class MyTransilation extends Translations {
           'forgetPassword': 'نسيت كلمة السر',
           'haveAcc': "لديك حساب قم ",
           "signup": "تسجيل حساب",
-          "passReq": "يجب علي الاقل من حرف كبير و حرف صغير و رمز و رقم",
+          "passReq": "يجب ان يتكون من حرف كبير و صغير و رمز و رقم",
+          "EmailalreadyExist": "هذا البريد الأيكتروني مستخدم مسبقا",
+          "confirmationtoken": "تم ارسال رمز التحقق الي بريدك الالكتروني",
+          "UseOTP": "استخدم رمز التحيقق المرسل الي بريدك الالكتروني",
 
           // Forget Pass Screen
           "forgetPass": "نسيت كلمة المرور",

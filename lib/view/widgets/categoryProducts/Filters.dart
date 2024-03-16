@@ -184,7 +184,7 @@ class SliderPrice extends GetView<CategoryProductsControllerImp> {
             positionOffset: FlutterSliderTooltipPositionOffset(top: -20),
             boxStyle: FlutterSliderTooltipBox(
                 decoration: BoxDecoration(
-                    color: Colors.grey[800],
+                    // color: Colors.grey[800],
                     border: Border.all(width: 1),
                     borderRadius: BorderRadius.circular(50))),
             alwaysShowTooltip: true,
