@@ -1,14 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:race_shop/core/class/statusRequest.dart';
 import 'package:race_shop/core/constants/AppAssets.dart';
 import 'package:race_shop/core/constants/AppRoutes.dart';
 import 'package:race_shop/core/functions/handelDataController.dart';
 import 'package:race_shop/core/services/myServices.dart';
+import 'package:race_shop/core/services/payment_service.dart';
 import 'package:race_shop/core/shared/BTN.dart';
 import 'package:race_shop/core/shared/customField.dart';
 import 'package:race_shop/data/Model/checkoutModel.dart';
 import 'package:race_shop/data/dataSource/remote/checkout/checkoutData.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CheckoutController extends GetxController {
   List<Map> paymentMethods = [
@@ -27,6 +28,7 @@ class CheckoutController extends GetxController {
   Map? deliveryZone;
   bool isPaymentOnlineOpen = true;
   MyServices myServices = Get.find();
+  PaymentService paymentService = PaymentService(db_helper: Get.find());
   String? userToken;
   int totalItemsDiscount = 0;
   late TextEditingController mobileWallet;
@@ -37,44 +39,8 @@ class CheckoutController extends GetxController {
   void onInit() {
     userToken = myServices.sharedPreferences.getString('userToken');
     mobileWallet = TextEditingController();
+    print(paymentService.getTokenformPaymob());
     super.onInit();
-  }
-
-  selectedpaymentMethod(String val, BuildContext context) {
-    SelectedPaymentMethod = val;
-
-    if (val == "wallet") {
-      Get.defaultDialog(
-          title: "EnterVodaCash".tr,
-          titleStyle: TextStyle(fontSize: 20),
-          titlePadding: EdgeInsets.all(20),
-          contentPadding: EdgeInsets.all(20),
-          content: Container(
-              height: 150,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(height: 20),
-                  customField(
-                      lable: "Mobile Number",
-                      hint: "ex : 01010101010",
-                      textEditingController: mobileWallet),
-                  Spacer(),
-                  BTN(
-                      widget: Text("Submit".tr),
-                      press: () {
-                        Get.back();
-                      },
-                      width: 200)
-                ],
-              )));
-    }
-    update();
-  }
-
-  selectedAddress(String? val) {
-    SelectedAddress = val;
-    update();
   }
 
   checkoutCash(String? couponName, BuildContext context) async {
@@ -121,16 +87,6 @@ class CheckoutController extends GetxController {
     update();
   }
 
-  getTotalDiscount() {
-    for (int i = 0; i < checkout.items!.length; i++) {
-      totalItemsDiscount = checkout.items![i].discount!;
-    }
-
-    if (checkout.coupon != null) {
-      totalItemsDiscount += checkout.coupon!.discount!;
-    }
-  }
-
   ConfirmOrder(BuildContext context) async {
     statusRequest = StatusRequest.loading;
     update();
@@ -161,5 +117,52 @@ class CheckoutController extends GetxController {
   void dispose() {
     mobileWallet.dispose();
     super.dispose();
+  }
+
+  getTotalDiscount() {
+    for (int i = 0; i < checkout.items!.length; i++) {
+      totalItemsDiscount = checkout.items![i].discount!;
+    }
+
+    if (checkout.coupon != null) {
+      totalItemsDiscount += checkout.coupon!.discount!;
+    }
+  }
+
+  selectedAddress(String? val) {
+    SelectedAddress = val;
+    update();
+  }
+
+  selectedpaymentMethod(String val, BuildContext context) {
+    SelectedPaymentMethod = val;
+
+    if (val == "wallet") {
+      Get.defaultDialog(
+          title: "EnterVodaCash".tr,
+          titleStyle: TextStyle(fontSize: 20),
+          titlePadding: EdgeInsets.all(20),
+          contentPadding: EdgeInsets.all(20),
+          content: Container(
+              height: 150,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(height: 20),
+                  customField(
+                      lable: "Mobile Number",
+                      hint: "ex : 01010101010",
+                      textEditingController: mobileWallet),
+                  Spacer(),
+                  BTN(
+                      widget: Text("Submit".tr),
+                      press: () {
+                        Get.back();
+                      },
+                      width: 200)
+                ],
+              )));
+    }
+    update();
   }
 }
