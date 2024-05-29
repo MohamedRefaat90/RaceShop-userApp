@@ -7,9 +7,7 @@ import '../../../controller/productDetails/ProductController.dart';
 import '../../../core/constants/AppColors.dart';
 
 class imageSlider extends GetView<ProductDetailsControllerImp> {
-  const imageSlider({
-    super.key,
-  });
+  const imageSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +40,7 @@ class imageSlider extends GetView<ProductDetailsControllerImp> {
 }
 
 class imageSliderIndicators extends StatelessWidget {
-  const imageSliderIndicators({
-    super.key,
-  });
+  const imageSliderIndicators({super.key});
 
   @override
   Widget build(BuildContext context) {
